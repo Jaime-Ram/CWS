@@ -1,7 +1,7 @@
 import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Visual from "@/components/Visual";
+import Media from "@/components/Media";
 import { CardTabs, QuoteSlider } from "@/components/Tabs";
 import { Badge, MilestoneList, QuoteCard, StatsCard } from "@/components/blocks";
 import { Card, PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
@@ -32,7 +32,7 @@ const werkwijze = [
       "Onderscheid tussen wat wettelijk moet en wat verstandig is",
       "Doorverwijzing als een andere partij beter past",
     ],
-    visual: "logboek" as const,
+    imageAlt: "Legionella-logboek met beheersplan",
   },
   {
     key: "specialisatie",
@@ -45,7 +45,7 @@ const werkwijze = [
       "Ervaring van kleine B&B's tot ziekenhuizen",
       "Samenwerking met uw vaste installateur waar dat handiger is",
     ],
-    visual: "leidingnet" as const,
+    imageAlt: "Leidingnet met tappunten",
   },
   {
     key: "praktisch",
@@ -58,7 +58,7 @@ const werkwijze = [
       "Aftekenlijsten die de drempel verlagen",
       "Uitvoering geheel of gedeeltelijk over te nemen",
     ],
-    visual: "gebouw" as const,
+    imageAlt: "Drinkwaterinstallatie in een gebouw",
   },
   {
     key: "bereikbaar",
@@ -71,7 +71,7 @@ const werkwijze = [
       "Indien nodig binnen 24 uur ter plaatse bij een uitbraak",
       "Vast aanspreekpunt gedurende de opdracht",
     ],
-    visual: "waarschuwing" as const,
+    imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
   },
 ];
 
@@ -79,10 +79,10 @@ export default function OverOnsPage() {
   return (
     <>
       <HeroSplit
+        imageAlt="Team van Clean Water Systems aan het werk"
         eyebrow={`Sinds ${site.founded}`}
         title="Adviesbureau voor waterinstallaties"
         text="Wij zijn een gespecialiseerd bureau, geen aannemer die er legionella bij doet. Dat verschil merkt u aan het advies dat u krijgt."
-        visual="golven"
         actions={
           <>
             <PrimaryButton href="/contact">Neem contact op</PrimaryButton>
@@ -147,7 +147,7 @@ export default function OverOnsPage() {
                 </a>
               </Card>
               <Card className="overflow-hidden p-3">
-                <Visual name="kaart" className="block aspect-square w-full rounded-[18px]" />
+                <Media alt="Werkgebied van Clean Water Systems" ratio="1/1" className="w-full rounded-[18px]" />
               </Card>
             </div>
           </div>
@@ -182,25 +182,25 @@ export default function OverOnsPage() {
             items={[
               {
                 badge: "Stap 1",
-                visual: "gebouw",
+                imageAlt: "",
                 title: "Inventarisatie en vaste prijs",
                 text: "Een kort gesprek over uw gebouw, uw installatie en uw verplichtingen. Daarna een vaste prijs, geen nacalculatie.",
               },
               {
                 badge: "Stap 2",
-                visual: "leidingnet",
+                imageAlt: "",
                 title: "Onderzoek op locatie",
                 text: "Een BRL 6010 adviseur loopt de installatie na, meet temperaturen en legt elk tappunt vast met foto's.",
               },
               {
                 badge: "Stap 3",
-                visual: "logboek",
+                imageAlt: "",
                 title: "Rapport, beheersplan en logboek",
                 text: "Risico's met prioritering, per punt een maatregel en een logboekopzet die bij een controle voldoet.",
               },
               {
                 badge: "Stap 4",
-                visual: "monster",
+                imageAlt: "",
                 title: "Uitvoering, meting en nazorg",
                 text: "Beheersmaatregelen, periodieke monstername en actualisatie zodra er iets aan de installatie wijzigt.",
               },

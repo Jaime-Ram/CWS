@@ -2,8 +2,8 @@ import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Media from "@/components/Media";
 import JsonLd from "@/components/JsonLd";
-import Visual from "@/components/Visual";
 import { MilestoneList, Badge, CardCta, ImageLeftItem, VisualCard } from "@/components/blocks";
 import {
   Card,
@@ -38,8 +38,6 @@ export async function generateMetadata({
   });
 }
 
-const riskVisuals = ["leidingnet", "temperatuur", "douche", "boiler"] as const;
-
 export default async function BranchPage({
   params,
 }: {
@@ -72,7 +70,7 @@ export default async function BranchPage({
         }
         aside={
           <div className="w-[320px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
-            <Visual name={branch.visual} tone="dark" className="block aspect-[4/3] w-full" />
+            <Media alt={branch.imageAlt} tone="dark" ratio="4/3" className="block aspect-[4/3] w-full" />
           </div>
         }
       />
@@ -91,10 +89,10 @@ export default async function BranchPage({
           text="Dit zijn de plekken waar wij in deze branche het vaakst een overschrijding zien ontstaan."
         />
         <div className="mt-10 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {branch.risks.map((r, i) => (
+          {branch.risks.map((r) => (
             <Card key={r.title} className="flex flex-col overflow-hidden p-3">
               <span className="overflow-hidden rounded-[20px]">
-                <Visual name={riskVisuals[i % riskVisuals.length]} className="block aspect-[4/3] w-full" />
+                <Media alt={`Risicopunt: ${r.title.toLowerCase()}`} ratio="4/3" className="w-full" />
               </span>
               <span className="flex flex-1 flex-col p-5 pt-6 max-sm:p-4">
                 <span className="text-[20px] font-semibold leading-[1.25em] text-neutral-800">
@@ -151,25 +149,25 @@ export default async function BranchPage({
             items={[
               {
                 badge: "Stap 1",
-                visual: "gebouw",
+                imageAlt: "",
                 title: "Inventarisatie en offerte",
                 text: "Een korte inventarisatie van uw gebouw en installatie, met daarna een vaste prijs zonder verrassingen.",
               },
               {
                 badge: "Stap 2",
-                visual: "leidingnet",
+                imageAlt: "",
                 title: "Analyse op locatie",
                 text: "Een adviseur loopt de installatie na, meet temperaturen en legt elk tappunt fotografisch vast.",
               },
               {
                 badge: "Stap 3",
-                visual: "logboek",
+                imageAlt: "",
                 title: "Rapport en beheersplan",
                 text: "Een rapport met prioritering en een beheersplan dat uw eigen mensen kunnen uitvoeren.",
               },
               {
                 badge: "Stap 4",
-                visual: "monster",
+                imageAlt: "",
                 title: "Uitvoering en controle",
                 text: "Beheersmaatregelen, monstername en actualisatie zodra de installatie wijzigt.",
               },
@@ -190,7 +188,7 @@ export default async function BranchPage({
                 <ImageLeftItem
                   key={s.slug}
                   href={`/diensten/${s.slug}`}
-                  visual={s.visual}
+                  imageAlt={s.imageAlt}
                   title={s.name}
                   badge={s.eyebrow}
                 />
@@ -198,7 +196,6 @@ export default async function BranchPage({
             </div>
           </div>
           <CardCta
-            visual={branch.visual}
             eyebrow="Direct schakelen"
             title={`Vraag over uw ${branch.shortName.toLowerCase()}?`}
             text="Bel gerust. Wij kennen de praktijk in deze branche en zeggen eerlijk wat er wel en niet nodig is."
@@ -227,7 +224,7 @@ export default async function BranchPage({
             <VisualCard
               key={b.slug}
               href={`/branches/${b.slug}`}
-              visual={b.visual}
+              imageAlt={b.imageAlt}
               title={b.shortName}
               subtitle={b.name}
               badge={b.priority ? "Prioritair" : "Zorgplicht"}

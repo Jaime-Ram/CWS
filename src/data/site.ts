@@ -36,7 +36,6 @@ export const site = {
     "Kiwa-ATA middelen",
     "Drinkwaterbesluit",
     "Geaccrediteerd laboratorium",
-    "ISSO 55.1",
   ],
 } as const;
 

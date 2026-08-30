@@ -1,7 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import Visual, { type VisualName } from "./Visual";
-import Icon from "./Icon";
+import Media from "./Media";
 import { ArrowIcon, Card } from "./ui";
 
 /* -------------------------------------------------------------------------- */
@@ -104,18 +103,20 @@ export function StatsCard({
 
 export function PortfolioCard({
   href,
-  visual,
   title,
   text,
   badge,
   meta,
+  image,
+  imageAlt,
 }: {
   href: string;
-  visual: VisualName;
   title: string;
   text: string;
   badge?: string;
   meta?: string;
+  image?: string;
+  imageAlt?: string;
 }) {
   return (
     <Link
@@ -123,19 +124,19 @@ export function PortfolioCard({
       className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-[32px] border border-neutral-200 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[24px]"
     >
       <span
-        className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        className="absolute inset-0 bg-cta-sweep opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         aria-hidden="true"
       >
-        <Visual name={visual} tone="dark" className="size-full" />
-        <span className="absolute inset-0 bg-gradient-to-t from-neutral-800 via-neutral-800/85 to-neutral-800/40" />
+        {image && (
+          <Media src={image} alt={imageAlt ?? ""} ratio="4/3" className="size-full opacity-45" />
+        )}
+        <span className="absolute inset-0 bg-gradient-to-t from-neutral-800 via-neutral-800/80 to-neutral-800/45" />
       </span>
 
       <span className="relative flex flex-1 flex-col justify-between gap-16 p-10 max-md:gap-10 max-sm:p-6">
         <span>
           <span className="flex items-start justify-between gap-4">
-            <span className="flex size-16 items-center justify-center rounded-full border border-neutral-200 bg-secondary-100 text-primary transition-colors duration-500 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white">
-              <Icon name={visual} className="size-7" />
-            </span>
+            <span className="size-16 shrink-0 rounded-full border border-neutral-200 bg-secondary-100 transition-colors duration-500 group-hover:border-white/20 group-hover:bg-white/10" />
             <ChevronButton />
           </span>
           <span className="mt-6 block text-[24px] font-semibold leading-[1.25em] text-neutral-800 transition-colors duration-500 group-hover:text-white">
@@ -170,22 +171,24 @@ export function PortfolioCard({
 
 export function VisualCard({
   href,
-  visual,
   title,
   subtitle,
   badge,
+  image,
+  imageAlt,
 }: {
   href: string;
-  visual: VisualName;
   title: string;
   subtitle: string;
   badge?: string;
+  image?: string;
+  imageAlt: string;
 }) {
   return (
     <Link href={href} className="group">
       <Card className="flex h-full flex-col overflow-hidden p-3 transition-shadow duration-300 hover:shadow-[0_18px_40px_-18px_rgba(31,47,84,0.25)]">
         <span className="relative block overflow-hidden rounded-[20px]">
-          <Visual name={visual} className="block aspect-[4/3] w-full" />
+          <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
           {badge && (
             <span className="absolute left-4 top-4">
               <Badge>{badge}</Badge>
@@ -214,16 +217,18 @@ export function VisualCard({
 
 export function ImageLeftItem({
   href,
-  visual,
   title,
   badge,
   meta,
+  image,
+  imageAlt,
 }: {
   href: string;
-  visual: VisualName;
   title: string;
   badge?: string;
   meta?: string;
+  image?: string;
+  imageAlt: string;
 }) {
   return (
     <Link
@@ -231,7 +236,7 @@ export function ImageLeftItem({
       className="group grid grid-cols-[120px_1fr] items-center gap-6 max-sm:grid-cols-[88px_1fr] max-sm:gap-4"
     >
       <span className="overflow-hidden rounded-[16px] border border-neutral-200 shadow-[0_4px_4px_#9ac4ff0f]">
-        <Visual name={visual} className="block aspect-square w-full" />
+        <Media src={image} alt={imageAlt} ratio="1/1" className="w-full" />
       </span>
       <span>
         <span className="block text-[20px] font-semibold leading-[1.3em] text-neutral-800 transition-colors group-hover:text-primary max-sm:text-[17px]">
@@ -254,23 +259,25 @@ export function ImageLeftItem({
 
 export function FeaturedCard({
   href,
-  visual,
   title,
   badge,
   meta,
+  image,
+  imageAlt,
 }: {
   href: string;
-  visual: VisualName;
   title: string;
   badge: string;
   meta: string;
+  image?: string;
+  imageAlt: string;
 }) {
   return (
     <Link
       href={href}
       className="group block overflow-hidden rounded-[32px] bg-secondary-100 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[24px]"
     >
-      <Visual name={visual} className="block aspect-[4/3] w-full" />
+      <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
       <span className="block px-8 pb-8 max-sm:px-4 max-sm:pb-4">
         <span className="block rounded-[24px] bg-white p-8 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-sm:rounded-[16px] max-sm:p-5">
           <span className="block text-[28px] font-semibold leading-[1.25em] text-neutral-800 transition-colors group-hover:text-primary max-md:text-[22px]">
@@ -413,7 +420,7 @@ export function TestimonialGrid({
 export function MilestoneList({
   items,
 }: {
-  items: { badge: string; visual: VisualName; title: string; text: string }[];
+  items: { badge: string; title: string; text: string; image?: string; imageAlt: string }[];
 }) {
   return (
     <div className="grid">
@@ -427,7 +434,7 @@ export function MilestoneList({
             {i < items.length - 1 && <span className="w-px flex-1 bg-neutral-300" />}
           </div>
           <div className="overflow-hidden rounded-[16px] border border-neutral-200 max-sm:hidden">
-            <Visual name={item.visual} className="block aspect-square w-full" />
+            <Media src={item.image} alt={item.imageAlt} ratio="1/1" className="w-full" />
           </div>
           <div className="pt-1">
             <h3>{item.title}</h3>
@@ -448,20 +455,14 @@ export function CardCta({
   title,
   text,
   action,
-  visual = "golven",
 }: {
   eyebrow?: string;
   title: string;
   text: string;
   action: ReactNode;
-  visual?: VisualName;
 }) {
   return (
-    <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-[24px] bg-neutral-800 p-10 max-sm:p-6">
-      <span className="absolute inset-0" aria-hidden="true">
-        <Visual name={visual} tone="dark" className="size-full opacity-60" />
-        <span className="absolute inset-0 bg-gradient-to-br from-neutral-800/90 to-neutral-800/60" />
-      </span>
+    <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-[24px] bg-grid-lines bg-cta-sweep p-10 max-sm:p-6">
       <div className="relative">
         {eyebrow && <div className="text-[15px] text-neutral-400">{eyebrow}</div>}
         <p className="mt-2 text-[24px] font-semibold leading-[1.25em] text-white">{title}</p>

@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Media from "@/components/Media";
 import JsonLd from "@/components/JsonLd";
 import Newsletter from "@/components/Newsletter";
-import Visual from "@/components/Visual";
 import { Badge, CardCta, ImageLeftItem } from "@/components/blocks";
 import { Card, PrimaryButton, Section, SectionHead } from "@/components/ui";
 import { articles, getArticle } from "@/data/articles";
@@ -60,7 +60,7 @@ export default async function ArticlePage({
         text={article.excerpt}
         aside={
           <div className="w-[340px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
-            <Visual name={article.visual} tone="dark" className="block aspect-[4/3] w-full" />
+            <Media alt={article.imageAlt} tone="dark" ratio="4/3" className="block aspect-[4/3] w-full" />
           </div>
         }
       />
@@ -122,7 +122,6 @@ export default async function ArticlePage({
             )}
 
             <CardCta
-              visual={article.visual}
               eyebrow="Vraag over uw installatie?"
               title="Wij denken graag mee"
               text="Bel gerust, ook als het niet direct om een opdracht gaat."
@@ -164,7 +163,7 @@ export default async function ArticlePage({
                 <ImageLeftItem
                   key={a.slug}
                   href={`/kenniscentrum/${a.slug}`}
-                  visual={a.visual}
+                  imageAlt={a.imageAlt}
                   title={a.title}
                   badge={a.category}
                   meta={a.readingTime}

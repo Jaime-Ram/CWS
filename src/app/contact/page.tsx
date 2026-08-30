@@ -1,8 +1,8 @@
 import HeroCardSplit from "@/components/HeroCardSplit";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Media from "@/components/Media";
 import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
-import Visual from "@/components/Visual";
 import { CardTabs, NumberedAccordion } from "@/components/Tabs";
 import { Badge, CardCta } from "@/components/blocks";
 import { Card, SecondaryButton, Section, SectionHead } from "@/components/ui";
@@ -49,7 +49,7 @@ const routes = [
       "Bestaande risicoanalyse of monsterresultaten meesturen",
       "Gewenste planning of deadline",
     ],
-    visual: "logboek" as const,
+    imageAlt: "Legionella-logboek met beheersplan",
   },
   {
     key: "spoed",
@@ -63,7 +63,7 @@ const routes = [
       "Indien nodig binnen 24 uur ter plaatse",
       "Ondersteuning bij de melding richting de ILT",
     ],
-    visual: "waarschuwing" as const,
+    imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
   },
   {
     key: "advies",
@@ -77,7 +77,7 @@ const routes = [
       "Advies over een klacht aan het water",
       "Doorverwijzing als een andere partij beter past",
     ],
-    visual: "golven" as const,
+    imageAlt: "Watermonster uit een leidingnet",
   },
   {
     key: "werkgebied",
@@ -91,7 +91,7 @@ const routes = [
       "Werk in de avond, nacht en het weekend mogelijk",
       "Grotere projecten gefaseerd per bouwdeel",
     ],
-    visual: "kaart" as const,
+    imageAlt: "Werkgebied door heel Nederland",
   },
 ];
 
@@ -143,7 +143,7 @@ export default function ContactPage() {
           />
           <Card className="overflow-hidden p-3">
             <a href={site.routeUrl} target="_blank" rel="noopener noreferrer" className="block">
-              <Visual name="kaart" className="block aspect-[4/3] w-full rounded-[18px]" />
+              <Media alt="Sfeerbeeld" ratio="4/3" className="w-full" />
               <span className="block px-4 py-4">
                 <span className="block text-[15px] text-neutral-500">Bezoekadres</span>
                 <span className="mt-1 block font-semibold text-neutral-800">
@@ -182,14 +182,12 @@ export default function ContactPage() {
       <Section className="pt-0">
         <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1">
           <CardCta
-            visual="gebouw"
             eyebrow="Nog aan het oriënteren"
             title="Wat geldt er voor uw type gebouw?"
             text="Per branche zetten wij op een rij welke verplichtingen gelden en waar het in de praktijk misgaat."
             action={<SecondaryButton href="/branches" variant="dark">Bekijk uw branche</SecondaryButton>}
           />
           <CardCta
-            visual="monster"
             eyebrow="Diensten"
             title="Bekijk eerst wat wij doen"
             text="Van risicoanalyse tot desinfectie en periodieke monstername, met per dienst wat er precies bij inbegrepen zit."

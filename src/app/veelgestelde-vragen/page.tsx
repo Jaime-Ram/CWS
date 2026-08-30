@@ -101,10 +101,10 @@ export default function FaqPage() {
   return (
     <>
       <HeroSplit
+        imageAlt="Beheersplan en logboek op tafel"
         eyebrow="Veelgestelde vragen"
         title="Antwoord op de vragen die wij het vaakst krijgen"
         text="Van wettelijke verplichtingen tot praktische uitvoering. Staat uw vraag er niet bij, bel of mail gerust."
-        visual="logboek"
         actions={<PrimaryButton href="/contact">Stel uw vraag</PrimaryButton>}
         stats={[
           { value: `${all.length}`, label: "Beantwoorde vragen" },
@@ -173,7 +173,6 @@ export default function FaqPage() {
       <Section className="pt-0">
         <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1">
           <CardCta
-            visual="waarschuwing"
             eyebrow="Spoed"
             title="Uw vraag kan niet wachten?"
             text="Bij een aangetoonde overschrijding belt u beter direct, ook 's avonds en in het weekend."
@@ -184,7 +183,6 @@ export default function FaqPage() {
             }
           />
           <CardCta
-            visual="gebouw"
             eyebrow="Verdiepen"
             title="Alles over legionellapreventie"
             text="Het complete overzicht van regels, risico's, veelgemaakte fouten en werkende maatregelen."

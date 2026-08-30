@@ -35,7 +35,7 @@ const regimes = [
       "Minimaal twee keer per jaar geaccrediteerde monstername",
       "Melding bij de ILT boven 1000 kve/l",
     ],
-    visual: "logboek" as const,
+    imageAlt: "Legionella-logboek met beheersplan",
   },
   {
     key: "zorgplicht",
@@ -49,7 +49,7 @@ const regimes = [
       "Aantoonbaar beheer wordt sterk aangeraden",
       "Een compacte risicoanalyse is doorgaans voldoende",
     ],
-    visual: "gebouw" as const,
+    imageAlt: "Drinkwaterinstallatie in een gebouw",
   },
   {
     key: "seizoen",
@@ -63,7 +63,7 @@ const regimes = [
       "Bemonstering twee weken voor de eerste gebruiker",
       "Vastgelegd protocol dat uw eigen mensen kunnen uitvoeren",
     ],
-    visual: "kaart" as const,
+    imageAlt: "Werkgebied door heel Nederland",
   },
   {
     key: "kwetsbaar",
@@ -77,7 +77,7 @@ const regimes = [
       "Endpoint-filters als tijdelijke maatregel bij overschrijding",
       "Afstemming met de technische dienst en infectiepreventie",
     ],
-    visual: "douche" as const,
+    imageAlt: "Douche als aerosolbron",
   },
 ];
 
@@ -88,11 +88,11 @@ export default function BranchesPage() {
   return (
     <>
       <HeroSplit
+        imageAlt="Verschillende gebouwtypen waar wij werken"
         reverse
         eyebrow="Branches"
         title="De wet is voor iedereen gelijk, de praktijk niet"
         text="Een camping vraagt een andere aanpak dan een verpleeghuis of een productiehal. Wij vertalen de regels naar uw gebouw en uw gebruikspatroon."
-        visual="kaart"
         actions={<PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>}
       />
 
@@ -120,7 +120,7 @@ export default function BranchesPage() {
               <PortfolioCard
                 key={b.slug}
                 href={`/branches/${b.slug}`}
-                visual={b.visual}
+                imageAlt={b.imageAlt}
                 badge="Prioritaire instelling"
                 title={b.name}
                 text={b.intro}
@@ -142,7 +142,7 @@ export default function BranchesPage() {
             <VisualCard
               key={b.slug}
               href={`/branches/${b.slug}`}
-              visual={b.visual}
+              imageAlt={b.imageAlt}
               title={b.shortName}
               subtitle={b.name}
               badge="Zorgplicht"
@@ -154,14 +154,12 @@ export default function BranchesPage() {
       <Section className="pt-0">
         <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1">
           <CardCta
-            visual="waarschuwing"
             eyebrow="Spoed"
             title="Overschrijding of uitbraak?"
             text="Ongeacht uw branche geldt: eerst blootstelling beperken, dan de oorzaak achterhalen. Wij komen indien nodig binnen 24 uur."
             action={<SecondaryButton href="/diensten/legionella-uitbraak" variant="dark">Wat te doen</SecondaryButton>}
           />
           <CardCta
-            visual="leidingnet"
             eyebrow="Niet zeker"
             title="Staat uw branche er niet bij?"
             text="Heeft u een collectief leidingnet, dan geldt de zorgplicht. Bel gerust, dan bepalen we samen wat er nodig is."

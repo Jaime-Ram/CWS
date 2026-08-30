@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Visual, { type VisualName } from "./Visual";
+import Media from "./Media";
 import { Badge } from "./blocks";
 
 /* -------------------------------------------------------------------------- */
@@ -12,7 +12,7 @@ import { Badge } from "./blocks";
 export function AccordionTabs({
   items,
 }: {
-  items: { title: string; text: string; visual: VisualName; number?: string }[];
+  items: { title: string; text: string; imageAlt: string; image?: string; number?: string }[];
 }) {
   const [active, setActive] = useState(0);
 
@@ -76,7 +76,7 @@ export function AccordionTabs({
             key={item.title}
             className={i === active ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"}
           >
-            <Visual name={item.visual} className="block aspect-[4/3] w-full" />
+            <Media src={item.image} alt={item.imageAlt} ratio="4/3" className="w-full" />
           </div>
         ))}
       </div>
@@ -98,7 +98,8 @@ export function CardTabs({
     heading: string;
     text: string;
     bullets: string[];
-    visual: VisualName;
+    imageAlt: string;
+    image?: string;
   }[];
 }) {
   const [active, setActive] = useState(items[0]?.key);
@@ -148,7 +149,7 @@ export function CardTabs({
           </ul>
         </div>
         <div className="overflow-hidden rounded-[24px] border border-neutral-200">
-          <Visual name={current.visual} className="block aspect-[4/3] w-full" />
+          <Media src={current.image} alt={current.imageAlt} ratio="4/3" className="w-full" />
         </div>
       </div>
     </div>

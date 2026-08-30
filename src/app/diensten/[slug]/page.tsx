@@ -2,9 +2,9 @@ import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Media from "@/components/Media";
 import JsonLd from "@/components/JsonLd";
 import Newsletter from "@/components/Newsletter";
-import Visual from "@/components/Visual";
 import { NumberedAccordion } from "@/components/Tabs";
 import { Badge, CardCta, ImageLeftItem, VisualCard } from "@/components/blocks";
 import {
@@ -74,7 +74,7 @@ export default async function ServicePage({
         }
         aside={
           <div className="w-[320px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
-            <Visual name={service.visual} tone="dark" className="block aspect-[4/3] w-full" />
+            <Media alt={service.imageAlt} tone="dark" ratio="4/3" className="block aspect-[4/3] w-full" />
           </div>
         }
       />
@@ -117,7 +117,6 @@ export default async function ServicePage({
             </Card>
 
             <CardCta
-              visual={service.visual}
               eyebrow="Direct contact"
               title="Liever eerst even overleggen?"
               text="Bel gerust, ook als u nog niet precies weet wat u nodig heeft. Wij denken mee zonder verplichting."
@@ -150,7 +149,7 @@ export default async function ServicePage({
                 <VisualCard
                   key={b.slug}
                   href={`/branches/${b.slug}`}
-                  visual={b.visual}
+                  imageAlt={b.imageAlt}
                   title={b.shortName}
                   subtitle={b.name}
                   badge={b.priority ? "Prioritair" : "Zorgplicht"}
@@ -181,7 +180,7 @@ export default async function ServicePage({
                 <ImageLeftItem
                   key={r.slug}
                   href={`/diensten/${r.slug}`}
-                  visual={r.visual}
+                  imageAlt={r.imageAlt}
                   title={r.name}
                   badge={r.eyebrow}
                 />

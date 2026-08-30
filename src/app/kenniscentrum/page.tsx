@@ -1,8 +1,8 @@
 import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import Media from "@/components/Media";
 import Newsletter from "@/components/Newsletter";
-import Visual from "@/components/Visual";
 import { Badge, FeaturedCard, ImageLeftItem, PillNav } from "@/components/blocks";
 import { Card, PrimaryButton, Section, SectionHead } from "@/components/ui";
 import { articles } from "@/data/articles";
@@ -34,10 +34,10 @@ export default function KenniscentrumPage() {
   return (
     <>
       <HeroSplit
+        imageAlt="Praktijksituatie in een technische ruimte"
         eyebrow="Kenniscentrum"
         title="Praktische kennis over legionella en waterveiligheid"
         text="Geen theorie uit een handboek, maar wat wij in de praktijk tegenkomen in Nederlandse drinkwaterinstallaties."
-        visual="logboek"
         actions={<PrimaryButton href="/contact">Stel uw vraag</PrimaryButton>}
         stats={[
           { value: `${articles.length}`, label: "Artikelen" },
@@ -61,7 +61,7 @@ export default function KenniscentrumPage() {
         <div className="mt-14 grid grid-cols-[1.2fr_1fr] gap-8 max-lg:grid-cols-1">
           <FeaturedCard
             href={`/kenniscentrum/${featured.slug}`}
-            visual={featured.visual}
+            imageAlt={featured.imageAlt}
             title={featured.title}
             badge={featured.category}
             meta={dateFormat.format(new Date(featured.date))}
@@ -69,7 +69,7 @@ export default function KenniscentrumPage() {
           <div className="grid content-start gap-7">
             <Card className="flex flex-col overflow-hidden p-3">
               <span className="overflow-hidden rounded-[20px]">
-                <Visual name={second.visual} className="block aspect-[16/7] w-full" />
+                <Media alt={second.imageAlt} ratio="16/7" className="w-full" />
               </span>
               <span className="p-6 max-sm:p-4">
                 <a
@@ -91,7 +91,7 @@ export default function KenniscentrumPage() {
               <ImageLeftItem
                 key={a.slug}
                 href={`/kenniscentrum/${a.slug}`}
-                visual={a.visual}
+                imageAlt={a.imageAlt}
                 title={a.title}
                 badge={a.category}
                 meta={dateFormat.format(new Date(a.date))}

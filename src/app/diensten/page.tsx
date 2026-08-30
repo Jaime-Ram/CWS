@@ -36,7 +36,7 @@ const situations = [
       "Logboek dat bij een ILT-controle direct te overleggen is",
       "Actualisatie zodra de installatie wijzigt",
     ],
-    visual: "logboek" as const,
+    imageAlt: "Legionella-logboek met beheersplan",
   },
   {
     key: "overschrijding",
@@ -50,7 +50,7 @@ const situations = [
       "Hercontrole om het resultaat aan te tonen",
       "Ondersteuning bij de melding richting de toezichthouder",
     ],
-    visual: "waarschuwing" as const,
+    imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
   },
   {
     key: "onderhoud",
@@ -64,7 +64,7 @@ const situations = [
       "Temperatuurmetingen op de vastgelegde punten",
       "Uitvoering van het spoelregime, geheel of gedeeltelijk",
     ],
-    visual: "keerklep" as const,
+    imageAlt: "Keerklepcontrole in een technische ruimte",
   },
   {
     key: "klacht",
@@ -78,7 +78,7 @@ const situations = [
       "Onderscheid tussen installatie- en leveringsprobleem",
       "Structurele oplossing in plaats van herhaald spoelen",
     ],
-    visual: "golven" as const,
+    imageAlt: "Watermonster uit een leidingnet",
   },
 ];
 
@@ -88,10 +88,10 @@ export default function DienstenPage() {
   return (
     <>
       <HeroSplit
+        imageAlt="Adviseur bij een drinkwaterinstallatie"
         eyebrow="Diensten"
         title="Alles voor waterveiligheid onder één dak"
         text="Analyse, plan, uitvoering en controle. Los af te nemen of als doorlopend contract, altijd met een rapportage die u kunt overleggen."
-        visual="leidingnet"
         actions={
           <>
             <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
@@ -127,7 +127,7 @@ export default function DienstenPage() {
           <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
             <PortfolioCard
               href={`/diensten/${first.slug}`}
-              visual={first.visual}
+              imageAlt={first.imageAlt}
               badge={first.eyebrow}
               title={first.name}
               text={first.summary}
@@ -135,14 +135,13 @@ export default function DienstenPage() {
             />
             <PortfolioCard
               href={`/diensten/${second.slug}`}
-              visual={second.visual}
+              imageAlt={second.imageAlt}
               badge={second.eyebrow}
               title={second.name}
               text={second.summary}
               meta="Bij overschrijding"
             />
             <CardCta
-              visual="kaart"
               eyebrow="Landelijk"
               title="Werkgebied heel Nederland"
               text="Vanuit Schoonhoven rijden wij door het hele land. Voor grotere projecten plannen we aaneengesloten dagen in."
@@ -155,7 +154,7 @@ export default function DienstenPage() {
               <VisualCard
                 key={s.slug}
                 href={`/diensten/${s.slug}`}
-                visual={s.visual}
+                imageAlt={s.imageAlt}
                 title={s.navName}
                 subtitle={s.eyebrow}
               />

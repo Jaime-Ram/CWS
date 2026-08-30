@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
+import Media from "@/components/Media";
 import JsonLd from "@/components/JsonLd";
 import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
-import Visual from "@/components/Visual";
 import {
   CardCta,
   PortfolioCard,
@@ -74,25 +74,25 @@ const approach = [
     number: "01",
     title: "Inventarisatie",
     text: "We brengen uw installatie en uw verplichtingen in kaart en bepalen samen wat er werkelijk nodig is. Vooraf vragen we tekeningen en eerdere metingen op.",
-    visual: "gebouw" as const,
+    imageAlt: "Drinkwaterinstallatie in een gebouw",
   },
   {
     number: "02",
     title: "Analyse op locatie",
     text: "Een BRL 6010 adviseur loopt de installatie na, meet temperaturen en legt elk tappunt vast. Bij grotere gebouwen werken we per bouwdeel.",
-    visual: "leidingnet" as const,
+    imageAlt: "Leidingnet met tappunten",
   },
   {
     number: "03",
     title: "Rapport en beheersplan",
     text: "U krijgt de risico's met een prioritering en per punt een concrete maatregel, plus een spoelschema dat uw technische dienst kan uitvoeren.",
-    visual: "logboek" as const,
+    imageAlt: "Legionella-logboek met beheersplan",
   },
   {
     number: "04",
     title: "Uitvoering en nazorg",
     text: "Desgewenst voeren wij de maatregelen uit, bemonsteren wij periodiek en actualiseren wij de analyse zodra de installatie wijzigt.",
-    visual: "monster" as const,
+    imageAlt: "Monstername aan een tappunt",
   },
 ];
 
@@ -181,7 +181,7 @@ export default function HomePage() {
         />
         <div className="divider my-10" />
         <div className="overflow-hidden rounded-[32px] border border-neutral-200 max-md:rounded-[24px]">
-          <Visual name="golven" className="block aspect-[38/10] w-full max-md:aspect-[16/9]" />
+          <Media alt="Sfeerbeeld van een drinkwaterinstallatie" ratio="38/10" className="w-full" />
         </div>
         <div className="mt-10 grid grid-cols-[1fr_1fr_auto_auto] gap-12 max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-8">
           <p className="leading-[1.65em]">
@@ -222,7 +222,7 @@ export default function HomePage() {
               <PortfolioCard
                 key={s.slug}
                 href={`/diensten/${s.slug}`}
-                visual={s.visual}
+                imageAlt={s.imageAlt}
                 badge={s.eyebrow}
                 title={s.name}
                 text={s.summary}
@@ -233,13 +233,12 @@ export default function HomePage() {
               <VisualCard
                 key={s.slug}
                 href={`/diensten/${s.slug}`}
-                visual={s.visual}
+                imageAlt={s.imageAlt}
                 title={s.name}
                 subtitle={s.eyebrow}
               />
             ))}
             <CardCta
-              visual="waarschuwing"
               eyebrow="Spoed"
               title="Overschrijding gemeten?"
               text="Wij komen indien nodig binnen 24 uur langs voor inspectie en desinfectie."
@@ -278,7 +277,7 @@ export default function HomePage() {
             <VisualCard
               key={b.slug}
               href={`/branches/${b.slug}`}
-              visual={b.visual}
+              imageAlt={b.imageAlt}
               title={b.shortName}
               subtitle={b.name}
               badge={b.priority ? "Prioritair" : "Zorgplicht"}
@@ -327,7 +326,7 @@ export default function HomePage() {
         <div className="mt-12 grid grid-cols-[1.2fr_1fr] gap-8 max-lg:grid-cols-1">
           <FeaturedCard
             href={`/kenniscentrum/${featuredArticle.slug}`}
-            visual={featuredArticle.visual}
+            imageAlt={featuredArticle.imageAlt}
             title={featuredArticle.title}
             badge={featuredArticle.category}
             meta={dateFormat.format(new Date(featuredArticle.date))}
@@ -337,7 +336,7 @@ export default function HomePage() {
               <ImageLeftItem
                 key={a.slug}
                 href={`/kenniscentrum/${a.slug}`}
-                visual={a.visual}
+                imageAlt={a.imageAlt}
                 title={a.title}
                 badge={a.category}
                 meta={a.readingTime}

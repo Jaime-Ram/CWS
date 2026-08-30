@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import Visual from "@/components/Visual";
 import Newsletter from "@/components/Newsletter";
+import Media from "@/components/Media";
 import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
 import {
   CardCta,
@@ -86,7 +86,7 @@ export default function LegionellapreventiePage() {
         }
         aside={
           <div className="w-[340px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
-            <Visual name="temperatuur" tone="dark" className="block aspect-[4/3] w-full" />
+            <Media alt="Temperatuurmeting in een drinkwaterinstallatie" tone="dark" ratio="4/3" className="w-full" />
           </div>
         }
       />
@@ -145,7 +145,6 @@ export default function LegionellapreventiePage() {
               <li>Waterwerkbladen, waaronder 1.4G voor het beheer van installaties</li>
               <li>BRL 6010: legionellapreventie-advisering voor collectieve installaties</li>
               <li>BRL-K14032: reiniging en desinfectie van leidingwaterinstallaties</li>
-              <li>ISSO 55.1: praktijkrichtlijn voor legionellapreventie in leidingwater</li>
               <li>NEN 6265: monsterneming en analyse op legionella</li>
             </ul>
 
@@ -243,25 +242,25 @@ export default function LegionellapreventiePage() {
                   number: "01",
                   title: "Stilstand",
                   text: "Water dat langer dan een week stilstaat, verliest zijn desinfecterende restwerking en warmt op tot omgevingstemperatuur. Doorstroming op elk tappunt is daarom de basis van elk beheersplan.",
-                  visual: "leidingnet",
+                  imageAlt: "",
                 },
                 {
                   number: "02",
                   title: "Temperatuur",
                   text: "Tussen ongeveer 25 en 45 graden vermeerdert legionella zich het snelst. Te koud warm water en te warm koud water zijn allebei een probleem, en komen in bestaande gebouwen vaker voor dan verwacht.",
-                  visual: "temperatuur",
+                  imageAlt: "",
                 },
                 {
                   number: "03",
                   title: "Biofilm en sediment",
                   text: "Een laagje biofilm of sediment biedt beschutting en voedingsstoffen. Desinfectiemiddelen bereiken de bacterie daar veel moeilijker, waardoor een behandeling zonder reiniging vaak tekortschiet.",
-                  visual: "boiler",
+                  imageAlt: "",
                 },
                 {
                   number: "04",
                   title: "Aerosolvorming",
                   text: "Douches, sproeiers, bubbelbaden en hogedrukreinigers verspreiden de bacterie in de lucht. Zonder aerosolen geen besmetting, dus beperk blootstelling waar dat kan.",
-                  visual: "douche",
+                  imageAlt: "",
                 },
               ]}
             />
@@ -314,25 +313,25 @@ export default function LegionellapreventiePage() {
             items={[
               {
                 badge: "Stap 1",
-                visual: "waarschuwing",
+                imageAlt: "",
                 title: "Beperk de blootstelling",
                 text: "Sluit risicovolle tappunten af of plaats endpoint-filters. Vermijd aerosolvorming tot de oorzaak bekend is.",
               },
               {
                 badge: "Stap 2",
-                visual: "leidingnet",
+                imageAlt: "",
                 title: "Achterhaal de oorzaak",
                 text: "Zoek naar dode leidingen, temperatuurafwijkingen of een vervuilde boiler voordat u gaat behandelen.",
               },
               {
                 badge: "Stap 3",
-                visual: "desinfectie",
+                imageAlt: "",
                 title: "Voer de maatregel uit",
                 text: "Spoelen, temperatuurcorrectie of een chemische dan wel thermische desinfectie, afhankelijk van de situatie.",
               },
               {
                 badge: "Stap 4",
-                visual: "monster",
+                imageAlt: "",
                 title: "Bemonster opnieuw",
                 text: "Toon met een hercontrole aan dat het resultaat is behaald, en werk risicoanalyse en beheersplan bij.",
               },
@@ -353,14 +352,13 @@ export default function LegionellapreventiePage() {
               <ImageLeftItem
                 key={s.slug}
                 href={`/diensten/${s.slug}`}
-                visual={s.visual}
+                imageAlt={s.imageAlt}
                 title={s.name}
                 badge={s.eyebrow}
               />
             ))}
           </div>
           <CardCta
-            visual="desinfectie"
             eyebrow="Compleet uitbesteden"
             title="Liever alles in één hand?"
             text="Wij voeren de risicoanalyse uit, schrijven het beheersplan, nemen de uitvoering over en bemonsteren periodiek. U houdt één aanspreekpunt en een dossier dat altijd klopt."
@@ -380,7 +378,7 @@ export default function LegionellapreventiePage() {
             <VisualCard
               key={b.slug}
               href={`/branches/${b.slug}`}
-              visual={b.visual}
+              imageAlt={b.imageAlt}
               title={b.shortName}
               subtitle={b.name}
               badge={b.priority ? "Prioritair" : "Zorgplicht"}

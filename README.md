@@ -30,7 +30,7 @@ src/
     api/contact            formulierafhandeling
     sitemap.ts robots.ts   automatisch gegenereerd
   components/
-    Visual.tsx             16 schematische SVG-illustraties (vervangen fotografie)
+    Media.tsx              beeldslot: toont de foto zodra `src` gevuld is
     blocks.tsx             kaarten, badges, stats, milestones, featured/CTA-blokken
     Tabs.tsx               accordion-tabs, kaart-tabs, genummerde accordion, slider
     Hero / HeroSplit / HeroCardSplit   drie hero-varianten uit het template
@@ -93,9 +93,25 @@ CONTACT_FROM_EMAIL=website@cleanwatersystems.nl
 Zonder deze variabelen weigert de route de aanvraag met een duidelijke melding
 (telefoonnummer en e-mailadres), zodat er nooit stilzwijgend een aanvraag verdwijnt.
 
+## Beeldmateriaal
+
+De site bevat geen fotografie. Overal waar het template een foto of render heeft,
+staat nu een `<Media>`-slot: een neutraal vlak met de omschrijving van het benodigde
+beeld. Zodra u een foto aanlevert, zet u het pad in `src` en verschijnt die op
+dezelfde plek en in dezelfde verhouding.
+
+De omschrijvingen staan als `imageAlt` in `src/data/services.ts`, `branches.ts` en
+`articles.ts`, en inline op de pagina's voor de losse blokken. Verhoudingen:
+
+| Plek | Verhouding |
+| --- | --- |
+| Hero v2, kaarten, tabpanelen | 4:3 |
+| Kleine beelden naast een titel | 1:1 |
+| Brede band op de homepage | 38:10 |
+
 ## Nog te doen voor livegang
 
-- Fotografie toevoegen (nu wordt gewerkt met een gegenereerde waterachtergrond)
+- Fotografie aanleveren voor de `<Media>`-slots
 - Content juridisch laten toetsen door de eigenaar (normen, frequenties, verplichtingen)
 - Google Analytics / Tag Manager plus cookiebanner koppelen indien gewenst
 - 301-redirects instellen vanaf de oude `.html`-URL's naar de nieuwe structuur

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import Header from "./Header";
 import TopBar from "./TopBar";
-import Visual, { type VisualName } from "./Visual";
+import Media from "./Media";
 import { Badge } from "./blocks";
 
 /**
@@ -13,7 +13,8 @@ export default function HeroSplit({
   title,
   text,
   actions,
-  visual,
+  imageAlt,
+  image,
   stats,
   reverse = false,
 }: {
@@ -21,7 +22,8 @@ export default function HeroSplit({
   title: string;
   text: string;
   actions?: ReactNode;
-  visual: VisualName;
+  imageAlt: string;
+  image?: string;
   stats?: { value: string; label: string }[];
   reverse?: boolean;
 }) {
@@ -59,7 +61,7 @@ export default function HeroSplit({
               )}
             </div>
             <div className="overflow-hidden rounded-[32px] border border-neutral-200 max-md:rounded-[24px]">
-              <Visual name={visual} className="block aspect-[4/3] w-full" />
+              <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
             </div>
           </div>
         </div>
