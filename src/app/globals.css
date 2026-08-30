@@ -1,0 +1,267 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Design tokens — overgenomen uit het Investflow Webflow-template
+   ========================================================================== */
+@theme {
+  --font-sans: var(--font-inter-tight), "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Helvetica, Arial, sans-serif;
+
+  /* Core neutrals */
+  --color-neutral-100: #ffffff;
+  --color-neutral-200: #f1f4ff;
+  --color-neutral-300: #cbd2ea;
+  --color-neutral-400: #b3bad3;
+  --color-neutral-500: #8791ad;
+  --color-neutral-600: #515b79;
+  --color-neutral-700: #00143f;
+  --color-neutral-800: #001035;
+
+  /* Primary / secondary */
+  --color-primary: #2365ff;
+  --color-primary-dark: #1d36b6;
+  --color-secondary-100: #ebf4ff;
+  --color-secondary-200: #2db2ff;
+
+  /* Systeemkleuren */
+  --color-system-red-100: #fff5f6;
+  --color-system-red-400: #fe566b;
+  --color-system-green-100: #eef9f5;
+  --color-system-green-400: #74d184;
+  --color-system-yellow-100: #fffae9;
+  --color-system-yellow-400: #efc42c;
+  --color-system-blue-100: #e3efff;
+
+  /* Radii */
+  --radius-br1: 4px;
+  --radius-br2: 8px;
+  --radius-br3: 16px;
+  --radius-br4: 24px;
+  --radius-br5: 32px;
+  --radius-br7: 48px;
+  --radius-pill: 300px;
+
+  /* Type-schaal (displays) */
+  --text-d1: 0.875rem;
+  --text-d2: 1rem;
+  --text-d3: 1.125rem;
+  --text-d4: 1.25rem;
+  --text-d5: 1.5rem;
+  --text-d6: 1.75rem;
+  --text-d7: 2rem;
+  --text-d8: 2.25rem;
+  --text-d9: 2.5rem;
+  --text-d10: 3rem;
+
+  --container-default: 1208px;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    scroll-padding-top: 96px;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5em;
+    letter-spacing: -0.02em;
+    color: var(--color-neutral-600);
+    background-color: var(--color-neutral-100);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--color-neutral-800);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: var(--text-d9);
+    line-height: 1.115em;
+  }
+  h2 {
+    font-size: var(--text-d8);
+    line-height: 1.25em;
+  }
+  h3 {
+    font-size: var(--text-d5);
+    line-height: 1.25em;
+  }
+  h4 {
+    font-size: var(--text-d4);
+    line-height: 1.25em;
+    color: var(--color-neutral-700);
+  }
+
+  ::selection {
+    background: var(--color-primary);
+    color: #fff;
+  }
+}
+
+/* Responsieve type-schaal, exact zoals de template */
+@media screen and (max-width: 767px) {
+  :root {
+    --text-d9: 2rem;
+    --text-d10: 2.5rem;
+    --text-d8: 1.75rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+  h2 {
+    font-size: 1.75rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  h1 {
+    font-size: 1.7rem;
+  }
+  h2 {
+    font-size: 1.6rem;
+  }
+}
+
+/* ==========================================================================
+   Componenten
+   ========================================================================== */
+@layer components {
+  .container-default {
+    width: 100%;
+    max-width: var(--container-default);
+    margin-inline: auto;
+    padding-inline: 24px;
+  }
+
+  @media screen and (max-width: 479px) {
+    .container-default {
+      padding-inline: 20px;
+    }
+  }
+
+  .section {
+    padding-block: 100px;
+  }
+
+  @media screen and (max-width: 991px) {
+    .section {
+      padding-block: 72px;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .section {
+      padding-block: 56px;
+    }
+  }
+
+  .card {
+    border: 1px solid var(--color-neutral-200);
+    border-radius: var(--radius-br5);
+    background-color: var(--color-neutral-100);
+    box-shadow:
+      0 4px 4px 0 #9ac4ff0f,
+      0 1px 1px 0 #05112d0f;
+  }
+
+  @media screen and (max-width: 767px) {
+    .card {
+      border-radius: var(--radius-br4);
+    }
+  }
+
+  .divider {
+    height: 1px;
+    width: 100%;
+    background-color: var(--color-neutral-200);
+  }
+
+  .eyebrow {
+    color: var(--color-neutral-400);
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25em;
+  }
+
+  .prose-cws p {
+    margin-block: 0 1rem;
+    line-height: 1.6em;
+  }
+  .prose-cws p:last-child {
+    margin-bottom: 0;
+  }
+  .prose-cws h2 {
+    font-size: var(--text-d7);
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  .prose-cws h3 {
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-cws > :first-child {
+    margin-top: 0;
+  }
+  .prose-cws ul {
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+  .prose-cws ul li {
+    position: relative;
+    padding-left: 30px;
+    line-height: 1.6em;
+  }
+  .prose-cws ul li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.45em;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background:
+      url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none'%3E%3Cpath d='M2.5 6.2 4.9 8.6 9.5 4' stroke='white' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E")
+        center / 12px 12px no-repeat,
+      var(--color-primary);
+  }
+  .prose-cws a {
+    color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* Marquee logostrook, zoals in de template */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 34s linear infinite;
+  }
+
+  @keyframes marquee-scroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .marquee-track {
+      animation: none;
+    }
+  }
+}
