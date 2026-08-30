@@ -1,19 +1,22 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
-import Faq from "@/components/Faq";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
+import Newsletter from "@/components/Newsletter";
+import Visual from "@/components/Visual";
+import { NumberedAccordion } from "@/components/Tabs";
+import { Badge, CardCta, ImageLeftItem, VisualCard } from "@/components/blocks";
 import {
-  ArrowIcon,
   Card,
   CheckList,
   PrimaryButton,
   SecondaryButton,
   Section,
+  SectionHead,
 } from "@/components/ui";
 import { getService, services } from "@/data/services";
+import { branches } from "@/data/branches";
 import { site } from "@/data/site";
 import { faqSchema, pageMetadata, serviceSchema } from "@/lib/seo";
 
@@ -50,6 +53,10 @@ export default async function ServicePage({
     .map((r) => getService(r))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
+  const relevantBranches = branches
+    .filter((b) => b.services.includes(service.slug))
+    .slice(0, 4);
+
   return (
     <>
       <Hero
@@ -64,6 +71,11 @@ export default async function ServicePage({
               Bel {site.phone}
             </SecondaryButton>
           </>
+        }
+        aside={
+          <div className="w-[320px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
+            <Visual name={service.visual} tone="dark" className="block aspect-[4/3] w-full" />
+          </div>
         }
       />
 
@@ -95,58 +107,92 @@ export default async function ServicePage({
             ))}
           </article>
 
-          <aside className="grid content-start gap-6">
+          <aside className="grid content-start gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
             <Card className="p-8 max-sm:p-6">
-              <h2 className="text-[20px]">Wat u krijgt</h2>
+              <Badge>Inbegrepen</Badge>
+              <h2 className="mt-4 text-[20px]">Wat u krijgt</h2>
               <CheckList items={service.usps} className="mt-5 text-[15px]" />
               <div className="divider my-6" />
               <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
             </Card>
 
-            <Card className="p-8 max-sm:p-6">
-              <h2 className="text-[20px]">Direct contact</h2>
-              <p className="mt-3 text-[15px] leading-[1.6em]">
-                Liever even overleggen voordat u iets aanvraagt? Bel gerust, ook als u nog
-                niet precies weet wat u nodig heeft.
-              </p>
-              <div className="mt-5 grid gap-2 text-[15px]">
-                <a href={site.phoneHref} className="font-semibold text-primary">
-                  {site.phone}
-                </a>
-                <a href={site.mobileHref} className="font-semibold text-primary">
-                  {site.mobile}
-                </a>
-                <a href={`mailto:${site.email}`} className="break-all font-semibold text-primary">
-                  {site.email}
-                </a>
-              </div>
-            </Card>
+            <CardCta
+              visual={service.visual}
+              eyebrow="Direct contact"
+              title="Liever eerst even overleggen?"
+              text="Bel gerust, ook als u nog niet precies weet wat u nodig heeft. Wij denken mee zonder verplichting."
+              action={
+                <div className="grid gap-1.5">
+                  <a href={site.phoneHref} className="text-[20px] font-semibold text-white">
+                    {site.phone}
+                  </a>
+                  <a href={`mailto:${site.email}`} className="break-all text-[15px] text-neutral-300">
+                    {site.email}
+                  </a>
+                </div>
+              }
+            />
           </aside>
         </div>
       </Section>
 
-      <Section className="pt-0">
-        <div className="mx-auto max-w-[860px]">
-          <h2 className="text-center">Veelgestelde vragen over {service.navName.toLowerCase()}</h2>
-          <Faq items={service.faqs} className="mt-10" />
+      {relevantBranches.length > 0 && (
+        <Section className="bg-neutral-200/50 pt-0">
+          <div className="pt-24 max-md:pt-16">
+            <SectionHead
+              eyebrow="Per branche"
+              title={`${service.navName} in uw situatie`}
+              text="De uitvoering verschilt per type gebouw. Bekijk wat er specifiek voor uw branche geldt."
+              cta={<SecondaryButton href="/branches">Alle branches</SecondaryButton>}
+            />
+            <div className="mt-10 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+              {relevantBranches.map((b) => (
+                <VisualCard
+                  key={b.slug}
+                  href={`/branches/${b.slug}`}
+                  visual={b.visual}
+                  title={b.shortName}
+                  subtitle={b.name}
+                  badge={b.priority ? "Prioritair" : "Zorgplicht"}
+                />
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
+
+      <Section>
+        <div className="grid grid-cols-[380px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead
+              eyebrow="Veelgestelde vragen"
+              title={`Over ${service.navName.toLowerCase()}`}
+            />
+            <div className="mt-8">
+              <SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>
+            </div>
+          </div>
+          <NumberedAccordion items={service.faqs} visual={service.visual} />
         </div>
       </Section>
 
       <Section className="pt-0">
-        <h2>Ook interessant</h2>
-        <div className="mt-8 grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {related.map((r) => (
-            <Link key={r.slug} href={`/diensten/${r.slug}`} className="group">
-              <Card className="flex h-full flex-col p-7 transition-shadow duration-300 hover:shadow-[0_18px_40px_-18px_rgba(31,47,84,0.25)]">
-                <h3 className="text-[20px]">{r.name}</h3>
-                <p className="mt-3 flex-1 text-[15px] leading-[1.6em]">{r.summary}</p>
-                <span className="mt-5 inline-flex items-center gap-2 text-[15px] font-semibold text-primary">
-                  Meer info
-                  <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Card>
-            </Link>
-          ))}
+        <div className="grid grid-cols-[1fr_1.1fr] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead eyebrow="Ook interessant" title="Gerelateerde diensten" />
+            <div className="mt-8 grid gap-7">
+              {related.map((r) => (
+                <ImageLeftItem
+                  key={r.slug}
+                  href={`/diensten/${r.slug}`}
+                  visual={r.visual}
+                  title={r.name}
+                  badge={r.eyebrow}
+                />
+              ))}
+            </div>
+          </div>
+          <Newsletter />
         </div>
       </Section>
 

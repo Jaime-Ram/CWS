@@ -1,11 +1,11 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
+import Visual from "@/components/Visual";
+import { MilestoneList, Badge, CardCta, ImageLeftItem, VisualCard } from "@/components/blocks";
 import {
-  ArrowIcon,
   Card,
   CheckList,
   PrimaryButton,
@@ -38,6 +38,8 @@ export async function generateMetadata({
   });
 }
 
+const riskVisuals = ["leidingnet", "temperatuur", "douche", "boiler"] as const;
+
 export default async function BranchPage({
   params,
 }: {
@@ -50,6 +52,8 @@ export default async function BranchPage({
   const linkedServices = branch.services
     .map((s) => getService(s))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
+
+  const others = branches.filter((b) => b.slug !== branch.slug).slice(0, 4);
 
   return (
     <>
@@ -66,6 +70,11 @@ export default async function BranchPage({
             </SecondaryButton>
           </>
         }
+        aside={
+          <div className="w-[320px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
+            <Visual name={branch.visual} tone="dark" className="block aspect-[4/3] w-full" />
+          </div>
+        }
       />
 
       <Section>
@@ -81,18 +90,25 @@ export default async function BranchPage({
           title={`Waar het misgaat bij ${branch.shortName.toLowerCase()}`}
           text="Dit zijn de plekken waar wij in deze branche het vaakst een overschrijding zien ontstaan."
         />
-        <div className="mt-10 grid grid-cols-2 gap-6 max-md:grid-cols-1">
-          {branch.risks.map((r) => (
-            <Card key={r.title} className="p-8 max-sm:p-6">
-              <h3 className="text-[20px]">{r.title}</h3>
-              <p className="mt-3 leading-[1.6em]">{r.text}</p>
+        <div className="mt-10 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {branch.risks.map((r, i) => (
+            <Card key={r.title} className="flex flex-col overflow-hidden p-3">
+              <span className="overflow-hidden rounded-[20px]">
+                <Visual name={riskVisuals[i % riskVisuals.length]} className="block aspect-[4/3] w-full" />
+              </span>
+              <span className="flex flex-1 flex-col p-5 pt-6 max-sm:p-4">
+                <span className="text-[20px] font-semibold leading-[1.25em] text-neutral-800">
+                  {r.title}
+                </span>
+                <span className="mt-3 text-[15px] leading-[1.6em] text-neutral-600">{r.text}</span>
+              </span>
             </Card>
           ))}
         </div>
       </Section>
 
-      <Section className="pt-0">
-        <div className="grid grid-cols-2 gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+      <Section className="bg-neutral-200/50 pt-0">
+        <div className="grid grid-cols-2 gap-16 pt-24 max-lg:grid-cols-1 max-lg:gap-10 max-md:pt-16">
           <div>
             <SectionHead
               eyebrow={branch.priority ? "Wettelijk verplicht" : "Uw verantwoordelijkheid"}
@@ -108,29 +124,114 @@ export default async function BranchPage({
             </div>
           </div>
           <Card className="p-10 max-sm:p-6">
-            <div className="eyebrow text-primary">Onze aanpak</div>
-            <h2 className="mt-2 text-[24px]">Hoe wij dit in uw branche oppakken</h2>
+            <Badge>Onze aanpak</Badge>
+            <h2 className="mt-4 text-[24px]">Hoe wij dit in uw branche oppakken</h2>
             <p className="mt-4 leading-[1.65em]">{branch.approach}</p>
             <div className="divider my-7" />
-            <PrimaryButton href="/contact">Plan een inventarisatie</PrimaryButton>
+            <div className="flex flex-wrap gap-3">
+              <PrimaryButton href="/contact">Plan een inventarisatie</PrimaryButton>
+            </div>
           </Card>
         </div>
       </Section>
 
+      <Section>
+        <div className="grid grid-cols-[1fr_1.15fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead
+              eyebrow="Het traject"
+              title="Van eerste bezoek tot doorlopend beheer"
+              text="Zo verloopt een opdracht bij ons, ongeacht de omvang van uw installatie."
+            />
+            <div className="mt-8 flex flex-wrap gap-3">
+              <PrimaryButton href="/contact">Start met stap 1</PrimaryButton>
+            </div>
+          </div>
+          <MilestoneList
+            items={[
+              {
+                badge: "Stap 1",
+                visual: "gebouw",
+                title: "Inventarisatie en offerte",
+                text: "Een korte inventarisatie van uw gebouw en installatie, met daarna een vaste prijs zonder verrassingen.",
+              },
+              {
+                badge: "Stap 2",
+                visual: "leidingnet",
+                title: "Analyse op locatie",
+                text: "Een adviseur loopt de installatie na, meet temperaturen en legt elk tappunt fotografisch vast.",
+              },
+              {
+                badge: "Stap 3",
+                visual: "logboek",
+                title: "Rapport en beheersplan",
+                text: "Een rapport met prioritering en een beheersplan dat uw eigen mensen kunnen uitvoeren.",
+              },
+              {
+                badge: "Stap 4",
+                visual: "monster",
+                title: "Uitvoering en controle",
+                text: "Beheersmaatregelen, monstername en actualisatie zodra de installatie wijzigt.",
+              },
+            ]}
+          />
+        </div>
+      </Section>
+
       <Section className="pt-0">
-        <h2>Relevante diensten voor {branch.shortName.toLowerCase()}</h2>
-        <div className="mt-8 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {linkedServices.map((s) => (
-            <Link key={s.slug} href={`/diensten/${s.slug}`} className="group">
-              <Card className="flex h-full flex-col p-6 transition-shadow duration-300 hover:shadow-[0_18px_40px_-18px_rgba(31,47,84,0.25)]">
-                <h3 className="text-[18px] leading-[1.3em]">{s.navName}</h3>
-                <p className="mt-2 flex-1 text-[15px] leading-[1.55em]">{s.summary}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-primary">
-                  Meer info
-                  <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Card>
-            </Link>
+        <div className="grid grid-cols-[1fr_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead
+              eyebrow="Relevante diensten"
+              title={`Wat wij doen voor ${branch.shortName.toLowerCase()}`}
+            />
+            <div className="mt-8 grid gap-7">
+              {linkedServices.map((s) => (
+                <ImageLeftItem
+                  key={s.slug}
+                  href={`/diensten/${s.slug}`}
+                  visual={s.visual}
+                  title={s.name}
+                  badge={s.eyebrow}
+                />
+              ))}
+            </div>
+          </div>
+          <CardCta
+            visual={branch.visual}
+            eyebrow="Direct schakelen"
+            title={`Vraag over uw ${branch.shortName.toLowerCase()}?`}
+            text="Bel gerust. Wij kennen de praktijk in deze branche en zeggen eerlijk wat er wel en niet nodig is."
+            action={
+              <div className="grid gap-2">
+                <a href={site.phoneHref} className="text-[24px] font-semibold text-white">
+                  {site.phone}
+                </a>
+                <a href={`mailto:${site.email}`} className="break-all text-[15px] text-neutral-300">
+                  {site.email}
+                </a>
+              </div>
+            }
+          />
+        </div>
+      </Section>
+
+      <Section className="pt-0">
+        <SectionHead
+          eyebrow="Andere branches"
+          title="Werkt u ook op een andere locatie?"
+          cta={<SecondaryButton href="/branches">Alle branches</SecondaryButton>}
+        />
+        <div className="mt-10 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {others.map((b) => (
+            <VisualCard
+              key={b.slug}
+              href={`/branches/${b.slug}`}
+              visual={b.visual}
+              title={b.shortName}
+              subtitle={b.name}
+              badge={b.priority ? "Prioritair" : "Zorgplicht"}
+            />
           ))}
         </div>
       </Section>

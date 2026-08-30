@@ -1,4 +1,5 @@
 import type { Block } from "./services";
+import type { VisualName } from "@/components/Visual";
 
 export type Article = {
   slug: string;
@@ -11,6 +12,7 @@ export type Article = {
   metaDescription: string;
   keywords: string[];
   excerpt: string;
+  visual: VisualName;
   blocks: Block[];
 };
 
@@ -33,6 +35,7 @@ export const articles: Article[] = [
     ],
     excerpt:
       "De meeste legionellaproblemen zijn terug te voeren op temperatuur. Wat de norm precies zegt, waar het in de praktijk misgaat en hoe u het goed meet.",
+    visual: "temperatuur",
     blocks: [
       {
         type: "p",
@@ -101,6 +104,7 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Zes weken zomervakantie, een winterstop of een verbouwing: stilstand is de grootste risicofactor die er is. Dit doet u voordat de eerste gebruiker de kraan opendraait.",
+    visual: "gebouw",
     blocks: [
       {
         type: "p",
@@ -164,6 +168,7 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Een afgedopt leidingstuk achter een dichtgezette wand blijft jarenlang water vasthouden. Het is de meest voorkomende oorzaak van een besmetting die telkens terugkomt.",
+    visual: "leidingnet",
     blocks: [
       {
         type: "p",
@@ -218,6 +223,7 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Een eerlijke uitleg over waar de kosten uit bestaan, welke factoren de prijs bepalen en waarom achteraf repareren bijna altijd duurder uitpakt.",
+    visual: "monster",
     blocks: [
       {
         type: "p",
@@ -283,6 +289,7 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Bij een controle is het logboek het eerste wat gevraagd wordt. Wat erin hoort, hoe u het praktisch houdt en welke fouten het vaakst terugkomen.",
+    visual: "logboek",
     blocks: [
       {
         type: "p",

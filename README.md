@@ -29,7 +29,12 @@ src/
     kenniscentrum/[slug]   5 kennisartikelen
     api/contact            formulierafhandeling
     sitemap.ts robots.ts   automatisch gegenereerd
-  components/              Header, Hero, Footer, Faq, CTA, formulier, UI-primitives
+  components/
+    Visual.tsx             16 schematische SVG-illustraties (vervangen fotografie)
+    blocks.tsx             kaarten, badges, stats, milestones, featured/CTA-blokken
+    Tabs.tsx               accordion-tabs, kaart-tabs, genummerde accordion, slider
+    Hero / HeroSplit / HeroCardSplit   drie hero-varianten uit het template
+    Header, TopBar, Footer, ContactForm, Newsletter, Faq, CtaSection, ui.tsx
   data/                    site.ts, services.ts, branches.ts, articles.ts  <- alle content
   lib/seo.ts               metadata-helpers en schema.org
 ```
@@ -37,6 +42,18 @@ src/
 Alle teksten staan in `src/data/`. Een nieuwe dienst, branche of artikel toevoegen
 betekent één object toevoegen aan de betreffende array; de pagina, de navigatie, de
 footer, de interne links en de sitemap volgen automatisch.
+
+## Componenten uit het template
+
+Overgenomen uit Investflow: hero v1 (donker, afgerond), hero v2 (split met beeld),
+contact-hero (donkere kaart + formulier), notification bar, logo-marquee, stats-cards
+met accentcijfer, portfolio-cards v1 en v3 (donkere kaarten met visual), team-card v2,
+features-v2 tabs, genummerde accordion, office-tabs, featured blog v1 met image-left
+items, milestone-timeline, testimonial-cards v1 en slider v2, card-cta, cta-v5
+nieuwsbrief en de blog-categorie-pills.
+
+Elke paginasoort gebruikt een andere combinatie, zodat home, overzichten, detailpagina's,
+artikelen, contact en FAQ visueel van elkaar verschillen.
 
 ## Design-tokens
 

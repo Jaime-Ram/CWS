@@ -1,3 +1,5 @@
+import type { VisualName } from "@/components/Visual";
+
 export type Block =
   | { type: "p"; text: string }
   | { type: "list"; items: string[] }
@@ -18,6 +20,7 @@ export type Service = {
   sections: { h2: string; blocks: Block[] }[];
   faqs: { q: string; a: string }[];
   related: string[];
+  visual: VisualName;
   featured?: boolean;
 };
 
@@ -146,6 +149,7 @@ export const services: Service[] = [
         a: "Voor prioritaire instellingen moet de risicoanalyse worden opgesteld door een bedrijf dat gecertificeerd is voor legionellapreventie-advisering volgens BRL 6010. Het uitvoeren van de beheersmaatregelen mag u wel zelf doen, mits dit aantoonbaar en volgens het beheersplan gebeurt.",
       },
     ],
+    visual: "gebouw",
     related: [
       "legionella-watermonsters",
       "uitvoering-beheersmaatregelen",
@@ -248,6 +252,7 @@ export const services: Service[] = [
         a: "Bij thermische desinfectie wordt het systeem met heet water doorgespoeld, bij chemische desinfectie met een desinfectiemiddel. Thermisch is minder ingrijpend maar vraagt voldoende capaciteit en is niet overal haalbaar. Chemisch werkt ook bij grotere en complexere installaties. Wij adviseren per situatie welke methode het meest kansrijk is.",
       },
     ],
+    visual: "desinfectie",
     related: [
       "thermische-desinfectie",
       "boilerreiniging",
@@ -339,6 +344,7 @@ export const services: Service[] = [
         a: "Voor het testen van een keerklep moet dat deel van de installatie kort drukloos zijn. In de praktijk gaat het om enkele minuten per klep. Wij stemmen de planning af op momenten waarop dit het minste hinder geeft.",
       },
     ],
+    visual: "keerklep",
     related: [
       "risicoanalyse-en-beheersplan",
       "sediment-verwijderen-uit-boilers",
@@ -415,6 +421,7 @@ export const services: Service[] = [
         a: "Ja. Een sedimentlaag werkt als isolatie tussen het verwarmingselement en het water. Het toestel moet daardoor langer stoken voor dezelfde temperatuur. Regelmatig spuien verlaagt het energieverbruik en verlengt de levensduur van het toestel.",
       },
     ],
+    visual: "boiler",
     related: ["boilerreiniging", "keerklepcontrole", "thermische-desinfectie"],
     featured: true,
   },
@@ -490,6 +497,7 @@ export const services: Service[] = [
         a: "Beperk eerst de blootstelling, bijvoorbeeld door de betreffende douches buiten gebruik te stellen of een filter te plaatsen. Achterhaal daarna de oorzaak en voer een beheersmaatregel uit, zoals spoelen, temperatuurcorrectie of desinfectie. Bemonster daarna opnieuw. Bij meer dan 1000 kve/l geldt bovendien een meldplicht.",
       },
     ],
+    visual: "monster",
     related: [
       "reiniging-en-desinfectie",
       "risicoanalyse-en-beheersplan",
@@ -566,6 +574,7 @@ export const services: Service[] = [
         a: "Liever niet. Er stroomt water van boven de 60 graden uit de tappunten, wat verbrandingsgevaar geeft. Wij plannen thermische desinfecties daarom in de avond, de nacht of het weekend.",
       },
     ],
+    visual: "temperatuur",
     related: [
       "reiniging-en-desinfectie",
       "sediment-verwijderen-uit-boilers",
@@ -637,6 +646,7 @@ export const services: Service[] = [
         a: "Ja. Wij combineren de reiniging vaak met de keerklepcontrole, de jaarlijkse sedimentverwijdering van andere toestellen en de monstername. Dat scheelt bezoeken en kosten.",
       },
     ],
+    visual: "boiler",
     related: [
       "sediment-verwijderen-uit-boilers",
       "reiniging-en-desinfectie",
@@ -710,6 +720,7 @@ export const services: Service[] = [
         a: "Zeker. Veel klanten spoelen zelf en laten de metingen, de keerklepcontrole en de monstername aan ons over. Wij stemmen de taakverdeling af in het beheersplan, zodat er geen gaten in vallen.",
       },
     ],
+    visual: "logboek",
     related: [
       "risicoanalyse-en-beheersplan",
       "legionella-watermonsters",
@@ -775,6 +786,7 @@ export const services: Service[] = [
         a: "Ja. Slangen zijn een bekende bron van biofilm, zeker als ze op de vloer blijven liggen met water erin. Wij nemen ze mee in het advies en kunnen ze bij dezelfde beurt vervangen.",
       },
     ],
+    visual: "douche",
     related: [
       "risicoanalyse-en-beheersplan",
       "legionella-watermonsters",
@@ -843,6 +855,7 @@ export const services: Service[] = [
         a: "Graag. Wij leveren dan het advies, de uitwerking en de controle achteraf, en uw vaste installateur voert het werk uit. Dat werkt goed omdat die de installatie en het gebouw al kent.",
       },
     ],
+    visual: "leidingnet",
     related: [
       "risicoanalyse-en-beheersplan",
       "stinkend-drinkwater-verhelpen",
@@ -914,6 +927,7 @@ export const services: Service[] = [
         a: "Dat is precies wat het onderzoek uitwijst. Door op meerdere punten te bemonsteren, waaronder direct achter de watermeter, kunnen we vaststellen of het water al vervuild binnenkomt of dat het probleem in uw eigen leidingnet ontstaat.",
       },
     ],
+    visual: "golven",
     related: [
       "boilerreiniging",
       "aanpassen-drinkwaterinstallatie",
@@ -1003,6 +1017,7 @@ export const services: Service[] = [
         a: "Vaak wel, mits de blootstelling gericht wordt beperkt. Door de betrokken tappunten af te sluiten of te voorzien van filters, kunt u het overige deel van het gebouw meestal in gebruik houden. Wij adviseren daarover op basis van de meetresultaten.",
       },
     ],
+    visual: "waarschuwing",
     related: [
       "reiniging-en-desinfectie",
       "legionella-watermonsters",

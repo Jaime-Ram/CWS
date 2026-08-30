@@ -1,11 +1,14 @@
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
-import { ArrowIcon, Card, PrimaryButton, Section } from "@/components/ui";
+import Newsletter from "@/components/Newsletter";
+import Visual from "@/components/Visual";
+import { Badge, CardCta, ImageLeftItem } from "@/components/blocks";
+import { Card, PrimaryButton, Section, SectionHead } from "@/components/ui";
 import { articles, getArticle } from "@/data/articles";
+import { services } from "@/data/services";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -45,6 +48,8 @@ export default async function ArticlePage({
   if (!article) notFound();
 
   const others = articles.filter((a) => a.slug !== article.slug).slice(0, 3);
+  const suggested = services.slice(0, 3);
+  const headings = article.blocks.filter((b) => b.type === "h3");
 
   return (
     <>
@@ -53,6 +58,11 @@ export default async function ArticlePage({
         eyebrow={`${article.category} · ${article.readingTime} leestijd`}
         title={article.h1}
         text={article.excerpt}
+        aside={
+          <div className="w-[340px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
+            <Visual name={article.visual} tone="dark" className="block aspect-[4/3] w-full" />
+          </div>
+        }
       />
 
       <Section>
@@ -65,13 +75,21 @@ export default async function ArticlePage({
 
         <div className="grid grid-cols-[1fr_320px] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
           <article className="prose-cws max-w-[720px]">
-            <p className="text-[14px] text-neutral-500">
-              Gepubliceerd op{" "}
-              <time dateTime={article.date}>{dateFormat.format(new Date(article.date))}</time>
-            </p>
+            <div className="mb-8 flex flex-wrap items-center gap-3 not-prose">
+              <Badge>{article.category}</Badge>
+              <time dateTime={article.date} className="text-[15px] text-neutral-500">
+                {dateFormat.format(new Date(article.date))}
+              </time>
+              <span className="text-[15px] text-neutral-500">· {article.readingTime} leestijd</span>
+            </div>
             {article.blocks.map((block, i) => {
               if (block.type === "p") return <p key={i}>{block.text}</p>;
-              if (block.type === "h3") return <h3 key={i}>{block.text}</h3>;
+              if (block.type === "h3")
+                return (
+                  <h3 key={i} id={`kop-${i}`}>
+                    {block.text}
+                  </h3>
+                );
               return (
                 <ul key={i}>
                   {block.items.map((item) => (
@@ -83,20 +101,52 @@ export default async function ArticlePage({
           </article>
 
           <aside className="grid content-start gap-6">
-            <Card className="p-8 max-sm:p-6">
-              <h2 className="text-[20px]">Vraag over uw installatie?</h2>
-              <p className="mt-3 text-[15px] leading-[1.6em]">
-                Bel gerust even. Wij denken graag mee, ook als het niet direct om een
-                opdracht gaat.
-              </p>
-              <div className="mt-5 grid gap-2 text-[15px]">
-                <a href={site.phoneHref} className="font-semibold text-primary">
+            {headings.length > 0 && (
+              <Card className="p-8 max-sm:p-6">
+                <h2 className="text-[20px]">In dit artikel</h2>
+                <ol className="mt-5 grid gap-2.5">
+                  {article.blocks.map((b, i) =>
+                    b.type === "h3" ? (
+                      <li key={i}>
+                        <a
+                          href={`#kop-${i}`}
+                          className="text-[15px] leading-[1.5em] text-neutral-600 transition-colors hover:text-primary"
+                        >
+                          {b.text}
+                        </a>
+                      </li>
+                    ) : null,
+                  )}
+                </ol>
+              </Card>
+            )}
+
+            <CardCta
+              visual={article.visual}
+              eyebrow="Vraag over uw installatie?"
+              title="Wij denken graag mee"
+              text="Bel gerust, ook als het niet direct om een opdracht gaat."
+              action={
+                <a href={site.phoneHref} className="text-[20px] font-semibold text-white">
                   {site.phone}
                 </a>
-                <a href={`mailto:${site.email}`} className="break-all font-semibold text-primary">
-                  {site.email}
-                </a>
-              </div>
+              }
+            />
+
+            <Card className="p-8 max-sm:p-6">
+              <h2 className="text-[20px]">Relevante diensten</h2>
+              <ul className="mt-5 grid gap-2.5">
+                {suggested.map((s) => (
+                  <li key={s.slug}>
+                    <a
+                      href={`/diensten/${s.slug}`}
+                      className="text-[15px] leading-[1.5em] text-neutral-600 transition-colors hover:text-primary"
+                    >
+                      {s.navName}
+                    </a>
+                  </li>
+                ))}
+              </ul>
               <div className="mt-6">
                 <PrimaryButton href="/contact">Neem contact op</PrimaryButton>
               </div>
@@ -106,18 +156,23 @@ export default async function ArticlePage({
       </Section>
 
       <Section className="pt-0">
-        <h2>Meer uit het kenniscentrum</h2>
-        <div className="mt-8 grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {others.map((a) => (
-            <Link key={a.slug} href={`/kenniscentrum/${a.slug}`} className="group">
-              <Card className="flex h-full flex-col p-7">
-                <span className="text-[14px] text-neutral-500">{a.category}</span>
-                <h3 className="mt-2 text-[19px] leading-[1.3em]">{a.title}</h3>
-                <p className="mt-2 flex-1 text-[15px] leading-[1.55em]">{a.excerpt}</p>
-                <ArrowIcon className="mt-4 text-primary transition-transform duration-300 group-hover:translate-x-1" />
-              </Card>
-            </Link>
-          ))}
+        <div className="grid grid-cols-[1fr_1.1fr] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead eyebrow="Kenniscentrum" title="Meer over waterveiligheid" />
+            <div className="mt-8 grid gap-7">
+              {others.map((a) => (
+                <ImageLeftItem
+                  key={a.slug}
+                  href={`/kenniscentrum/${a.slug}`}
+                  visual={a.visual}
+                  title={a.title}
+                  badge={a.category}
+                  meta={a.readingTime}
+                />
+              ))}
+            </div>
+          </div>
+          <Newsletter />
         </div>
       </Section>
 

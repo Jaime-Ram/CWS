@@ -1,11 +1,19 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
-import Faq from "@/components/Faq";
+import Visual from "@/components/Visual";
+import Newsletter from "@/components/Newsletter";
+import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
+import {
+  CardCta,
+  ImageLeftItem,
+  MilestoneList,
+  StatsCard,
+  VisualCard,
+} from "@/components/blocks";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import {
-  ArrowIcon,
   Card,
   CheckList,
   PrimaryButton,
@@ -59,24 +67,6 @@ const faqs = [
   },
 ];
 
-const growthFactors = [
-  {
-    title: "Stilstand",
-    text: "Water dat langer dan een week stilstaat, verliest zijn desinfecterende restwerking en warmt op tot omgevingstemperatuur.",
-  },
-  {
-    title: "Temperatuur",
-    text: "Tussen ongeveer 25 en 45 graden vermeerdert legionella zich het snelst. Te koud warm water en te warm koud water zijn beide een probleem.",
-  },
-  {
-    title: "Biofilm en sediment",
-    text: "Een laagje biofilm of sediment biedt beschutting en voedingsstoffen. Desinfectiemiddelen bereiken de bacterie daar veel moeilijker.",
-  },
-  {
-    title: "Aerosolvorming",
-    text: "Douches, sproeiers, bubbelbaden en hogedrukreinigers verspreiden de bacterie in de lucht. Zonder aerosolen geen besmetting.",
-  },
-];
 
 export default function LegionellapreventiePage() {
   return (
@@ -93,6 +83,11 @@ export default function LegionellapreventiePage() {
               Risicoanalyse aanvragen
             </SecondaryButton>
           </>
+        }
+        aside={
+          <div className="w-[340px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
+            <Visual name="temperatuur" tone="dark" className="block aspect-[4/3] w-full" />
+          </div>
         }
       />
 
@@ -233,19 +228,116 @@ export default function LegionellapreventiePage() {
         </div>
       </Section>
 
-      <Section className="pt-0">
+      <Section className="bg-neutral-200/50 pt-0">
+        <div className="pt-24 max-md:pt-16">
+          <SectionHead
+            center
+            eyebrow="Groeifactoren"
+            title="Waarom legionella juist in gebouwen een kans krijgt"
+            text="Vier factoren bepalen het risico. Haal er één weg en het risico daalt drastisch."
+          />
+          <div className="mt-12">
+            <AccordionTabs
+              items={[
+                {
+                  number: "01",
+                  title: "Stilstand",
+                  text: "Water dat langer dan een week stilstaat, verliest zijn desinfecterende restwerking en warmt op tot omgevingstemperatuur. Doorstroming op elk tappunt is daarom de basis van elk beheersplan.",
+                  visual: "leidingnet",
+                },
+                {
+                  number: "02",
+                  title: "Temperatuur",
+                  text: "Tussen ongeveer 25 en 45 graden vermeerdert legionella zich het snelst. Te koud warm water en te warm koud water zijn allebei een probleem, en komen in bestaande gebouwen vaker voor dan verwacht.",
+                  visual: "temperatuur",
+                },
+                {
+                  number: "03",
+                  title: "Biofilm en sediment",
+                  text: "Een laagje biofilm of sediment biedt beschutting en voedingsstoffen. Desinfectiemiddelen bereiken de bacterie daar veel moeilijker, waardoor een behandeling zonder reiniging vaak tekortschiet.",
+                  visual: "boiler",
+                },
+                {
+                  number: "04",
+                  title: "Aerosolvorming",
+                  text: "Douches, sproeiers, bubbelbaden en hogedrukreinigers verspreiden de bacterie in de lucht. Zonder aerosolen geen besmetting, dus beperk blootstelling waar dat kan.",
+                  visual: "douche",
+                },
+              ]}
+            />
+          </div>
+        </div>
+      </Section>
+
+      <Section>
         <SectionHead
           center
-          eyebrow="Groeifactoren"
-          title="Waarom legionella juist in gebouwen een kans krijgt"
+          eyebrow="De cijfers"
+          title="De grenzen waar het om draait"
         />
-        <div className="mt-12 grid grid-cols-4 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {growthFactors.map((f) => (
-            <Card key={f.title} className="p-8 max-sm:p-6">
-              <h3 className="text-[20px]">{f.title}</h3>
-              <p className="mt-3 text-[15px] leading-[1.6em]">{f.text}</p>
-            </Card>
-          ))}
+        <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-1">
+          <StatsCard
+            featured
+            value="25"
+            suffix="°C"
+            title="Bovengrens koud water"
+            text="Koudwaterleidingen die door warme ruimtes lopen of naast warmwaterleidingen liggen, halen dit vaak niet."
+          />
+          <StatsCard
+            value="60"
+            suffix="°C"
+            title="Ondergrens warm water"
+            text="Minimaal 60 graden in het toestel en minimaal 55 graden bij het tappunt, binnen redelijke uitlooptijd."
+          />
+          <StatsCard
+            value="100"
+            suffix=" kve/l"
+            title="Actiewaarde legionella"
+            text="Boven deze waarde spreken we van een overschrijding en moet u aantoonbaar maatregelen nemen."
+          />
+        </div>
+      </Section>
+
+      <Section className="pt-0">
+        <div className="grid grid-cols-[1fr_1.15fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead
+              eyebrow="Bij een overschrijding"
+              title="Handel in deze volgorde"
+              text="Blind desinfecteren zonder de oorzaak aan te pakken levert vrijwel altijd een herhaling op, meestal binnen een half jaar."
+            />
+            <div className="mt-8">
+              <PrimaryButton href="/diensten/legionella-uitbraak">Spoedhulp bij een uitbraak</PrimaryButton>
+            </div>
+          </div>
+          <MilestoneList
+            items={[
+              {
+                badge: "Stap 1",
+                visual: "waarschuwing",
+                title: "Beperk de blootstelling",
+                text: "Sluit risicovolle tappunten af of plaats endpoint-filters. Vermijd aerosolvorming tot de oorzaak bekend is.",
+              },
+              {
+                badge: "Stap 2",
+                visual: "leidingnet",
+                title: "Achterhaal de oorzaak",
+                text: "Zoek naar dode leidingen, temperatuurafwijkingen of een vervuilde boiler voordat u gaat behandelen.",
+              },
+              {
+                badge: "Stap 3",
+                visual: "desinfectie",
+                title: "Voer de maatregel uit",
+                text: "Spoelen, temperatuurcorrectie of een chemische dan wel thermische desinfectie, afhankelijk van de situatie.",
+              },
+              {
+                badge: "Stap 4",
+                visual: "monster",
+                title: "Bemonster opnieuw",
+                text: "Toon met een hercontrole aan dat het resultaat is behaald, en werk risicoanalyse en beheersplan bij.",
+              },
+            ]}
+          />
         </div>
       </Section>
 
@@ -255,19 +347,25 @@ export default function LegionellapreventiePage() {
           title="Zo pakken wij legionellapreventie voor u op"
           cta={<SecondaryButton href="/diensten">Alle diensten</SecondaryButton>}
         />
-        <div className="mt-10 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {services.slice(0, 6).map((s) => (
-            <Link key={s.slug} href={`/diensten/${s.slug}`} className="group">
-              <Card className="flex h-full flex-col p-7">
-                <h3 className="text-[19px] leading-[1.3em]">{s.name}</h3>
-                <p className="mt-2 flex-1 text-[15px] leading-[1.55em]">{s.summary}</p>
-                <span className="mt-4 inline-flex items-center gap-2 text-[15px] font-semibold text-primary">
-                  Meer info
-                  <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Card>
-            </Link>
-          ))}
+        <div className="mt-10 grid grid-cols-[1fr_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div className="grid gap-7">
+            {services.slice(0, 5).map((s) => (
+              <ImageLeftItem
+                key={s.slug}
+                href={`/diensten/${s.slug}`}
+                visual={s.visual}
+                title={s.name}
+                badge={s.eyebrow}
+              />
+            ))}
+          </div>
+          <CardCta
+            visual="desinfectie"
+            eyebrow="Compleet uitbesteden"
+            title="Liever alles in één hand?"
+            text="Wij voeren de risicoanalyse uit, schrijven het beheersplan, nemen de uitvoering over en bemonsteren periodiek. U houdt één aanspreekpunt en een dossier dat altijd klopt."
+            action={<PrimaryButton href="/contact">Vraag een voorstel</PrimaryButton>}
+          />
         </div>
       </Section>
 
@@ -277,8 +375,20 @@ export default function LegionellapreventiePage() {
           eyebrow="Per branche"
           title="Wat geldt er voor uw type gebouw?"
         />
-        <div className="mt-10 flex flex-wrap justify-center gap-3">
-          {branches.map((b) => (
+        <div className="mt-12 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {branches.slice(0, 4).map((b) => (
+            <VisualCard
+              key={b.slug}
+              href={`/branches/${b.slug}`}
+              visual={b.visual}
+              title={b.shortName}
+              subtitle={b.name}
+              badge={b.priority ? "Prioritair" : "Zorgplicht"}
+            />
+          ))}
+        </div>
+        <div className="mt-5 flex flex-wrap justify-center gap-3">
+          {branches.slice(4).map((b) => (
             <Link
               key={b.slug}
               href={`/branches/${b.slug}`}
@@ -291,10 +401,22 @@ export default function LegionellapreventiePage() {
       </Section>
 
       <Section className="pt-0">
-        <div className="mx-auto max-w-[860px]">
-          <h2 className="text-center">Veelgestelde vragen over legionella</h2>
-          <Faq items={faqs} className="mt-10" />
+        <div className="grid grid-cols-[380px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead
+              eyebrow="Veelgestelde vragen"
+              title="Over legionella en de regelgeving"
+            />
+            <div className="mt-8">
+              <SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>
+            </div>
+          </div>
+          <NumberedAccordion items={faqs} visual="temperatuur" />
         </div>
+      </Section>
+
+      <Section className="pt-0">
+        <Newsletter />
       </Section>
 
       <CtaSection />

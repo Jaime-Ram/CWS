@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Header from "./Header";
+import TopBar from "./TopBar";
 
 /**
  * Hero in de opzet van het Investflow-template: een afgerond, donker vlak binnen
@@ -21,7 +22,9 @@ export default function Hero({
   compact?: boolean;
 }) {
   return (
-    <div className="relative mx-auto max-w-[1440px] px-5 pt-5 max-lg:px-4 max-lg:pt-4">
+    <>
+      <TopBar />
+      <div className="relative mx-auto max-w-[1440px] px-5 pt-5 max-lg:px-4 max-lg:pt-4">
       <Header variant="dark" />
       <div className="relative overflow-hidden rounded-[32px] bg-neutral-800 max-md:rounded-[24px] max-sm:rounded-[16px]">
         <HeroBackground />
@@ -50,7 +53,8 @@ export default function Hero({
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </>
   );
 }
 

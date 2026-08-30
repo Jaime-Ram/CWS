@@ -212,6 +212,10 @@
   .prose-cws > :first-child {
     margin-top: 0;
   }
+  .prose-cws .not-prose p,
+  .prose-cws .not-prose {
+    margin: 0;
+  }
   .prose-cws ul {
     margin: 0 0 1rem;
     padding: 0;

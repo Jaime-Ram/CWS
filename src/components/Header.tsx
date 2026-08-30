@@ -36,7 +36,11 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
         <div className="flex items-center justify-between gap-6 py-6">
           <Link href="/" aria-label={`${site.legalName} home`} className="shrink-0">
             <Image
-              src="/images/logo-clean-water-systems.svg"
+              src={
+                dark
+                  ? "/images/logo-clean-water-systems.svg"
+                  : "/images/logo-clean-water-systems-dark.svg"
+              }
               alt={`${site.legalName} logo`}
               width={181}
               height={68}

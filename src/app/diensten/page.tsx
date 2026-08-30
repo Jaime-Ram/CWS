@@ -1,9 +1,12 @@
 import Link from "next/link";
-import Hero from "@/components/Hero";
+import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { ArrowIcon, Card, PrimaryButton, Section } from "@/components/ui";
+import { CardTabs } from "@/components/Tabs";
+import { CardCta, CompactDarkCard, DarkCard, VisualCard } from "@/components/blocks";
+import { PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
 import { services } from "@/data/services";
+import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -20,33 +23,174 @@ export const metadata = pageMetadata({
   ],
 });
 
+const situations = [
+  {
+    key: "verplicht",
+    label: "Ik moet aan de regels voldoen",
+    badge: "01",
+    heading: "U bent prioritaire instelling en heeft een dossier nodig",
+    text: "Het Drinkwaterbesluit vraagt om een risicoanalyse, een beheersplan, een bijgehouden logboek en halfjaarlijkse monsters. Wij leveren dat pakket compleet en houden het actueel.",
+    bullets: [
+      "Risicoanalyse en beheersplan volgens BRL 6010",
+      "Halfjaarlijkse geaccrediteerde monstername",
+      "Logboek dat bij een ILT-controle direct te overleggen is",
+      "Actualisatie zodra de installatie wijzigt",
+    ],
+    visual: "logboek" as const,
+  },
+  {
+    key: "overschrijding",
+    label: "Ik heb een overschrijding",
+    badge: "02",
+    heading: "De meting is boven de 100 kve/l uitgekomen",
+    text: "Eerst blootstelling beperken, dan de oorzaak achterhalen en pas daarna behandelen. Blind desinfecteren levert vrijwel altijd een herhaling op.",
+    bullets: [
+      "Inspectie en bronopsporing ter plaatse",
+      "Chemische of thermische desinfectie, indien nodig binnen 24 uur",
+      "Hercontrole om het resultaat aan te tonen",
+      "Ondersteuning bij de melding richting de toezichthouder",
+    ],
+    visual: "waarschuwing" as const,
+  },
+  {
+    key: "onderhoud",
+    label: "Ik wil het jaarlijks op orde",
+    badge: "03",
+    heading: "Terugkerend onderhoud aan uw installatie",
+    text: "De jaarlijkse verplichtingen laten zich prima combineren in één of twee bezoeken per jaar. Dat scheelt bezoeken, kosten en agenda-gedoe.",
+    bullets: [
+      "Keerklep- en appendagecontrole conform Waterwerkblad 1.4G",
+      "Sediment verwijderen uit boilers en voorraadvaten",
+      "Temperatuurmetingen op de vastgelegde punten",
+      "Uitvoering van het spoelregime, geheel of gedeeltelijk",
+    ],
+    visual: "keerklep" as const,
+  },
+  {
+    key: "klacht",
+    label: "Er is iets mis met het water",
+    badge: "04",
+    heading: "Geur, kleur of smaak klopt niet",
+    text: "Een klacht over het water is een signaal dat de installatie aandacht nodig heeft. Wij achterhalen of het probleem bij de aansluiting begint of in uw eigen leidingnet ontstaat.",
+    bullets: [
+      "Bemonstering op meerdere punten in het net",
+      "Beoordeling van materialen, temperaturen en doorstroming",
+      "Onderscheid tussen installatie- en leveringsprobleem",
+      "Structurele oplossing in plaats van herhaald spoelen",
+    ],
+    visual: "golven" as const,
+  },
+];
+
 export default function DienstenPage() {
+  const [first, second, ...rest] = services;
+
   return (
     <>
-      <Hero
-        compact
+      <HeroSplit
         eyebrow="Diensten"
-        title="Complete ondersteuning op het gebied van waterveiligheid"
-        text="Elk onderdeel van legionellabeheer onder één dak: analyse, plan, uitvoering en controle. Los af te nemen of als doorlopend contract."
-        actions={<PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>}
+        title="Alles voor waterveiligheid onder één dak"
+        text="Analyse, plan, uitvoering en controle. Los af te nemen of als doorlopend contract, altijd met een rapportage die u kunt overleggen."
+        visual="leidingnet"
+        actions={
+          <>
+            <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
+            <SecondaryButton href={site.phoneHref}>Bel {site.phone}</SecondaryButton>
+          </>
+        }
+        stats={[
+          { value: "12", label: "Diensten" },
+          { value: "8", label: "Branches" },
+          { value: "24u", label: "Spoedrespons" },
+        ]}
       />
 
-      <Section>
+      <Section className="pt-0">
         <Breadcrumbs items={[{ label: "Diensten", href: "/diensten" }]} />
-        <div className="grid grid-cols-3 gap-6 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {services.map((s) => (
-            <Link key={s.slug} href={`/diensten/${s.slug}`} className="group">
-              <Card className="flex h-full flex-col p-8 transition-shadow duration-300 hover:shadow-[0_18px_40px_-18px_rgba(31,47,84,0.25)] max-sm:p-6">
-                <div className="eyebrow text-primary">{s.eyebrow}</div>
-                <h2 className="mt-3 text-[24px] leading-[1.25em]">{s.name}</h2>
-                <p className="mt-3 flex-1 leading-[1.6em]">{s.summary}</p>
-                <span className="mt-6 inline-flex items-center gap-2 font-semibold text-primary">
-                  Meer info
-                  <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
-                </span>
-              </Card>
+
+        <SectionHead
+          eyebrow="Waar begint u?"
+          title="Kies de situatie die op u van toepassing is"
+          text="De meeste vragen die wij krijgen vallen in een van deze vier categorieën."
+        />
+        <div className="mt-10">
+          <CardTabs items={situations} />
+        </div>
+      </Section>
+
+      <Section className="bg-neutral-200/50 pt-0">
+        <div className="pt-24 max-md:pt-16">
+          <SectionHead
+            eyebrow="Het complete aanbod"
+            title="Alle diensten op een rij"
+          />
+          <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+            <DarkCard
+              href={`/diensten/${first.slug}`}
+              visual={first.visual}
+              eyebrow={first.eyebrow}
+              title={first.name}
+              text={first.summary}
+              meta="Meest gevraagd"
+            />
+            <DarkCard
+              href={`/diensten/${second.slug}`}
+              visual={second.visual}
+              eyebrow={second.eyebrow}
+              title={second.name}
+              text={second.summary}
+              meta="Bij overschrijding"
+            />
+            <CardCta
+              visual="kaart"
+              eyebrow="Landelijk"
+              title="Werkgebied heel Nederland"
+              text="Vanuit Schoonhoven rijden wij door het hele land. Voor grotere projecten plannen we aaneengesloten dagen in."
+              action={<SecondaryButton href="/contact" variant="dark">Plan een bezoek</SecondaryButton>}
+            />
+          </div>
+
+          <div className="mt-5 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+            {rest.map((s, i) =>
+              i % 3 === 0 ? (
+                <CompactDarkCard
+                  key={s.slug}
+                  href={`/diensten/${s.slug}`}
+                  visual={s.visual}
+                  title={s.navName}
+                  meta={s.eyebrow}
+                />
+              ) : (
+                <VisualCard
+                  key={s.slug}
+                  href={`/diensten/${s.slug}`}
+                  visual={s.visual}
+                  title={s.navName}
+                  subtitle={s.eyebrow}
+                />
+              ),
+            )}
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="grid grid-cols-2 items-center gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <SectionHead
+            eyebrow="Twijfelt u?"
+            title="Niet zeker welke dienst u nodig heeft?"
+            text="Dat hoeft ook niet. Beschrijf uw situatie en het type gebouw, dan zeggen wij wat er wettelijk moet en wat verstandig is. Als dat minder is dan u dacht, horen wij dat ook graag."
+          />
+          <div className="flex flex-wrap gap-3">
+            <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
+            <SecondaryButton href="/veelgestelde-vragen">Veelgestelde vragen</SecondaryButton>
+            <Link
+              href="/legionellapreventie"
+              className="rounded-full border border-neutral-200 px-5 py-2.5 text-[15px] font-medium text-neutral-600 transition-colors hover:border-primary hover:text-primary"
+            >
+              Wat de wet vraagt
             </Link>
-          ))}
+          </div>
         </div>
       </Section>
 
