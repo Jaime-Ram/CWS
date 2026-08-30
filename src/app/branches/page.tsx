@@ -2,7 +2,7 @@ import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { CardTabs } from "@/components/Tabs";
-import { CardCta, DarkCard, VisualCard } from "@/components/blocks";
+import { CardCta, PortfolioCard, VisualCard } from "@/components/blocks";
 import { PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
 import { branches } from "@/data/branches";
 import { pageMetadata } from "@/lib/seo";
@@ -117,11 +117,11 @@ export default function BranchesPage() {
           />
           <div className="mt-10 grid grid-cols-2 gap-5 max-md:grid-cols-1">
             {priority.map((b) => (
-              <DarkCard
+              <PortfolioCard
                 key={b.slug}
                 href={`/branches/${b.slug}`}
                 visual={b.visual}
-                eyebrow="Prioritaire instelling"
+                badge="Prioritaire instelling"
                 title={b.name}
                 text={b.intro}
                 meta="Bekijk verplichtingen"

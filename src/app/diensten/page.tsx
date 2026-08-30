@@ -3,7 +3,7 @@ import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { CardTabs } from "@/components/Tabs";
-import { CardCta, CompactDarkCard, DarkCard, VisualCard } from "@/components/blocks";
+import { CardCta, PortfolioCard, VisualCard } from "@/components/blocks";
 import { PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
 import { services } from "@/data/services";
 import { site } from "@/data/site";
@@ -125,18 +125,18 @@ export default function DienstenPage() {
             title="Alle diensten op een rij"
           />
           <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-            <DarkCard
+            <PortfolioCard
               href={`/diensten/${first.slug}`}
               visual={first.visual}
-              eyebrow={first.eyebrow}
+              badge={first.eyebrow}
               title={first.name}
               text={first.summary}
               meta="Meest gevraagd"
             />
-            <DarkCard
+            <PortfolioCard
               href={`/diensten/${second.slug}`}
               visual={second.visual}
-              eyebrow={second.eyebrow}
+              badge={second.eyebrow}
               title={second.name}
               text={second.summary}
               meta="Bij overschrijding"
@@ -151,25 +151,15 @@ export default function DienstenPage() {
           </div>
 
           <div className="mt-5 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-            {rest.map((s, i) =>
-              i % 3 === 0 ? (
-                <CompactDarkCard
-                  key={s.slug}
-                  href={`/diensten/${s.slug}`}
-                  visual={s.visual}
-                  title={s.navName}
-                  meta={s.eyebrow}
-                />
-              ) : (
-                <VisualCard
-                  key={s.slug}
-                  href={`/diensten/${s.slug}`}
-                  visual={s.visual}
-                  title={s.navName}
-                  subtitle={s.eyebrow}
-                />
-              ),
-            )}
+            {rest.map((s) => (
+              <VisualCard
+                key={s.slug}
+                href={`/diensten/${s.slug}`}
+                visual={s.visual}
+                title={s.navName}
+                subtitle={s.eyebrow}
+              />
+            ))}
           </div>
         </div>
       </Section>

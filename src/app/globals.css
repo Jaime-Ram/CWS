@@ -269,3 +269,94 @@
     }
   }
 }
+
+
+/* ==========================================================================
+   Achtergronden, gemeten en nagebouwd uit het Investflow-template
+   ========================================================================== */
+
+/* Hero: lichtsweep diagonaal vanaf rechts, donkere navy linksboven. */
+.bg-hero-sweep {
+  background-color: #011135;
+  background-image: linear-gradient(
+    151deg,
+    #011135 0%,
+    #011135 40%,
+    #062561 45%,
+    #123a92 48%,
+    #2a6cf2 51%,
+    #5c9ffd 54%,
+    #9ad4ff 58%,
+    #d8eeff 63%,
+    #f4faff 71%,
+    #ffffff 82%
+  );
+}
+
+/* CTA-band: lichtsweep vanaf links, inhoud rechts. */
+.bg-cta-sweep {
+  background-color: #011135;
+  background-image: linear-gradient(
+    142deg,
+    #f3f5ff 0%,
+    #f3f5ff 27%,
+    #d6e9ff 32%,
+    #8fc2ff 36%,
+    #3f8bf7 40%,
+    #14459e 44%,
+    #05205c 48%,
+    #011135 54%
+  );
+}
+
+/* Footer: donker bovenin, gloed die onderaan uitloopt naar #f1f3ff. */
+.bg-footer-glow {
+  background-color: #011135;
+  background-image: radial-gradient(
+    96% 62% at 50% 92%,
+    #f1f3ff 0%,
+    #f1f3ff 40%,
+    #cfdcff 50%,
+    #86b1fb 60%,
+    #3f7cf5 69%,
+    #1a49b8 78%,
+    #06215f 88%,
+    rgba(1, 17, 53, 0) 97%
+  );
+}
+
+/* Contactkaart: dezelfde gloed, maar compacter en onderaan. */
+.bg-contact-glow {
+  background-color: #011135;
+  background-image: radial-gradient(
+    120% 48% at 50% 86%,
+    #f1f3ff 0%,
+    #dfe8ff 26%,
+    #9dbffc 44%,
+    #4a84f7 58%,
+    #17419e 72%,
+    rgba(1, 17, 53, 0) 88%
+  );
+}
+
+/* Nieuwsbriefkaart: fel blauw met lichte kern linksonder. */
+.bg-newsletter {
+  background-color: #2365ff;
+  background-image:
+    radial-gradient(70% 110% at 6% 104%, #e8f1ff 0%, #8fbaff 26%, #2f74ff 52%, rgba(35, 101, 255, 0) 74%),
+    linear-gradient(122deg, #05205c 0%, #1a48c6 44%, #2f74ff 100%);
+}
+
+/* Fijne rasterlijnen zoals in de template-achtergronden. */
+.bg-grid-lines::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.055) 1px,
+    transparent 1px
+  );
+  background-size: 72px 100%;
+}

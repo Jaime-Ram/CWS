@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowIcon } from "./ui";
-import { HeroBackground } from "./Hero";
 
 /** cta-v5-card uit het template: donkere kaart met inline nieuwsbriefformulier. */
 export default function Newsletter({
@@ -42,12 +40,11 @@ export default function Newsletter({
   }
 
   return (
-    <div className="relative flex flex-col justify-end overflow-hidden rounded-[32px] bg-neutral-800 p-12 max-md:rounded-[24px] max-sm:p-6">
-      <HeroBackground />
+    <div className="relative flex h-full flex-col justify-end overflow-hidden rounded-[32px] bg-newsletter p-12 max-md:rounded-[24px] max-sm:p-6">
       <div className="relative">
-        <div className="text-[15px] text-neutral-400">Nieuwsbrief</div>
-        <h2 className="mt-2 max-w-[520px] text-[32px] text-white max-md:text-[24px]">{title}</h2>
-        <p className="mt-3 max-w-[505px] leading-[1.6em] text-neutral-300">{text}</p>
+        <div className="text-[15px] text-white/70">Nieuwsbrief</div>
+        <h2 className="mt-2 max-w-[440px] text-[32px] text-white max-md:text-[24px]">{title}</h2>
+        <p className="mt-3 max-w-[440px] leading-[1.6em] text-white/80">{text}</p>
 
         <form onSubmit={onSubmit} className="relative mt-7 max-w-[505px]">
           <input
@@ -56,19 +53,18 @@ export default function Newsletter({
             required
             placeholder="Uw e-mailadres"
             aria-label="E-mailadres"
-            className="h-[58px] w-full rounded-full border border-white/15 bg-white/[0.07] pl-6 pr-[62px] text-[15px] text-white outline-none backdrop-blur-sm transition-colors placeholder:text-neutral-400 focus:border-white/40"
+            className="h-[58px] w-full rounded-full border border-white/25 bg-white/10 pl-6 pr-[150px] text-[15px] text-white outline-none backdrop-blur-sm transition-colors placeholder:text-white/60 focus:border-white/60 max-sm:pr-[124px]"
           />
           <button
             type="submit"
-            aria-label="Aanmelden"
-            className="absolute right-[10px] top-[10px] flex size-[38px] items-center justify-center rounded-full bg-primary text-white transition-transform duration-300 hover:rotate-45"
+            className="absolute right-[7px] top-[7px] h-[44px] rounded-full bg-white px-7 text-[15px] font-semibold text-primary transition-opacity hover:opacity-90 max-sm:px-5"
           >
-            <ArrowIcon />
+            Aanmelden
           </button>
         </form>
 
         {status !== "idle" && (
-          <p className="mt-4 max-w-[505px] text-[15px] text-neutral-300">{message}</p>
+          <p className="mt-4 max-w-[505px] text-[15px] text-white/85">{message}</p>
         )}
       </div>
     </div>

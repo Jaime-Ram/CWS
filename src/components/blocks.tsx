@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
 import Visual, { type VisualName } from "./Visual";
+import Icon from "./Icon";
 import { ArrowIcon, Card } from "./ui";
 
 /* -------------------------------------------------------------------------- */
@@ -35,10 +36,10 @@ export function Badge({
 export function ChevronButton({ tone = "light" }: { tone?: "light" | "dark" }) {
   return (
     <span
-      className={`flex size-10 shrink-0 items-center justify-center rounded-full transition-transform duration-300 group-hover:translate-x-1 ${
+      className={`flex size-10 shrink-0 items-center justify-center rounded-full transition-colors duration-500 ${
         tone === "dark"
-          ? "bg-white/12 text-white backdrop-blur-sm"
-          : "bg-neutral-200 text-neutral-800"
+          ? "bg-white/12 text-white"
+          : "bg-neutral-200 text-neutral-800 group-hover:bg-neutral-800 group-hover:text-white"
       }`}
     >
       <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -98,88 +99,66 @@ export function StatsCard({
 }
 
 /* -------------------------------------------------------------------------- */
-/*  DarkCard — .portfolio-card-v1: donkere kaart met visual als achtergrond    */
+/*  PortfolioCard — .portfolio-card-v1: lichte kaart die bij hover donker wordt */
 /* -------------------------------------------------------------------------- */
 
-export function DarkCard({
+export function PortfolioCard({
   href,
   visual,
-  eyebrow,
   title,
   text,
+  badge,
   meta,
 }: {
   href: string;
   visual: VisualName;
-  eyebrow?: string;
   title: string;
   text: string;
+  badge?: string;
   meta?: string;
 }) {
   return (
     <Link
       href={href}
-      className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-[32px] bg-neutral-800 max-md:rounded-[24px]"
+      className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-[32px] border border-neutral-200 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[24px]"
     >
-      <span className="absolute inset-0" aria-hidden="true">
-        <Visual name={visual} tone="dark" className="size-full opacity-70" />
-        <span className="absolute inset-0 bg-gradient-to-t from-neutral-800 via-neutral-800/85 to-neutral-800/30" />
+      <span
+        className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
+        aria-hidden="true"
+      >
+        <Visual name={visual} tone="dark" className="size-full" />
+        <span className="absolute inset-0 bg-gradient-to-t from-neutral-800 via-neutral-800/85 to-neutral-800/40" />
       </span>
-      <span className="relative flex flex-1 flex-col justify-between gap-16 p-10 max-md:gap-8 max-sm:p-6">
+
+      <span className="relative flex flex-1 flex-col justify-between gap-16 p-10 max-md:gap-10 max-sm:p-6">
         <span>
-          {eyebrow && (
-            <span className="text-[14px] font-medium uppercase tracking-wide text-secondary-200">
-              {eyebrow}
+          <span className="flex items-start justify-between gap-4">
+            <span className="flex size-16 items-center justify-center rounded-full border border-neutral-200 bg-secondary-100 text-primary transition-colors duration-500 group-hover:border-white/20 group-hover:bg-white/10 group-hover:text-white">
+              <Icon name={visual} className="size-7" />
             </span>
-          )}
-          <span className="mt-3 block text-[24px] font-semibold leading-[1.25em] text-white">
+            <ChevronButton />
+          </span>
+          <span className="mt-6 block text-[24px] font-semibold leading-[1.25em] text-neutral-800 transition-colors duration-500 group-hover:text-white">
             {title}
           </span>
-          <span className="mt-3 block text-[15px] leading-[1.6em] text-neutral-300">{text}</span>
-        </span>
-        <span className="flex items-center justify-between gap-4">
-          {meta ? <Badge tone="dark">{meta}</Badge> : <span />}
-          <ChevronButton tone="dark" />
-        </span>
-      </span>
-    </Link>
-  );
-}
-
-/* -------------------------------------------------------------------------- */
-/*  CompactDarkCard — .portfolio-card-v3                                       */
-/* -------------------------------------------------------------------------- */
-
-export function CompactDarkCard({
-  href,
-  visual,
-  title,
-  meta,
-}: {
-  href: string;
-  visual: VisualName;
-  title: string;
-  meta: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group relative flex min-h-[220px] flex-col overflow-hidden rounded-[24px] bg-neutral-800"
-    >
-      <span className="absolute inset-0" aria-hidden="true">
-        <Visual name={visual} tone="dark" className="size-full opacity-70" />
-        <span className="absolute inset-0 bg-gradient-to-t from-neutral-800 via-neutral-800/80 to-transparent" />
-      </span>
-      <span className="relative flex flex-1 flex-col justify-end gap-4 p-7 max-sm:p-5">
-        <span className="flex items-end justify-between gap-4">
-          <span>
-            <span className="block text-[20px] font-semibold leading-[1.25em] text-white">
-              {title}
-            </span>
-            <span className="mt-1 block text-[15px] text-neutral-400">{meta}</span>
+          <span className="mt-3 block text-[15px] leading-[1.6em] text-neutral-600 transition-colors duration-500 group-hover:text-neutral-300">
+            {text}
           </span>
-          <ChevronButton tone="dark" />
         </span>
+        {(badge || meta) && (
+          <span className="flex items-center gap-3">
+            {badge && (
+              <span className="inline-flex items-center rounded-full bg-neutral-200 px-4 py-1.5 text-[15px] font-medium text-primary shadow-[0_4px_4px_#9ac4ff0f,0_2px_1px_#05112d0f] transition-colors duration-500 group-hover:bg-white/12 group-hover:text-white">
+                {badge}
+              </span>
+            )}
+            {meta && (
+              <span className="text-[15px] text-neutral-500 transition-colors duration-500 group-hover:text-neutral-300">
+                {meta}
+              </span>
+            )}
+          </span>
+        )}
       </span>
     </Link>
   );
@@ -318,6 +297,8 @@ export function QuoteCard({
   author,
   role,
   large = false,
+  compact = false,
+  statOnRight = false,
 }: {
   stat: string;
   statLabel: string;
@@ -325,42 +306,103 @@ export function QuoteCard({
   author: string;
   role: string;
   large?: boolean;
+  compact?: boolean;
+  statOnRight?: boolean;
 }) {
+  const person = (
+    <div className="flex items-center gap-3">
+      <span className="flex size-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-white bg-secondary-100 text-[15px] font-semibold text-primary shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f]">
+        {author.slice(0, 2).toUpperCase()}
+      </span>
+      <span>
+        <span className="block text-[15px] font-semibold text-neutral-800">{author}</span>
+        <span className="block text-[15px] text-neutral-500">{role}</span>
+      </span>
+    </div>
+  );
+
+  const statBlock = (align: "left" | "right") => (
+    <div className={align === "right" ? "text-right" : ""}>
+      <div
+        className={`font-semibold leading-none text-neutral-800 ${
+          large ? "text-[40px] max-md:text-[32px]" : "text-[32px]"
+        }`}
+      >
+        {stat}
+      </div>
+      <div className="mt-1 text-[15px] text-neutral-500">{statLabel}</div>
+    </div>
+  );
+
   return (
-    <Card className={`flex flex-col justify-between gap-8 p-10 max-sm:p-6 ${large ? "" : ""}`}>
+    <Card className={`flex h-full flex-col justify-between gap-8 p-10 max-sm:p-6 ${compact ? "gap-6" : ""}`}>
       <div>
-        <div className={`font-semibold text-neutral-800 ${large ? "text-[40px] max-md:text-[32px]" : "text-[32px]"} leading-none`}>
-          {stat}
-        </div>
-        <div className="mt-1 text-[15px] text-neutral-500">{statLabel}</div>
-        <svg
-          className="mt-7 text-primary"
-          width="34"
-          height="26"
-          viewBox="0 0 34 26"
-          fill="currentColor"
-          aria-hidden="true"
-        >
-          <path d="M0 26V14.3C0 6.4 4.6 1.1 13.3 0l1 3.6C9 4.9 6.4 7.6 6.4 11.5h6.2V26H0zm20.4 0V14.3c0-7.9 4.6-13.2 13.3-14.3l1 3.6c-5.3 1.3-7.9 4-7.9 7.9h6.2V26H20.4z" />
-        </svg>
+        {statOnRight ? (
+          <div className="flex items-start justify-between gap-6">
+            {person}
+            {statBlock("right")}
+          </div>
+        ) : compact ? null : (
+          statBlock("left")
+        )}
+        <QuoteMark className={compact ? "" : "mt-7"} />
         <p
           className={`mt-4 leading-[1.45em] text-neutral-800 ${
-            large ? "text-[24px] font-semibold max-md:text-[20px]" : "text-[17px]"
+            large ? "text-[24px] font-semibold max-md:text-[20px]" : "text-[16px]"
           }`}
         >
           {text}
         </p>
       </div>
-      <div className="flex items-center gap-3">
-        <span className="flex size-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-white bg-secondary-100 text-[15px] font-semibold text-primary shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f]">
-          {author.slice(0, 2).toUpperCase()}
-        </span>
-        <span>
-          <span className="block text-[15px] font-semibold text-neutral-800">{author}</span>
-          <span className="block text-[15px] text-neutral-500">{role}</span>
-        </span>
-      </div>
+      {!statOnRight && person}
     </Card>
+  );
+}
+
+function QuoteMark({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={`text-primary ${className}`}
+      width="34"
+      height="26"
+      viewBox="0 0 34 26"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M0 26V14.3C0 6.4 4.6 1.1 13.3 0l1 3.6C9 4.9 6.4 7.6 6.4 11.5h6.2V26H0zm20.4 0V14.3c0-7.9 4.6-13.2 13.3-14.3l1 3.6c-5.3 1.3-7.9 4-7.9 7.9h6.2V26H20.4z" />
+    </svg>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  TestimonialGrid — .testimonials-grid-v1: één grote kaart links (2 rijen),   */
+/*  daarnaast een brede kaart en twee smalle kaarten.                          */
+/* -------------------------------------------------------------------------- */
+
+export function TestimonialGrid({
+  items,
+}: {
+  items: {
+    stat: string;
+    statLabel: string;
+    text: string;
+    author: string;
+    role: string;
+  }[];
+}) {
+  const [a, b, c, d] = items;
+  return (
+    <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+      <div className="col-span-2 row-span-2 max-sm:col-span-1">
+        <QuoteCard {...a} large />
+      </div>
+      <div className="col-span-2 max-sm:col-span-1">
+        <QuoteCard {...b} statOnRight />
+      </div>
+      {[c, d].filter(Boolean).map((q) => (
+        <QuoteCard key={q.author} {...q} compact />
+      ))}
+    </div>
   );
 }
 

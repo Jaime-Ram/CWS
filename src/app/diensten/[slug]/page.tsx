@@ -162,18 +162,14 @@ export default async function ServicePage({
       )}
 
       <Section>
-        <div className="grid grid-cols-[380px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div>
-            <SectionHead
+        <SectionHead
               eyebrow="Veelgestelde vragen"
               title={`Over ${service.navName.toLowerCase()}`}
+              cta={<SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>}
             />
-            <div className="mt-8">
-              <SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>
+            <div className="mt-12">
+              <NumberedAccordion items={service.faqs} />
             </div>
-          </div>
-          <NumberedAccordion items={service.faqs} visual={service.visual} />
-        </div>
       </Section>
 
       <Section className="pt-0">

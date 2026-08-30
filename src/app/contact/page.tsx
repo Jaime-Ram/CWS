@@ -105,15 +105,15 @@ export default function ContactPage() {
         bottomTitle="Spoed bij een uitbraak"
         bottomText="Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit. Bel dan direct, ook buiten kantooruren."
         bottomAction={
-          <a href={site.mobileHref} className="text-[24px] font-semibold text-white">
+          <a href={site.mobileHref} className="text-[24px] font-semibold text-primary">
             {site.mobile}
           </a>
         }
       >
-        <Card className="p-10 max-sm:p-6">
+        <div className="pl-2 max-lg:pl-0">
           <Badge>Binnen één werkdag antwoord</Badge>
           <h2 className="mt-4">Stuur ons een bericht</h2>
-          <p className="mt-3 leading-[1.6em]">
+          <p className="mt-3 max-w-[520px] leading-[1.6em]">
             Hoe concreter uw omschrijving, hoe scherper wij kunnen antwoorden. Vermeld bij
             voorkeur het type gebouw, het aantal tappunten en of u prioritaire instelling
             bent.
@@ -121,7 +121,7 @@ export default function ContactPage() {
           <div className="mt-8">
             <ContactForm />
           </div>
-        </Card>
+        </div>
       </HeroCardSplit>
 
       <Section className="pt-0">
@@ -169,18 +169,14 @@ export default function ContactPage() {
       </Section>
 
       <Section>
-        <div className="grid grid-cols-[380px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div>
-            <SectionHead
+        <SectionHead
               eyebrow="Voordat u belt"
               title="Vragen over het contact zelf"
+              cta={<SecondaryButton href="/veelgestelde-vragen">Alle veelgestelde vragen</SecondaryButton>}
             />
-            <div className="mt-8">
-              <SecondaryButton href="/veelgestelde-vragen">Alle veelgestelde vragen</SecondaryButton>
+            <div className="mt-12">
+              <NumberedAccordion items={contactFaqs} />
             </div>
-          </div>
-          <NumberedAccordion items={contactFaqs} visual="logboek" />
-        </div>
       </Section>
 
       <Section className="pt-0">

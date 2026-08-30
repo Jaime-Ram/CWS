@@ -17,8 +17,8 @@ export function AccordionTabs({
   const [active, setActive] = useState(0);
 
   return (
-    <div className="grid grid-cols-2 gap-0 max-lg:grid-cols-1 max-lg:gap-10">
-      <div className="grid content-start">
+    <div className="grid grid-cols-2 items-center gap-10 rounded-[32px] bg-neutral-200/60 p-10 max-lg:grid-cols-1 max-md:rounded-[24px] max-sm:p-5">
+      <div className="grid content-start gap-2">
         {items.map((item, i) => {
           const isActive = i === active;
           return (
@@ -27,22 +27,13 @@ export function AccordionTabs({
               type="button"
               onClick={() => setActive(i)}
               aria-expanded={isActive}
-              className={`flex items-start justify-between gap-6 rounded-[32px] border p-8 text-left transition-colors duration-300 max-md:rounded-[24px] max-sm:p-6 ${
-                isActive
-                  ? "border-neutral-200 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f]"
-                  : "border-transparent bg-transparent hover:bg-white/60"
+              className={`flex items-start justify-between gap-6 rounded-[24px] px-7 py-6 text-left transition-colors duration-300 max-sm:px-5 max-sm:py-4 ${
+                isActive ? "bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f]" : "hover:bg-white/60"
               }`}
             >
               <span className="flex-1">
-                <span className="flex items-center gap-3">
-                  {item.number && (
-                    <span className="text-[15px] font-semibold text-neutral-400 tabular-nums">
-                      {item.number}
-                    </span>
-                  )}
-                  <span className="text-[24px] font-semibold leading-[1.25em] text-neutral-800 max-sm:text-[20px]">
-                    {item.title}
-                  </span>
+                <span className="block text-[20px] font-semibold leading-[1.25em] text-neutral-800">
+                  {item.title}
                 </span>
                 <span
                   className={`grid transition-all duration-300 ${
@@ -50,18 +41,18 @@ export function AccordionTabs({
                   }`}
                 >
                   <span className="overflow-hidden">
-                    <span className="mt-3 block max-w-[340px] text-[15px] leading-[1.6em] text-neutral-600">
+                    <span className="mt-2 block max-w-[300px] text-[15px] leading-[1.6em] text-neutral-600">
                       {item.text}
                     </span>
                   </span>
                 </span>
               </span>
               <span
-                className={`flex size-[46px] shrink-0 items-center justify-center rounded-full bg-white text-neutral-800 shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f] transition-transform duration-300 max-sm:size-10 ${
-                  isActive ? "rotate-90" : ""
+                className={`flex size-9 shrink-0 items-center justify-center rounded-full transition-colors duration-300 ${
+                  isActive ? "bg-neutral-800 text-white" : "bg-white text-neutral-600"
                 }`}
               >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                   <path
                     d="M5.63068 12.4001L10.3691 8.0001L5.63068 3.6001"
                     stroke="currentColor"
@@ -76,13 +67,14 @@ export function AccordionTabs({
         })}
       </div>
 
-      <div className="relative self-center overflow-hidden rounded-[32px] border border-neutral-200 max-md:rounded-[24px]">
+      <div className="relative overflow-hidden rounded-[24px] border border-neutral-200 bg-white">
+        <span className="absolute right-4 top-4 z-10 inline-flex items-center rounded-full bg-white px-4 py-1.5 text-[14px] font-medium text-primary shadow-[0_4px_4px_#9ac4ff1f]">
+          Stap {items[active].number ?? String(active + 1).padStart(2, "0")}
+        </span>
         {items.map((item, i) => (
           <div
             key={item.title}
-            className={`transition-opacity duration-300 ${
-              i === active ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"
-            }`}
+            className={i === active ? "opacity-100" : "pointer-events-none absolute inset-0 opacity-0"}
           >
             <Visual name={item.visual} className="block aspect-[4/3] w-full" />
           </div>
@@ -169,65 +161,59 @@ export function CardTabs({
 
 export function NumberedAccordion({
   items,
-  visual = "golven",
 }: {
   items: { q: string; a: string }[];
-  visual?: VisualName;
 }) {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="grid gap-3">
+    <div className="grid gap-4">
       {items.map((item, i) => {
         const isOpen = open === i;
         return (
           <div
             key={item.q}
-            className={`relative overflow-hidden rounded-[32px] border transition-colors duration-300 max-md:rounded-[24px] ${
-              isOpen ? "border-neutral-300 bg-white" : "border-neutral-200 bg-white"
-            } shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f]`}
+            className="overflow-hidden rounded-[32px] border border-neutral-300 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f] max-md:rounded-[24px]"
           >
-            {isOpen && (
-              <span className="pointer-events-none absolute inset-y-0 right-0 w-1/3 max-md:hidden" aria-hidden="true">
-                <Visual name={visual} className="size-full opacity-50" />
-                <span className="absolute inset-0 bg-gradient-to-r from-white via-white/70 to-transparent" />
-              </span>
-            )}
             <button
               type="button"
               onClick={() => setOpen(isOpen ? null : i)}
               aria-expanded={isOpen}
-              className="relative flex w-full items-start gap-6 p-8 text-left max-sm:gap-4 max-sm:p-5"
+              className="flex w-full items-center gap-6 p-8 text-left max-sm:gap-4 max-sm:p-5"
             >
-              <span className="mt-1 shrink-0 text-[15px] font-semibold text-neutral-400 tabular-nums">
+              <span className="shrink-0 text-[15px] font-semibold text-neutral-400 tabular-nums">
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span className="flex-1">
-                <span className="block text-[24px] font-semibold leading-[1.3em] text-neutral-800 max-sm:text-[18px]">
-                  {item.q}
-                </span>
-                <span
-                  className={`grid transition-all duration-300 ${
-                    isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-                  }`}
-                >
-                  <span className="overflow-hidden">
-                    <span className="mt-4 block max-w-[620px] leading-[1.65em] text-neutral-600">
-                      {item.a}
-                    </span>
-                  </span>
-                </span>
+              <span className="flex-1 text-[24px] font-semibold leading-[1.3em] text-neutral-800 max-md:text-[19px] max-sm:text-[17px]">
+                {item.q}
               </span>
               <span
                 className={`flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-neutral-800 transition-transform duration-300 ${
-                  isOpen ? "rotate-45" : ""
+                  isOpen ? "rotate-90" : ""
                 }`}
               >
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                  <path
+                    d="M5.63068 12.4001L10.3691 8.0001L5.63068 3.6001"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
                 </svg>
               </span>
             </button>
+            <div
+              className={`grid transition-all duration-300 ${
+                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className="max-w-[820px] px-8 pb-8 pl-[74px] leading-[1.65em] max-sm:px-5 max-sm:pb-5 max-sm:pl-5">
+                  {item.a}
+                </p>
+              </div>
+            </div>
           </div>
         );
       })}

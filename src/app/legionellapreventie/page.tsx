@@ -401,18 +401,14 @@ export default function LegionellapreventiePage() {
       </Section>
 
       <Section className="pt-0">
-        <div className="grid grid-cols-[380px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div>
-            <SectionHead
+        <SectionHead
               eyebrow="Veelgestelde vragen"
               title="Over legionella en de regelgeving"
+              cta={<SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>}
             />
-            <div className="mt-8">
-              <SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>
+            <div className="mt-12">
+              <NumberedAccordion items={faqs} />
             </div>
-          </div>
-          <NumberedAccordion items={faqs} visual="temperatuur" />
-        </div>
       </Section>
 
       <Section className="pt-0">

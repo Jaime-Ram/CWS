@@ -3,13 +3,13 @@ import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
 import JsonLd from "@/components/JsonLd";
 import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
+import Visual from "@/components/Visual";
 import {
   CardCta,
-  DarkCard,
+  PortfolioCard,
   FeaturedCard,
   ImageLeftItem,
-  QuoteCard,
-  StatsCard,
+  TestimonialGrid,
   VisualCard,
 } from "@/components/blocks";
 import {
@@ -17,6 +17,7 @@ import {
   SecondaryButton,
   Section,
   SectionHead,
+  Eyebrow,
 } from "@/components/ui";
 import { site } from "@/data/site";
 import { services, featuredServices } from "@/data/services";
@@ -102,21 +103,27 @@ const guarantees = [
     text: "Voldoet uw leidingsysteem aan de eisen uit de BRL 6010, dan geven wij garantie op de desinfectie. Blijkt uit de controlemonsters dat het resultaat niet is behaald, dan komen wij terug.",
     author: "Garantie op desinfectie",
     role: "Bij een systeem conform BRL 6010",
-    large: true,
   },
   {
     stat: "24u",
     statLabel: "Responstijd",
     text: "Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit, ook in het weekend.",
-    author: "Snelle inzet bij een uitbraak",
-    role: "Landelijk, ook buiten kantooruren",
+    author: "Snelle inzet",
+    role: "Landelijk, buiten kantooruren",
   },
   {
     stat: "1-1000",
-    statLabel: "Tappunten per opdracht",
-    text: "Of het nu om één douche gaat of om een compleet ziekenhuis: wij desinfecteren snel, vakkundig en volledig geregistreerd.",
+    statLabel: "Tappunten",
+    text: "Of het nu om één douche gaat of om een compleet ziekenhuis: snel, vakkundig en volledig geregistreerd.",
     author: "Elke schaal",
     role: "Van B&B tot productielocatie",
+  },
+  {
+    stat: "100%",
+    statLabel: "Tevredenheid",
+    text: "Is iets niet gegaan zoals afgesproken, dan lossen wij dat op zonder discussie over de factuur.",
+    author: "Tevredenheidsgarantie",
+    role: "Op elke opdracht",
   },
 ];
 
@@ -165,33 +172,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Kerncijfers als stats-cards */}
+      {/* Over ons: titel links, knop rechts, divider, breed beeld, tekst en cijfers */}
       <Section>
         <SectionHead
           eyebrow="Over Clean Water Systems"
           title="Veilig drinkwater vraagt meer dan een vinkje op papier"
-          text="Tussen de watermeter en de kraan ligt een installatie die volgens de regels aangelegd, onderhouden en beheerd moet worden. Gaat daar iets mis, dan merkt u dat pas als de meting binnenkomt."
           cta={<SecondaryButton href="/over-ons">Over ons</SecondaryButton>}
         />
-        <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-1">
-          <StatsCard
-            featured
-            value="2008"
-            title="Actief sinds 2008"
-            text="Ruim vijftien jaar ervaring met Nederlandse drinkwaterinstallaties, van kleine B&B's tot ziekenhuizen."
-          />
-          <StatsCard
-            value="100"
-            suffix="%"
-            title="Landelijke dekking"
-            text="Vanuit Schoonhoven werken wij in heel Nederland, voor losse opdrachten en doorlopende contracten."
-          />
-          <StatsCard
-            value="24"
-            suffix="u"
-            title="Respons bij een uitbraak"
-            text="Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit."
-          />
+        <div className="divider my-10" />
+        <div className="overflow-hidden rounded-[32px] border border-neutral-200 max-md:rounded-[24px]">
+          <Visual name="golven" className="block aspect-[38/10] w-full max-md:aspect-[16/9]" />
+        </div>
+        <div className="mt-10 grid grid-cols-[1fr_1fr_auto_auto] gap-12 max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-8">
+          <p className="leading-[1.65em]">
+            Tussen de watermeter en de kraan ligt een installatie die volgens de geldende
+            regels aangelegd, onderhouden en beheerd moet worden. Gaat daar iets mis, dan
+            merkt u dat pas als de meting binnenkomt.
+          </p>
+          <p className="leading-[1.65em]">
+            Clean Water Systems houdt zich sinds {site.founded} bezig met
+            legionellapreventie en kent drinkwaterinstallaties van binnenuit. Dat geeft u
+            snel en onderbouwd advies, met een blijvend resultaat als doel.
+          </p>
+          <div>
+            <div className="text-[48px] font-semibold leading-none text-primary max-md:text-[36px]">
+              {site.founded}
+            </div>
+            <div className="mt-2 text-[15px] text-neutral-600">Actief sinds</div>
+          </div>
+          <div>
+            <div className="text-[48px] font-semibold leading-none text-primary max-md:text-[36px]">
+              24u
+            </div>
+            <div className="mt-2 text-[15px] text-neutral-600">Respons bij een uitbraak</div>
+          </div>
         </div>
       </Section>
 
@@ -205,11 +219,11 @@ export default function HomePage() {
           />
           <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
             {featuredServices.slice(0, 3).map((s) => (
-              <DarkCard
+              <PortfolioCard
                 key={s.slug}
                 href={`/diensten/${s.slug}`}
                 visual={s.visual}
-                eyebrow={s.eyebrow}
+                badge={s.eyebrow}
                 title={s.name}
                 text={s.summary}
                 meta="Meer info"
@@ -284,18 +298,22 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Garanties in testimonial-opmaak */}
+      {/* Garanties in de testimonial-opmaak van het template */}
       <Section className="pt-0">
-        <SectionHead
-          center
-          eyebrow="Onze garanties"
-          title="Waar u ons aan mag houden"
-          text="Geen kleine lettertjes. Dit is wat wij vastleggen in elke opdracht."
-        />
-        <div className="mt-12 grid grid-cols-[1.4fr_1fr_1fr] gap-5 max-lg:grid-cols-1">
-          {guarantees.map((g) => (
-            <QuoteCard key={g.author} {...g} />
-          ))}
+        <div className="rounded-[32px] bg-neutral-200/60 p-12 max-md:rounded-[24px] max-sm:p-6">
+          <div className="flex flex-wrap items-start justify-between gap-8">
+            <div>
+              <Eyebrow>Onze garanties</Eyebrow>
+              <h2>Waar u ons aan mag houden</h2>
+            </div>
+            <p className="max-w-[380px] leading-[1.6em]">
+              Geen kleine lettertjes. Dit leggen wij vast in elke opdracht, ongeacht de
+              omvang van uw installatie.
+            </p>
+          </div>
+          <div className="mt-10">
+            <TestimonialGrid items={guarantees} />
+          </div>
         </div>
       </Section>
 
@@ -331,20 +349,20 @@ export default function HomePage() {
 
       {/* FAQ */}
       <Section className="pt-0">
-        <div className="grid grid-cols-[380px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div className="max-lg:max-w-[560px]">
-            <SectionHead
+        <SectionHead
               eyebrow="Veelgestelde vragen"
               title="De vragen die wij het vaakst krijgen"
               text="Staat uw vraag er niet bij? Bel gerust, ook als u nog niet weet wat u precies nodig heeft."
+              cta={
+                <>
+                  <PrimaryButton href="/contact">Stel uw vraag</PrimaryButton>
+                  <SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>
+                </>
+              }
             />
-            <div className="mt-8 flex flex-wrap gap-3">
-              <PrimaryButton href="/contact">Stel uw vraag</PrimaryButton>
-              <SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>
+            <div className="mt-12">
+              <NumberedAccordion items={homeFaqs} />
             </div>
-          </div>
-          <NumberedAccordion items={homeFaqs} visual="golven" />
-        </div>
       </Section>
 
       <CtaSection />

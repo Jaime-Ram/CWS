@@ -148,23 +148,25 @@ export default function FaqPage() {
       </Section>
 
       <Section className="pt-0">
-        <div className="grid grid-cols-[340px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-8">
-          <SectionHead eyebrow="Onderwerp 01" title="Wetgeving en verplichtingen" />
-          <NumberedAccordion items={algemeen} visual="logboek" />
+        <SectionHead eyebrow="Onderwerp 01" title="Wetgeving en verplichtingen" />
+        <div className="mt-12">
+          <NumberedAccordion items={algemeen} />
         </div>
       </Section>
 
       <Section className="bg-neutral-200/50 pt-0">
-        <div className="grid grid-cols-[340px_1fr] gap-16 pt-24 max-lg:grid-cols-1 max-lg:gap-8 max-md:pt-16">
+        <div className="pt-24 max-md:pt-16">
           <SectionHead eyebrow="Onderwerp 02" title="Onderhoud en frequenties" />
-          <NumberedAccordion items={praktisch} visual="keerklep" />
+          <div className="mt-12">
+            <NumberedAccordion items={praktisch} />
+          </div>
         </div>
       </Section>
 
       <Section>
-        <div className="grid grid-cols-[340px_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-8">
-          <SectionHead eyebrow="Onderwerp 03" title="Uitvoering en spoed" />
-          <NumberedAccordion items={uitvoering} visual="desinfectie" />
+        <SectionHead eyebrow="Onderwerp 03" title="Uitvoering en spoed" />
+        <div className="mt-12">
+          <NumberedAccordion items={uitvoering} />
         </div>
       </Section>
 
