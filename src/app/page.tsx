@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Hero from "@/components/Hero";
+import VideoEmbed from "@/components/VideoEmbed";
 import CtaSection from "@/components/CtaSection";
 import JsonLd from "@/components/JsonLd";
 import Media from "@/components/Media";
@@ -146,6 +147,14 @@ export default function HomePage() {
         title="Legionellapreventie en BRL 6010 risicoanalyse in heel Nederland"
         text="Wij helpen bedrijven en instellingen aan een veilige drinkwaterinstallatie en een aantoonbaar legionellabeheer dat de inspectie doorstaat."
         actions={<PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>}
+        aside={
+          <VideoEmbed
+            videoId="iE9gWUet-lM"
+            title="Clean Water Systems bedrijfsimpressie"
+            poster="/images/fotos/video-bedrijfsimpressie.jpg"
+            className="w-[460px] max-lg:w-full"
+          />
+        }
       />
 
       {/* Logostrook met de keurmerken van de bestaande site */}

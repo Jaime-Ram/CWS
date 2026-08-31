@@ -39,62 +39,28 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
           {/* Desktop-navigatie */}
           <nav className="flex items-center gap-8 max-lg:hidden" aria-label="Hoofdnavigatie">
             <ul className="flex items-center gap-7">
-              <li
-                onMouseEnter={() => setDropdown("diensten")}
-                onMouseLeave={() => setDropdown(null)}
-                className="relative"
-              >
-                <Link
-                  href="/diensten"
-                  className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors ${linkColor}`}
-                >
-                  Diensten
-                  <Chevron />
-                </Link>
-                {dropdown === "diensten" && (
-                  <div className="absolute left-1/2 top-full w-[600px] -translate-x-1/2 pt-5">
-                    <div className="card grid grid-cols-2 gap-x-8 gap-y-1 p-6">
-                      {services.map((s) => (
-                        <Link
-                          key={s.slug}
-                          href={`/diensten/${s.slug}`}
-                          className="rounded-lg px-3 py-[7px] text-[14px] text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-800"
-                        >
-                          {s.navName}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </li>
-              <li
-                onMouseEnter={() => setDropdown("branches")}
-                onMouseLeave={() => setDropdown(null)}
-                className="relative"
-              >
-                <Link
-                  href="/branches"
-                  className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors ${linkColor}`}
-                >
-                  Branches
-                  <Chevron />
-                </Link>
-                {dropdown === "branches" && (
-                  <div className="absolute left-1/2 top-full w-[340px] -translate-x-1/2 pt-5">
-                    <div className="card grid gap-1 p-6">
-                      {branches.map((b) => (
-                        <Link
-                          key={b.slug}
-                          href={`/branches/${b.slug}`}
-                          className="rounded-lg px-3 py-[7px] text-[14px] text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-800"
-                        >
-                          {b.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                )}
-              </li>
+              <NavDropdown
+                label="Diensten"
+                href="/diensten"
+                open={dropdown === "diensten"}
+                onOpen={() => setDropdown("diensten")}
+                onClose={() => setDropdown(null)}
+                linkColor={linkColor}
+                width="w-[600px]"
+                cols="grid-cols-2 gap-x-8 gap-y-1"
+                items={services.map((s) => ({ label: s.navName, href: `/diensten/${s.slug}` }))}
+              />
+              <NavDropdown
+                label="Branches"
+                href="/branches"
+                open={dropdown === "branches"}
+                onOpen={() => setDropdown("branches")}
+                onClose={() => setDropdown(null)}
+                linkColor={linkColor}
+                width="w-[340px]"
+                cols="gap-1"
+                items={branches.map((b) => ({ label: b.name, href: `/branches/${b.slug}` }))}
+              />
               {mainLinks.map((l) => (
                 <li key={l.href}>
                   <Link
@@ -163,6 +129,60 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
   );
 }
 
+function NavDropdown({
+  label,
+  href,
+  open,
+  onOpen,
+  onClose,
+  linkColor,
+  width,
+  cols,
+  items,
+}: {
+  label: string;
+  href: string;
+  open: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  linkColor: string;
+  width: string;
+  cols: string;
+  items: { label: string; href: string }[];
+}) {
+  return (
+    <li onMouseEnter={onOpen} onMouseLeave={onClose} className="relative">
+      <Link
+        href={href}
+        className={`flex items-center gap-1.5 text-[15px] font-medium transition-colors ${linkColor}`}
+        aria-expanded={open}
+      >
+        {label}
+        <Chevron className={open ? "rotate-180" : ""} />
+      </Link>
+      <div
+        inert={!open}
+        className={`absolute left-1/2 top-full ${width} pt-4 transition-[opacity,translate] duration-300 ease-out ${
+          open ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
+        }`}
+        style={{ translate: open ? "-50% 0" : "-50% -8px" }}
+      >
+        <div className={`card grid p-6 ${cols}`}>
+          {items.map((i) => (
+            <Link
+              key={i.href}
+              href={i.href}
+              className="rounded-lg px-3 py-[7px] text-[14px] text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-800"
+            >
+              {i.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </li>
+  );
+}
+
 function MobileGroup({
   title,
   href,
@@ -188,9 +208,16 @@ function MobileGroup({
   );
 }
 
-function Chevron() {
+function Chevron({ className = "" }: { className?: string }) {
   return (
-    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+    <svg
+      width="10"
+      height="6"
+      viewBox="0 0 10 6"
+      fill="none"
+      aria-hidden="true"
+      className={`transition-transform duration-300 ${className}`}
+    >
       <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
     </svg>
   );

@@ -30,9 +30,11 @@ export default function Hero({
         <HeroBackground />
         <div className="container-default relative">
           <div
-            className={`${compact ? "pb-20 pt-36" : "pb-[190px] pt-36"} max-lg:pb-20 max-lg:pt-32 max-md:pb-14 max-md:pt-28`}
+            className={`${
+              aside ? "pb-24 pt-36" : compact ? "pb-20 pt-36" : "pb-[190px] pt-36"
+            } max-lg:pb-20 max-lg:pt-32 max-md:pb-14 max-md:pt-28`}
           >
-            <div className={aside ? "grid grid-cols-[1fr_auto] items-end gap-12 max-lg:grid-cols-1" : ""}>
+            <div className={aside ? "grid grid-cols-[1fr_auto] items-center gap-14 max-lg:grid-cols-1 max-lg:gap-10" : ""}>
               <div className="max-w-[560px]">
                 {eyebrow && (
                   <div className="mb-3 text-[15px] font-medium text-neutral-300">{eyebrow}</div>

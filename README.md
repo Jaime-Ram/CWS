@@ -111,6 +111,15 @@ Elke pagina is nagebouwd op de template-pagina die er qua functie bij hoort:
 | Contact | Contact |
 | Veelgestelde vragen | Portfolio-hero + FAQ-sectie |
 
+## Video in de hero
+
+De bedrijfsimpressie van Clean Water Systems (YouTube `iE9gWUet-lM`) staat in de
+hero via `src/components/VideoEmbed.tsx`. Dat is een klik-om-te-spelen
+voorvertoning: bij het laden van de pagina wordt alleen de thumbnail getoond en
+staat er geen YouTube-code op de pagina. Pas na een klik verschijnt de iframe, en
+dan via `youtube-nocookie.com`. Dat scheelt laadtijd en voorkomt dat er cookies
+worden gezet voordat de bezoeker daarvoor kiest.
+
 ## Logo en favicon
 
 Het beeldmerk is een abstracte stroombocht met een verloop van cyaan (#6ccfff) via
