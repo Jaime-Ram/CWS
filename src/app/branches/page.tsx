@@ -35,6 +35,7 @@ const regimes = [
       "Minimaal twee keer per jaar geaccrediteerde monstername",
       "Melding bij de ILT boven 1000 kve/l",
     ],
+    image: "/images/fotos/meetapparatuur-registratie.jpg",
     imageAlt: "Legionella-logboek met beheersplan",
   },
   {
@@ -49,6 +50,7 @@ const regimes = [
       "Aantoonbaar beheer wordt sterk aangeraden",
       "Een compacte risicoanalyse is doorgaans voldoende",
     ],
+    image: "/images/fotos/aanpassen-leiding-wastafel.jpg",
     imageAlt: "Drinkwaterinstallatie in een gebouw",
   },
   {
@@ -63,6 +65,7 @@ const regimes = [
       "Bemonstering twee weken voor de eerste gebruiker",
       "Vastgelegd protocol dat uw eigen mensen kunnen uitvoeren",
     ],
+    image: "/images/fotos/waar-staan-wij-voor.jpg",
     imageAlt: "Werkgebied door heel Nederland",
   },
   {
@@ -77,6 +80,7 @@ const regimes = [
       "Endpoint-filters als tijdelijke maatregel bij overschrijding",
       "Afstemming met de technische dienst en infectiepreventie",
     ],
+    image: "/images/fotos/douchekop-vervangen.jpg",
     imageAlt: "Douche als aerosolbron",
   },
 ];
@@ -88,6 +92,7 @@ export default function BranchesPage() {
   return (
     <>
       <HeroSplit
+        image="/images/fotos/douchekop-vervangen.jpg"
         imageAlt="Verschillende gebouwtypen waar wij werken"
         reverse
         eyebrow="Branches"
@@ -120,6 +125,7 @@ export default function BranchesPage() {
               <PortfolioCard
                 key={b.slug}
                 href={`/branches/${b.slug}`}
+                image={b.image}
                 imageAlt={b.imageAlt}
                 badge="Prioritaire instelling"
                 title={b.name}
@@ -142,7 +148,8 @@ export default function BranchesPage() {
             <VisualCard
               key={b.slug}
               href={`/branches/${b.slug}`}
-              imageAlt={b.imageAlt}
+              image={b.image}
+                imageAlt={b.imageAlt}
               title={b.shortName}
               subtitle={b.name}
               badge="Zorgplicht"

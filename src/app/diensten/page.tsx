@@ -1,4 +1,3 @@
-import Link from "next/link";
 import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
@@ -36,6 +35,7 @@ const situations = [
       "Logboek dat bij een ILT-controle direct te overleggen is",
       "Actualisatie zodra de installatie wijzigt",
     ],
+    image: "/images/fotos/meetapparatuur-registratie.jpg",
     imageAlt: "Legionella-logboek met beheersplan",
   },
   {
@@ -50,6 +50,7 @@ const situations = [
       "Hercontrole om het resultaat aan te tonen",
       "Ondersteuning bij de melding richting de toezichthouder",
     ],
+    image: "/images/fotos/spoelen-leidingnet.jpg",
     imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
   },
   {
@@ -64,6 +65,7 @@ const situations = [
       "Temperatuurmetingen op de vastgelegde punten",
       "Uitvoering van het spoelregime, geheel of gedeeltelijk",
     ],
+    image: "/images/fotos/keerklepcontrole.jpg",
     imageAlt: "Keerklepcontrole in een technische ruimte",
   },
   {
@@ -78,6 +80,7 @@ const situations = [
       "Onderscheid tussen installatie- en leveringsprobleem",
       "Structurele oplossing in plaats van herhaald spoelen",
     ],
+    image: "/images/fotos/monstername-tappunt.jpg",
     imageAlt: "Watermonster uit een leidingnet",
   },
 ];
@@ -88,6 +91,7 @@ export default function DienstenPage() {
   return (
     <>
       <HeroSplit
+        image="/images/fotos/inspectie-installatie.jpg"
         imageAlt="Adviseur bij een drinkwaterinstallatie"
         eyebrow="Diensten"
         title="Alles voor waterveiligheid onder één dak"
@@ -98,11 +102,6 @@ export default function DienstenPage() {
             <SecondaryButton href={site.phoneHref}>Bel {site.phone}</SecondaryButton>
           </>
         }
-        stats={[
-          { value: "12", label: "Diensten" },
-          { value: "8", label: "Branches" },
-          { value: "24u", label: "Spoedrespons" },
-        ]}
       />
 
       <Section className="pt-0">
@@ -127,7 +126,8 @@ export default function DienstenPage() {
           <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
             <PortfolioCard
               href={`/diensten/${first.slug}`}
-              imageAlt={first.imageAlt}
+              image={first.image}
+                imageAlt={first.imageAlt}
               badge={first.eyebrow}
               title={first.name}
               text={first.summary}
@@ -135,7 +135,8 @@ export default function DienstenPage() {
             />
             <PortfolioCard
               href={`/diensten/${second.slug}`}
-              imageAlt={second.imageAlt}
+              image={second.image}
+                imageAlt={second.imageAlt}
               badge={second.eyebrow}
               title={second.name}
               text={second.summary}
@@ -154,31 +155,12 @@ export default function DienstenPage() {
               <VisualCard
                 key={s.slug}
                 href={`/diensten/${s.slug}`}
+                image={s.image}
                 imageAlt={s.imageAlt}
                 title={s.navName}
                 subtitle={s.eyebrow}
               />
             ))}
-          </div>
-        </div>
-      </Section>
-
-      <Section>
-        <div className="grid grid-cols-2 items-center gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <SectionHead
-            eyebrow="Twijfelt u?"
-            title="Niet zeker welke dienst u nodig heeft?"
-            text="Dat hoeft ook niet. Beschrijf uw situatie en het type gebouw, dan zeggen wij wat er wettelijk moet en wat verstandig is. Als dat minder is dan u dacht, horen wij dat ook graag."
-          />
-          <div className="flex flex-wrap gap-3">
-            <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
-            <SecondaryButton href="/veelgestelde-vragen">Veelgestelde vragen</SecondaryButton>
-            <Link
-              href="/legionellapreventie"
-              className="rounded-full border border-neutral-200 px-5 py-2.5 text-[15px] font-medium text-neutral-600 transition-colors hover:border-primary hover:text-primary"
-            >
-              Wat de wet vraagt
-            </Link>
           </div>
         </div>
       </Section>

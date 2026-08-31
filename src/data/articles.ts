@@ -11,6 +11,7 @@ export type Article = {
   metaDescription: string;
   keywords: string[];
   excerpt: string;
+  image: string;
   imageAlt: string;
   blocks: Block[];
 };
@@ -34,6 +35,7 @@ export const articles: Article[] = [
     ],
     excerpt:
       "De meeste legionellaproblemen zijn terug te voeren op temperatuur. Wat de norm precies zegt, waar het in de praktijk misgaat en hoe u het goed meet.",
+    image: "/images/fotos/meetapparatuur-registratie.jpg",
     imageAlt: "Temperatuurmeting bij een tappunt",
     blocks: [
       {
@@ -103,7 +105,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Zes weken zomervakantie, een winterstop of een verbouwing: stilstand is de grootste risicofactor die er is. Dit doet u voordat de eerste gebruiker de kraan opendraait.",
-    imageAlt: "Leegstaand sanitairgebouw voor heropening",
+    image: "/images/fotos/spoelen-leidingnet.jpg",
+    imageAlt: "Doorspoelen van een leidingnet na leegstand",
     blocks: [
       {
         type: "p",
@@ -167,7 +170,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Een afgedopt leidingstuk achter een dichtgezette wand blijft jarenlang water vasthouden. Het is de meest voorkomende oorzaak van een besmetting die telkens terugkomt.",
-    imageAlt: "Afgedopte leiding in een schacht",
+    image: "/images/fotos/aanpassen-leiding-wastafel.jpg",
+    imageAlt: "Leidingwerk in een schacht",
     blocks: [
       {
         type: "p",
@@ -222,7 +226,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Een eerlijke uitleg over waar de kosten uit bestaan, welke factoren de prijs bepalen en waarom achteraf repareren bijna altijd duurder uitpakt.",
-    imageAlt: "Rapportage en offerte voor legionellabeheer",
+    image: "/images/fotos/inspectie-installatie.jpg",
+    imageAlt: "Inventarisatie van een drinkwaterinstallatie",
     blocks: [
       {
         type: "p",
@@ -288,7 +293,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Bij een controle is het logboek het eerste wat gevraagd wordt. Wat erin hoort, hoe u het praktisch houdt en welke fouten het vaakst terugkomen.",
-    imageAlt: "Legionella-logboek met aftekenlijst",
+    image: "/images/fotos/keerklepcontrole.jpg",
+    imageAlt: "Registratie tijdens een controle",
     blocks: [
       {
         type: "p",

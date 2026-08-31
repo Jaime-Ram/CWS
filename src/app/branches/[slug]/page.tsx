@@ -1,8 +1,7 @@
 import { notFound } from "next/navigation";
-import Hero from "@/components/Hero";
+import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Media from "@/components/Media";
 import JsonLd from "@/components/JsonLd";
 import { MilestoneList, Badge, CardCta, ImageLeftItem, VisualCard } from "@/components/blocks";
 import {
@@ -55,23 +54,17 @@ export default async function BranchPage({
 
   return (
     <>
-      <Hero
-        compact
+      <HeroSplit
         eyebrow={branch.priority ? "Prioritaire instelling" : "Zorgplicht"}
         title={branch.h1}
         text={branch.intro}
+        image={branch.image}
+        imageAlt={branch.imageAlt}
         actions={
           <>
             <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
-            <SecondaryButton href={site.phoneHref} variant="dark">
-              Bel {site.phone}
-            </SecondaryButton>
+            <SecondaryButton href={site.phoneHref}>Bel {site.phone}</SecondaryButton>
           </>
-        }
-        aside={
-          <div className="w-[320px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
-            <Media alt={branch.imageAlt} tone="dark" ratio="4/3" className="block aspect-[4/3] w-full" />
-          </div>
         }
       />
 
@@ -90,16 +83,11 @@ export default async function BranchPage({
         />
         <div className="mt-10 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
           {branch.risks.map((r) => (
-            <Card key={r.title} className="flex flex-col overflow-hidden p-3">
-              <span className="overflow-hidden rounded-[20px]">
-                <Media alt={`Risicopunt: ${r.title.toLowerCase()}`} ratio="4/3" className="w-full" />
-              </span>
-              <span className="flex flex-1 flex-col p-5 pt-6 max-sm:p-4">
-                <span className="text-[20px] font-semibold leading-[1.25em] text-neutral-800">
-                  {r.title}
-                </span>
-                <span className="mt-3 text-[15px] leading-[1.6em] text-neutral-600">{r.text}</span>
-              </span>
+            <Card key={r.title} className="flex h-full flex-col justify-between gap-8 p-8 max-sm:p-6">
+              <div>
+                <h3 className="text-[20px] leading-[1.25em]">{r.title}</h3>
+                <p className="mt-3 text-[15px] leading-[1.6em]">{r.text}</p>
+              </div>
             </Card>
           ))}
         </div>
@@ -188,7 +176,8 @@ export default async function BranchPage({
                 <ImageLeftItem
                   key={s.slug}
                   href={`/diensten/${s.slug}`}
-                  imageAlt={s.imageAlt}
+                  image={s.image}
+                imageAlt={s.imageAlt}
                   title={s.name}
                   badge={s.eyebrow}
                 />
@@ -224,7 +213,8 @@ export default async function BranchPage({
             <VisualCard
               key={b.slug}
               href={`/branches/${b.slug}`}
-              imageAlt={b.imageAlt}
+              image={b.image}
+                imageAlt={b.imageAlt}
               title={b.shortName}
               subtitle={b.name}
               badge={b.priority ? "Prioritair" : "Zorgplicht"}

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Hero from "@/components/Hero";
 import Newsletter from "@/components/Newsletter";
-import Media from "@/components/Media";
 import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
 import {
   CardCta,
@@ -83,11 +82,6 @@ export default function LegionellapreventiePage() {
               Risicoanalyse aanvragen
             </SecondaryButton>
           </>
-        }
-        aside={
-          <div className="w-[340px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
-            <Media alt="Temperatuurmeting in een drinkwaterinstallatie" tone="dark" ratio="4/3" className="w-full" />
-          </div>
         }
       />
 
@@ -352,6 +346,7 @@ export default function LegionellapreventiePage() {
               <ImageLeftItem
                 key={s.slug}
                 href={`/diensten/${s.slug}`}
+                image={s.image}
                 imageAlt={s.imageAlt}
                 title={s.name}
                 badge={s.eyebrow}
@@ -378,7 +373,8 @@ export default function LegionellapreventiePage() {
             <VisualCard
               key={b.slug}
               href={`/branches/${b.slug}`}
-              imageAlt={b.imageAlt}
+              image={b.image}
+                imageAlt={b.imageAlt}
               title={b.shortName}
               subtitle={b.name}
               badge={b.priority ? "Prioritair" : "Zorgplicht"}

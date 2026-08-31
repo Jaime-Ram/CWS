@@ -1,15 +1,12 @@
 import { notFound } from "next/navigation";
-import Hero from "@/components/Hero";
+import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Media from "@/components/Media";
 import JsonLd from "@/components/JsonLd";
 import Newsletter from "@/components/Newsletter";
 import { NumberedAccordion } from "@/components/Tabs";
-import { Badge, CardCta, ImageLeftItem, VisualCard } from "@/components/blocks";
+import { ImageLeftItem, VisualCard } from "@/components/blocks";
 import {
-  Card,
-  CheckList,
   PrimaryButton,
   SecondaryButton,
   Section,
@@ -59,23 +56,17 @@ export default async function ServicePage({
 
   return (
     <>
-      <Hero
-        compact
+      <HeroSplit
         eyebrow={service.eyebrow}
         title={service.h1}
         text={service.intro}
+        image={service.image}
+        imageAlt={service.imageAlt}
         actions={
           <>
             <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
-            <SecondaryButton href={site.phoneHref} variant="dark">
-              Bel {site.phone}
-            </SecondaryButton>
+            <SecondaryButton href={site.phoneHref}>Bel {site.phone}</SecondaryButton>
           </>
-        }
-        aside={
-          <div className="w-[320px] overflow-hidden rounded-[24px] border border-white/12 max-lg:w-full">
-            <Media alt={service.imageAlt} tone="dark" ratio="4/3" className="block aspect-[4/3] w-full" />
-          </div>
         }
       />
 
@@ -87,8 +78,8 @@ export default async function ServicePage({
           ]}
         />
 
-        <div className="grid grid-cols-[1fr_360px] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <article className="prose-cws max-w-[720px]">
+        <div className="mx-auto max-w-[740px]">
+          <article className="prose-cws">
             {service.sections.map((section) => (
               <section key={section.h2}>
                 <h2>{section.h2}</h2>
@@ -105,33 +96,14 @@ export default async function ServicePage({
                 })}
               </section>
             ))}
+
+            <h2>Wat u van ons krijgt</h2>
+            <ul>
+              {service.usps.map((u) => (
+                <li key={u}>{u}</li>
+              ))}
+            </ul>
           </article>
-
-          <aside className="grid content-start gap-6 max-lg:grid-cols-2 max-md:grid-cols-1">
-            <Card className="p-8 max-sm:p-6">
-              <Badge>Inbegrepen</Badge>
-              <h2 className="mt-4 text-[20px]">Wat u krijgt</h2>
-              <CheckList items={service.usps} className="mt-5 text-[15px]" />
-              <div className="divider my-6" />
-              <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
-            </Card>
-
-            <CardCta
-              eyebrow="Direct contact"
-              title="Liever eerst even overleggen?"
-              text="Bel gerust, ook als u nog niet precies weet wat u nodig heeft. Wij denken mee zonder verplichting."
-              action={
-                <div className="grid gap-1.5">
-                  <a href={site.phoneHref} className="text-[20px] font-semibold text-white">
-                    {site.phone}
-                  </a>
-                  <a href={`mailto:${site.email}`} className="break-all text-[15px] text-neutral-300">
-                    {site.email}
-                  </a>
-                </div>
-              }
-            />
-          </aside>
         </div>
       </Section>
 
@@ -149,7 +121,8 @@ export default async function ServicePage({
                 <VisualCard
                   key={b.slug}
                   href={`/branches/${b.slug}`}
-                  imageAlt={b.imageAlt}
+                  image={b.image}
+                imageAlt={b.imageAlt}
                   title={b.shortName}
                   subtitle={b.name}
                   badge={b.priority ? "Prioritair" : "Zorgplicht"}
@@ -180,7 +153,8 @@ export default async function ServicePage({
                 <ImageLeftItem
                   key={r.slug}
                   href={`/diensten/${r.slug}`}
-                  imageAlt={r.imageAlt}
+                  image={r.image}
+                imageAlt={r.imageAlt}
                   title={r.name}
                   badge={r.eyebrow}
                 />

@@ -1,23 +1,22 @@
-import Link from "next/link";
+import Image from "next/image";
 import Hero from "@/components/Hero";
 import CtaSection from "@/components/CtaSection";
-import Media from "@/components/Media";
 import JsonLd from "@/components/JsonLd";
+import Media from "@/components/Media";
 import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
 import {
-  CardCta,
-  PortfolioCard,
   FeaturedCard,
   ImageLeftItem,
+  IndustryCard,
+  PortfolioCard,
   TestimonialGrid,
-  VisualCard,
 } from "@/components/blocks";
 import {
+  Eyebrow,
   PrimaryButton,
   SecondaryButton,
   Section,
   SectionHead,
-  Eyebrow,
 } from "@/components/ui";
 import { site } from "@/data/site";
 import { services, featuredServices } from "@/data/services";
@@ -73,26 +72,30 @@ const approach = [
   {
     number: "01",
     title: "Inventarisatie",
-    text: "We brengen uw installatie en uw verplichtingen in kaart en bepalen samen wat er werkelijk nodig is. Vooraf vragen we tekeningen en eerdere metingen op.",
-    imageAlt: "Drinkwaterinstallatie in een gebouw",
+    text: "We brengen uw installatie en uw verplichtingen in kaart en bepalen samen wat er werkelijk nodig is.",
+    image: "/images/fotos/inspectie-installatie.jpg",
+    imageAlt: "Inventarisatie van een drinkwaterinstallatie",
   },
   {
     number: "02",
     title: "Analyse op locatie",
-    text: "Een BRL 6010 adviseur loopt de installatie na, meet temperaturen en legt elk tappunt vast. Bij grotere gebouwen werken we per bouwdeel.",
-    imageAlt: "Leidingnet met tappunten",
+    text: "Een BRL 6010 adviseur loopt de installatie na, meet temperaturen en legt elk tappunt vast.",
+    image: "/images/fotos/keerklepcontrole.jpg",
+    imageAlt: "Meetopstelling tijdens een analyse op locatie",
   },
   {
     number: "03",
     title: "Rapport en beheersplan",
-    text: "U krijgt de risico's met een prioritering en per punt een concrete maatregel, plus een spoelschema dat uw technische dienst kan uitvoeren.",
-    imageAlt: "Legionella-logboek met beheersplan",
+    text: "U krijgt de risico's met een prioritering en per punt een concrete maatregel, plus een werkbaar spoelschema.",
+    image: "/images/fotos/meetapparatuur-registratie.jpg",
+    imageAlt: "Registratie van meetwaarden op locatie",
   },
   {
     number: "04",
     title: "Uitvoering en nazorg",
-    text: "Desgewenst voeren wij de maatregelen uit, bemonsteren wij periodiek en actualiseren wij de analyse zodra de installatie wijzigt.",
-    imageAlt: "Monstername aan een tappunt",
+    text: "Desgewenst voeren wij de maatregelen uit, bemonsteren wij periodiek en actualiseren wij de analyse.",
+    image: "/images/fotos/laboratorium-analyse.jpg",
+    imageAlt: "Analyse van watermonsters in het laboratorium",
   },
 ];
 
@@ -142,37 +145,32 @@ export default function HomePage() {
         eyebrow={`Adviesbureau waterinstallaties sinds ${site.founded}`}
         title="Legionellapreventie en BRL 6010 risicoanalyse in heel Nederland"
         text="Wij helpen bedrijven en instellingen aan een veilige drinkwaterinstallatie en een aantoonbaar legionellabeheer dat de inspectie doorstaat."
-        actions={
-          <>
-            <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
-            <SecondaryButton href="/diensten/legionella-uitbraak" variant="dark">
-              Spoed bij een uitbraak
-            </SecondaryButton>
-          </>
-        }
+        actions={<PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>}
       />
 
-      {/* Normen en certificeringen */}
-      <section className="border-b border-neutral-200 py-9">
-        <div className="overflow-hidden">
-          <div className="marquee-track">
-            {[0, 1].map((dup) => (
-              <div key={dup} className="flex shrink-0 items-center gap-8 pr-8">
-                {site.certifications.map((c) => (
-                  <span
-                    key={`${dup}-${c}`}
-                    className="whitespace-nowrap rounded-full border border-neutral-200 px-5 py-2 text-[15px] font-medium text-neutral-500"
-                  >
-                    {c}
-                  </span>
-                ))}
-              </div>
+      {/* Logostrook met de keurmerken van de bestaande site */}
+      <section className="border-b border-neutral-200 py-12">
+        <div className="container-default">
+          <div className="flex flex-wrap items-center justify-center gap-x-24 gap-y-10 max-md:gap-x-14">
+            {[
+              { src: "keurmerk-kiwa", alt: "Kiwa gecertificeerd, BRL-K14010 deel 1", h: "h-[76px]" },
+              { src: "keurmerk-ce", alt: "CE-markering", h: "h-[46px]" },
+              { src: "keurmerk-nen-en-1112", alt: "NEN-EN 1112, CE Medical klasse 2A", h: "h-[54px]" },
+            ].map((l) => (
+              <Image
+                key={l.src}
+                src={`/images/fotos/${l.src}.jpg`}
+                alt={l.alt}
+                width={400}
+                height={400}
+                className={`${l.h} w-auto`}
+              />
             ))}
           </div>
         </div>
       </section>
 
-      {/* Over ons: titel links, knop rechts, divider, breed beeld, tekst en cijfers */}
+      {/* Over ons */}
       <Section>
         <SectionHead
           eyebrow="Over Clean Water Systems"
@@ -180,8 +178,14 @@ export default function HomePage() {
           cta={<SecondaryButton href="/over-ons">Over ons</SecondaryButton>}
         />
         <div className="divider my-10" />
-        <div className="overflow-hidden rounded-[32px] border border-neutral-200 max-md:rounded-[24px]">
-          <Media alt="Sfeerbeeld van een drinkwaterinstallatie" ratio="38/10" className="w-full" />
+        <div className="overflow-hidden rounded-[32px] max-md:rounded-[24px]">
+          <Media
+            src="/images/fotos/waar-staan-wij-voor.jpg"
+            alt="Clean Water Systems aan het werk aan een drinkwaterinstallatie"
+            ratio="21/10"
+            className="w-full max-md:aspect-[16/9]"
+            priority
+          />
         </div>
         <div className="mt-10 grid grid-cols-[1fr_1fr_auto_auto] gap-12 max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-8">
           <p className="leading-[1.65em]">
@@ -209,95 +213,77 @@ export default function HomePage() {
         </div>
       </Section>
 
-      {/* Diensten als donkere kaarten */}
-      <Section className="bg-neutral-200/50 pt-0">
-        <div className="pt-24 max-md:pt-16">
-          <SectionHead
-            eyebrow="Onze diensten"
-            title="Complete ondersteuning op het gebied van waterveiligheid"
-            cta={<PrimaryButton href="/diensten">Alle diensten</PrimaryButton>}
-          />
-          <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-            {featuredServices.slice(0, 3).map((s) => (
-              <PortfolioCard
-                key={s.slug}
-                href={`/diensten/${s.slug}`}
-                imageAlt={s.imageAlt}
-                badge={s.eyebrow}
-                title={s.name}
-                text={s.summary}
-                meta="Meer info"
-              />
-            ))}
-            {featuredServices.slice(3).map((s) => (
-              <VisualCard
-                key={s.slug}
-                href={`/diensten/${s.slug}`}
-                imageAlt={s.imageAlt}
-                title={s.name}
-                subtitle={s.eyebrow}
-              />
-            ))}
-            <CardCta
-              eyebrow="Spoed"
-              title="Overschrijding gemeten?"
-              text="Wij komen indien nodig binnen 24 uur langs voor inspectie en desinfectie."
-              action={
-                <a href={site.mobileHref} className="text-[20px] font-semibold text-white">
-                  {site.mobile}
-                </a>
-              }
+      {/* Diensten, in de opzet van de portfolio-sectie */}
+      <Section className="pt-0">
+        <SectionHead
+          center
+          eyebrow="Onze diensten"
+          title="Complete ondersteuning op het gebied van waterveiligheid"
+          text="Van de verplichte risicoanalyse tot de uitvoering van de beheersmaatregelen. U kunt bij ons terecht voor het hele traject of voor precies dat ene onderdeel."
+          cta={
+            <>
+              <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
+              <SecondaryButton href="/diensten">Alle diensten</SecondaryButton>
+            </>
+          }
+        />
+        <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {featuredServices.slice(0, 3).map((s) => (
+            <PortfolioCard
+              key={s.slug}
+              href={`/diensten/${s.slug}`}
+              title={s.name}
+              text={s.summary}
+              badge={s.eyebrow}
+              image={s.image}
+              imageAlt={s.imageAlt}
             />
-          </div>
+          ))}
         </div>
       </Section>
 
-      {/* Aanpak als tabs met beeld */}
-      <Section>
+      {/* Aanpak */}
+      <Section className="pt-0">
         <SectionHead
           center
           eyebrow="Onze aanpak"
           title="Van eerste inventarisatie tot aantoonbaar beheer"
-          text="Vier stappen die elkaar opvolgen. Klik een stap aan om te zien wat er gebeurt."
         />
         <div className="mt-12">
           <AccordionTabs items={approach} />
         </div>
       </Section>
 
-      {/* Branches */}
+      {/* Branches, in de opzet van de industries-sectie */}
       <Section className="pt-0">
-        <SectionHead
-          eyebrow="Voor wie werken wij"
-          title="Elke branche heeft een eigen risicoprofiel"
-          cta={<SecondaryButton href="/branches">Alle branches</SecondaryButton>}
-        />
-        <div className="mt-12 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {branches.slice(0, 4).map((b) => (
-            <VisualCard
-              key={b.slug}
-              href={`/branches/${b.slug}`}
-              imageAlt={b.imageAlt}
-              title={b.shortName}
-              subtitle={b.name}
-              badge={b.priority ? "Prioritair" : "Zorgplicht"}
+        <div className="grid grid-cols-[1fr_1.6fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
+          <div>
+            <SectionHead
+              eyebrow="Voor wie werken wij"
+              title="Elke branche heeft een eigen risicoprofiel"
+              text="Wij vertalen de regels naar maatregelen die passen bij uw gebouw en uw gebruikspatroon."
             />
-          ))}
-        </div>
-        <div className="mt-5 flex flex-wrap gap-3">
-          {branches.slice(4).map((b) => (
-            <Link
-              key={b.slug}
-              href={`/branches/${b.slug}`}
-              className="rounded-full border border-neutral-200 px-5 py-2.5 text-[15px] font-medium text-neutral-600 transition-colors hover:border-primary hover:text-primary"
-            >
-              {b.name}
-            </Link>
-          ))}
+            <div className="mt-8">
+              <SecondaryButton href="/branches">Alle branches</SecondaryButton>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
+            {branches.slice(0, 4).map((b) => (
+              <IndustryCard
+                key={b.slug}
+                href={`/branches/${b.slug}`}
+                title={b.shortName}
+                text={b.name}
+                badge={b.priority ? "Prioritair" : "Zorgplicht"}
+              />
+            ))}
+          </div>
         </div>
       </Section>
 
-      {/* Garanties in de testimonial-opmaak van het template */}
+      <CtaSection />
+
+      {/* Garanties, in de testimonial-opzet */}
       <Section className="pt-0">
         <div className="rounded-[32px] bg-neutral-200/60 p-12 max-md:rounded-[24px] max-sm:p-6">
           <div className="flex flex-wrap items-start justify-between gap-8">
@@ -319,52 +305,46 @@ export default function HomePage() {
       {/* Kenniscentrum */}
       <Section className="pt-0">
         <SectionHead
+          center
           eyebrow="Kenniscentrum"
           title="Praktische kennis uit Nederlandse installaties"
-          cta={<SecondaryButton href="/kenniscentrum">Alle artikelen</SecondaryButton>}
         />
         <div className="mt-12 grid grid-cols-[1.2fr_1fr] gap-8 max-lg:grid-cols-1">
           <FeaturedCard
             href={`/kenniscentrum/${featuredArticle.slug}`}
-            imageAlt={featuredArticle.imageAlt}
             title={featuredArticle.title}
             badge={featuredArticle.category}
             meta={dateFormat.format(new Date(featuredArticle.date))}
+            image={featuredArticle.image}
+            imageAlt={featuredArticle.imageAlt}
           />
           <div className="grid content-start gap-7">
             {restArticles.map((a) => (
               <ImageLeftItem
                 key={a.slug}
                 href={`/kenniscentrum/${a.slug}`}
-                imageAlt={a.imageAlt}
                 title={a.title}
                 badge={a.category}
                 meta={a.readingTime}
+                image={a.image}
+                imageAlt={a.imageAlt}
               />
             ))}
           </div>
         </div>
       </Section>
 
-      {/* FAQ */}
+      {/* Veelgestelde vragen */}
       <Section className="pt-0">
         <SectionHead
-              eyebrow="Veelgestelde vragen"
-              title="De vragen die wij het vaakst krijgen"
-              text="Staat uw vraag er niet bij? Bel gerust, ook als u nog niet weet wat u precies nodig heeft."
-              cta={
-                <>
-                  <PrimaryButton href="/contact">Stel uw vraag</PrimaryButton>
-                  <SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>
-                </>
-              }
-            />
-            <div className="mt-12">
-              <NumberedAccordion items={homeFaqs} />
-            </div>
+          eyebrow="Veelgestelde vragen"
+          title="De vragen die wij het vaakst krijgen"
+          cta={<SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>}
+        />
+        <div className="mt-12">
+          <NumberedAccordion items={homeFaqs} />
+        </div>
       </Section>
-
-      <CtaSection />
 
       <JsonLd data={faqSchema(homeFaqs)} />
       <JsonLd

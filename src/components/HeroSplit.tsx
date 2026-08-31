@@ -10,6 +10,7 @@ import { Badge } from "./blocks";
  */
 export default function HeroSplit({
   eyebrow,
+  meta,
   title,
   text,
   actions,
@@ -19,6 +20,7 @@ export default function HeroSplit({
   reverse = false,
 }: {
   eyebrow?: string;
+  meta?: string;
   title: string;
   text: string;
   actions?: ReactNode;
@@ -39,9 +41,10 @@ export default function HeroSplit({
             }`}
           >
             <div>
-              {eyebrow && (
-                <div className="mb-5">
-                  <Badge>{eyebrow}</Badge>
+              {(eyebrow || meta) && (
+                <div className="mb-5 flex flex-wrap items-center gap-3">
+                  {eyebrow && <Badge>{eyebrow}</Badge>}
+                  {meta && <span className="text-[15px] text-neutral-500">{meta}</span>}
                 </div>
               )}
               <h1 className="max-w-[620px]">{title}</h1>
@@ -61,7 +64,7 @@ export default function HeroSplit({
               )}
             </div>
             <div className="overflow-hidden rounded-[32px] border border-neutral-200 max-md:rounded-[24px]">
-              <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
+              <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" priority />
             </div>
           </div>
         </div>

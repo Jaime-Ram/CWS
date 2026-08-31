@@ -136,7 +136,9 @@ export function PortfolioCard({
       <span className="relative flex flex-1 flex-col justify-between gap-16 p-10 max-md:gap-10 max-sm:p-6">
         <span>
           <span className="flex items-start justify-between gap-4">
-            <span className="size-16 shrink-0 rounded-full border border-neutral-200 bg-secondary-100 transition-colors duration-500 group-hover:border-white/20 group-hover:bg-white/10" />
+            <span className="size-16 shrink-0 overflow-hidden rounded-full border border-neutral-200 bg-secondary-100 transition-colors duration-500 group-hover:border-white/20">
+              {image && <Media src={image} alt="" ratio="1/1" className="size-full" />}
+            </span>
             <ChevronButton />
           </span>
           <span className="mt-6 block text-[24px] font-semibold leading-[1.25em] text-neutral-800 transition-colors duration-500 group-hover:text-white">
@@ -206,6 +208,37 @@ export function VisualCard({
           </span>
           <ChevronButton />
         </span>
+      </Card>
+    </Link>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  IndustryCard — de kaarten uit de "Industries we invest in" sectie          */
+/* -------------------------------------------------------------------------- */
+
+export function IndustryCard({
+  href,
+  title,
+  text,
+  badge,
+}: {
+  href: string;
+  title: string;
+  text: string;
+  badge?: string;
+}) {
+  return (
+    <Link href={href} className="group">
+      <Card className="flex h-full flex-col justify-between gap-8 p-8 transition-colors duration-300 hover:border-primary/30 max-sm:p-6">
+        <div>
+          <div className="flex items-start justify-between gap-4">
+            <h3 className="text-[20px] leading-[1.25em]">{title}</h3>
+            {badge && <Badge>{badge}</Badge>}
+          </div>
+          <p className="mt-3 text-[15px] leading-[1.6em]">{text}</p>
+        </div>
+        <ChevronButton />
       </Card>
     </Link>
   );

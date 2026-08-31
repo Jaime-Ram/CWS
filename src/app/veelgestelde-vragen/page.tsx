@@ -101,15 +101,12 @@ export default function FaqPage() {
   return (
     <>
       <HeroSplit
+        image="/images/fotos/monstername-tappunt.jpg"
         imageAlt="Beheersplan en logboek op tafel"
         eyebrow="Veelgestelde vragen"
         title="Antwoord op de vragen die wij het vaakst krijgen"
         text="Van wettelijke verplichtingen tot praktische uitvoering. Staat uw vraag er niet bij, bel of mail gerust."
         actions={<PrimaryButton href="/contact">Stel uw vraag</PrimaryButton>}
-        stats={[
-          { value: `${all.length}`, label: "Beantwoorde vragen" },
-          { value: "3", label: "Onderwerpen" },
-        ]}
       />
 
       <Section className="pt-0">

@@ -1,7 +1,6 @@
 import HeroSplit from "@/components/HeroSplit";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Media from "@/components/Media";
 import { CardTabs, QuoteSlider } from "@/components/Tabs";
 import { Badge, MilestoneList, QuoteCard, StatsCard } from "@/components/blocks";
 import { Card, PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
@@ -32,6 +31,7 @@ const werkwijze = [
       "Onderscheid tussen wat wettelijk moet en wat verstandig is",
       "Doorverwijzing als een andere partij beter past",
     ],
+    image: "/images/fotos/meetapparatuur-registratie.jpg",
     imageAlt: "Legionella-logboek met beheersplan",
   },
   {
@@ -45,6 +45,7 @@ const werkwijze = [
       "Ervaring van kleine B&B's tot ziekenhuizen",
       "Samenwerking met uw vaste installateur waar dat handiger is",
     ],
+    image: "/images/fotos/inspectie-installatie.jpg",
     imageAlt: "Leidingnet met tappunten",
   },
   {
@@ -58,6 +59,7 @@ const werkwijze = [
       "Aftekenlijsten die de drempel verlagen",
       "Uitvoering geheel of gedeeltelijk over te nemen",
     ],
+    image: "/images/fotos/aanpassen-leiding-wastafel.jpg",
     imageAlt: "Drinkwaterinstallatie in een gebouw",
   },
   {
@@ -71,6 +73,7 @@ const werkwijze = [
       "Indien nodig binnen 24 uur ter plaatse bij een uitbraak",
       "Vast aanspreekpunt gedurende de opdracht",
     ],
+    image: "/images/fotos/spoelen-leidingnet.jpg",
     imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
   },
 ];
@@ -79,6 +82,7 @@ export default function OverOnsPage() {
   return (
     <>
       <HeroSplit
+        image="/images/fotos/waar-staan-wij-voor.jpg"
         imageAlt="Team van Clean Water Systems aan het werk"
         eyebrow={`Sinds ${site.founded}`}
         title="Adviesbureau voor waterinstallaties"
@@ -89,11 +93,6 @@ export default function OverOnsPage() {
             <SecondaryButton href="/diensten">Onze diensten</SecondaryButton>
           </>
         }
-        stats={[
-          { value: site.founded, label: "Actief sinds" },
-          { value: "100%", label: "Landelijke dekking" },
-          { value: "24u", label: "Spoedrespons" },
-        ]}
       />
 
       <Section className="pt-0">
@@ -129,27 +128,12 @@ export default function OverOnsPage() {
               title="Ruim vijftien jaar praktijk"
               text="Van kleine logiesverstrekkers tot ziekenhuizen en productielocaties. Die ervaring zit in elk advies dat wij geven."
             />
-            <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
-              <Card className="p-8 max-sm:p-6">
-                <h3 className="text-[20px]">Vestiging</h3>
-                <p className="mt-3 text-[15px] leading-[1.6em]">
-                  {site.address.street}
-                  <br />
-                  {site.address.postalCode} {site.address.city}
-                </p>
-                <a
-                  href={site.routeUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-4 inline-block text-[15px] font-semibold text-primary"
-                >
-                  Route plannen
-                </a>
-              </Card>
-              <Card className="overflow-hidden p-3">
-                <Media alt="Werkgebied van Clean Water Systems" ratio="1/1" className="w-full rounded-[18px]" />
-              </Card>
-            </div>
+            <StatsCard
+              value="24"
+              suffix="u"
+              title="Respons bij een uitbraak"
+              text="Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit."
+            />
           </div>
         </div>
       </Section>

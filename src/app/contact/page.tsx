@@ -1,6 +1,5 @@
 import HeroCardSplit from "@/components/HeroCardSplit";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import Media from "@/components/Media";
 import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
 import { CardTabs, NumberedAccordion } from "@/components/Tabs";
@@ -49,6 +48,7 @@ const routes = [
       "Bestaande risicoanalyse of monsterresultaten meesturen",
       "Gewenste planning of deadline",
     ],
+    image: "/images/fotos/meetapparatuur-registratie.jpg",
     imageAlt: "Legionella-logboek met beheersplan",
   },
   {
@@ -63,6 +63,7 @@ const routes = [
       "Indien nodig binnen 24 uur ter plaatse",
       "Ondersteuning bij de melding richting de ILT",
     ],
+    image: "/images/fotos/spoelen-leidingnet.jpg",
     imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
   },
   {
@@ -77,6 +78,7 @@ const routes = [
       "Advies over een klacht aan het water",
       "Doorverwijzing als een andere partij beter past",
     ],
+    image: "/images/fotos/monstername-tappunt.jpg",
     imageAlt: "Watermonster uit een leidingnet",
   },
   {
@@ -91,6 +93,7 @@ const routes = [
       "Werk in de avond, nacht en het weekend mogelijk",
       "Grotere projecten gefaseerd per bouwdeel",
     ],
+    image: "/images/fotos/waar-staan-wij-voor.jpg",
     imageAlt: "Werkgebied door heel Nederland",
   },
 ];
@@ -124,39 +127,9 @@ export default function ContactPage() {
         </div>
       </HeroCardSplit>
 
-      <Section className="pt-0">
-        <Breadcrumbs items={[{ label: "Contact", href: "/contact" }]} />
-
-        <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          <ContactTile label="Telefoon" value={site.phone} href={site.phoneHref} note="Op werkdagen" />
-          <ContactTile
-            label="Mobiel"
-            value={site.mobile}
-            href={site.mobileHref}
-            note="Ook buiten kantooruren"
-          />
-          <ContactTile
-            label="E-mail"
-            value={site.email}
-            href={`mailto:${site.email}`}
-            note="Binnen één werkdag"
-          />
-          <Card className="overflow-hidden p-3">
-            <a href={site.routeUrl} target="_blank" rel="noopener noreferrer" className="block">
-              <Media alt="Sfeerbeeld" ratio="4/3" className="w-full" />
-              <span className="block px-4 py-4">
-                <span className="block text-[15px] text-neutral-500">Bezoekadres</span>
-                <span className="mt-1 block font-semibold text-neutral-800">
-                  {site.address.street}, {site.address.city}
-                </span>
-              </span>
-            </a>
-          </Card>
-        </div>
-      </Section>
-
       <Section className="bg-neutral-200/50 pt-0">
         <div className="pt-24 max-md:pt-16">
+          <Breadcrumbs items={[{ label: "Contact", href: "/contact" }]} />
           <SectionHead
             eyebrow="Waar gaat het over?"
             title="Kies waarvoor u contact opneemt"
@@ -207,29 +180,5 @@ export default function ContactPage() {
         }}
       />
     </>
-  );
-}
-
-function ContactTile({
-  label,
-  value,
-  href,
-  note,
-}: {
-  label: string;
-  value: string;
-  href: string;
-  note: string;
-}) {
-  return (
-    <Card className="flex flex-col justify-between gap-8 p-8 transition-colors hover:border-primary/30 max-sm:p-6">
-      <span className="text-[15px] text-neutral-500">{label}</span>
-      <span>
-        <a href={href} className="block break-all text-[20px] font-semibold text-primary">
-          {value}
-        </a>
-        <span className="mt-1 block text-[15px] text-neutral-500">{note}</span>
-      </span>
-    </Card>
   );
 }
