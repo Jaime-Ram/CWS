@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import Logo from "./Logo";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { branches } from "@/data/branches";
@@ -19,15 +19,10 @@ export default function Footer() {
         <div className="container-default relative">
           {/* CTA bovenin, op het donkere deel */}
           <div className="mx-auto max-w-[640px] pb-16 pt-24 text-center max-md:pb-10 max-md:pt-16">
-            <Link href="/" aria-label={`${site.legalName} home`} className="inline-block">
-              <Image
-                src="/images/logo-clean-water-systems.svg"
-                alt={`${site.legalName} logo`}
-                width={181}
-                height={68}
-                className="mx-auto h-[46px] w-auto"
-              />
-            </Link>
+            <div className="flex justify-center">
+              <Logo variant="dark" markSize={40} id="ftr" />
+            </div>
+
             <h2 className="mt-8 text-white">
               Advies over legionellapreventie of een overschrijding?
             </h2>

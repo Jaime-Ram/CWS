@@ -111,6 +111,18 @@ Elke pagina is nagebouwd op de template-pagina die er qua functie bij hoort:
 | Contact | Contact |
 | Veelgestelde vragen | Portfolio-hero + FAQ-sectie |
 
+## Logo en favicon
+
+Het beeldmerk is een abstracte stroombocht met een verloop van cyaan (#6ccfff) via
+het merkblauw (#2365ff) naar diepblauw (#102e97). Het staat als component in
+`src/components/Logo.tsx`: het merk is inline SVG, het woordmerk is echte tekst in
+Inter Tight, zodat het scherp blijft en meeschaalt.
+
+- `LogoMark` levert alleen het merk, met een `size` in pixels
+- `Logo` levert het volledige lockup, met `variant="light"` of `"dark"`
+- `public/images/logo-mark.svg` is het losse merk voor extern gebruik
+- `src/app/icon.png` en `apple-icon.png` zijn de favicon en het app-icoon
+
 ## Beeldmateriaal
 
 De keurmerken (Kiwa, CE, NEN-EN 1112) komen van de bestaande site en zijn uit de

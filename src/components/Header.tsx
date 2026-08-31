@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import Logo from "./Logo";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
@@ -34,20 +34,7 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
     >
       <div className="container-default">
         <div className="flex items-center justify-between gap-6 py-6">
-          <Link href="/" aria-label={`${site.legalName} home`} className="shrink-0">
-            <Image
-              src={
-                dark
-                  ? "/images/logo-clean-water-systems.svg"
-                  : "/images/logo-clean-water-systems-dark.svg"
-              }
-              alt={`${site.legalName} logo`}
-              width={181}
-              height={68}
-              priority
-              className={`h-[42px] w-auto max-sm:h-[34px]`}
-            />
-          </Link>
+          <Logo variant={dark ? "dark" : "light"} markSize={34} id="hdr" className="shrink-0" />
 
           {/* Desktop-navigatie */}
           <nav className="flex items-center gap-8 max-lg:hidden" aria-label="Hoofdnavigatie">
