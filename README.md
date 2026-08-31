@@ -1,6 +1,6 @@
-# Clean Water Systems — SEO-website
+# Clean Watersystems — SEO-website
 
-Nieuwe, SEO-gerichte website voor Clean Water Systems B.V. (adviesbureau voor
+Nieuwe, SEO-gerichte website voor Clean Watersystems B.V. (adviesbureau voor
 waterinstallaties), gebouwd op het visuele systeem van het Investflow Webflow-template.
 
 ## Stack
@@ -111,21 +111,27 @@ Elke pagina is nagebouwd op de template-pagina die er qua functie bij hoort:
 | Contact | Contact |
 | Veelgestelde vragen | Portfolio-hero + FAQ-sectie |
 
-## Video in de hero
+## Video
 
-De bedrijfsimpressie van Clean Water Systems (YouTube `iE9gWUet-lM`) staat in de
-hero via `src/components/VideoEmbed.tsx`. Dat is een klik-om-te-spelen
-voorvertoning: bij het laden van de pagina wordt alleen de thumbnail getoond en
-staat er geen YouTube-code op de pagina. Pas na een klik verschijnt de iframe, en
-dan via `youtube-nocookie.com`. Dat scheelt laadtijd en voorkomt dat er cookies
-worden gezet voordat de bezoeker daarvoor kiest.
+De bedrijfsimpressie draait als achtergrond in de hero (`HeroVideo`). De poster
+staat er direct, de YouTube-iframe schuift daar overheen zodra hij geladen is.
+Op schermen smaller dan 992px en bij "beperk beweging" blijft het bij de poster:
+dat scheelt data en batterij, en de uitsnede van een 16:9 video werkt daar niet.
+
+De twee andere video's van hun kanaal staan op de bijbehorende dienstpagina's
+(keerklepcontrole en reiniging en desinfectie), daar als klik-om-te-spelen
+voorvertoning via `VideoEmbed`. Beide gebruiken `youtube-nocookie.com`.
+
+Beter zou zijn om het MP4-bestand zelf te hosten: dat is sneller en er komt geen
+derde partij aan te pas. Vraag daarvoor het originele bestand op bij de klant.
 
 ## Logo en favicon
 
 Het beeldmerk is een abstracte stroombocht met een verloop van cyaan (#6ccfff) via
-het merkblauw (#2365ff) naar diepblauw (#102e97). Het staat als component in
-`src/components/Logo.tsx`: het merk is inline SVG, het woordmerk is echte tekst in
-Inter Tight, zodat het scherp blijft en meeschaalt.
+het merkblauw (#2365ff) naar diepblauw (#102e97). Het woordmerk zet "Clean" groot
+met "watersystems" eronder. Beide regels staan op een vaste breedte via
+`textLength` in SVG, waardoor ze exact op elkaar uitlijnen ongeacht of het
+lettertype al geladen is. Alles staat in `src/components/Logo.tsx`.
 
 - `LogoMark` levert alleen het merk, met een `size` in pixels
 - `Logo` levert het volledige lockup, met `variant="light"` of `"dark"`

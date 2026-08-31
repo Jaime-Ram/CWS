@@ -8,7 +8,7 @@ export const metadata = {
   ...pageMetadata({
     title: "Privacyverklaring",
     description:
-      "Hoe Clean Water Systems omgaat met persoonsgegevens die via deze website worden verzameld.",
+      "Hoe Clean Watersystems omgaat met persoonsgegevens die via deze website worden verzameld.",
     path: "/privacyverklaring",
   }),
   robots: { index: false, follow: true },

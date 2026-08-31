@@ -10,10 +10,10 @@ import { pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Over ons",
   description:
-    "Clean Water Systems is sinds 2008 adviesbureau voor waterinstallaties. Specialist in legionellapreventie, BRL 6010 risicoanalyses en desinfectie.",
+    "Clean Watersystems is sinds 2008 adviesbureau voor waterinstallaties. Specialist in legionellapreventie, BRL 6010 risicoanalyses en desinfectie.",
   path: "/over-ons",
   keywords: [
-    "Clean Water Systems",
+    "Clean Watersystems",
     "adviesbureau waterinstallaties",
     "legionella specialist Nederland",
   ],
@@ -60,7 +60,7 @@ const locations = [
       site.email,
     ],
     image: "/images/fotos/laptop-werkplek.jpg",
-    imageAlt: "Werkplek van Clean Water Systems",
+    imageAlt: "Werkplek van Clean Watersystems",
   },
   {
     key: "werkgebied",

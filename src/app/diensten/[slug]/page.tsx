@@ -4,6 +4,7 @@ import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
 import { NumberedAccordion } from "@/components/Tabs";
+import VideoEmbed from "@/components/VideoEmbed";
 import { PortfolioCard } from "@/components/blocks";
 import { PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
 import { getService, services } from "@/data/services";
@@ -91,6 +92,16 @@ export default async function ServicePage({
               ))}
             </ul>
           </article>
+
+          {service.videoId && (
+            <div className="mt-12">
+              <VideoEmbed
+                videoId={service.videoId}
+                title={`${service.navName} in de praktijk`}
+                poster={service.image}
+              />
+            </div>
+          )}
 
           <div className="mt-10 flex flex-wrap gap-3">
             <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>

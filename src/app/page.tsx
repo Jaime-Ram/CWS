@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Hero from "@/components/Hero";
-import VideoEmbed from "@/components/VideoEmbed";
+import HeroVideo from "@/components/HeroVideo";
 import CtaSection from "@/components/CtaSection";
 import JsonLd from "@/components/JsonLd";
 import Media from "@/components/Media";
@@ -26,7 +26,7 @@ import { articles } from "@/data/articles";
 import { faqSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Legionellapreventie & BRL 6010 | Clean Water Systems",
+  title: "Legionellapreventie & BRL 6010 | Clean Watersystems",
   description:
     "Specialist in legionellapreventie en BRL 6010 risicoanalyses. Inspectie, beheersplannen, desinfectie en watermonsters. Landelijk, sinds 2008.",
   path: "/",
@@ -147,12 +147,11 @@ export default function HomePage() {
         title="Legionellapreventie en BRL 6010 risicoanalyse in heel Nederland"
         text="Wij helpen bedrijven en instellingen aan een veilige drinkwaterinstallatie en een aantoonbaar legionellabeheer dat de inspectie doorstaat."
         actions={<PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>}
-        aside={
-          <VideoEmbed
+        background={
+          <HeroVideo
             videoId="iE9gWUet-lM"
-            title="Clean Water Systems bedrijfsimpressie"
             poster="/images/fotos/video-bedrijfsimpressie.jpg"
-            className="w-[460px] max-lg:w-full"
+            posterAlt="Clean Watersystems aan het werk aan een drinkwaterinstallatie"
           />
         }
       />
@@ -182,7 +181,7 @@ export default function HomePage() {
       {/* Over ons */}
       <Section>
         <SectionHead
-          eyebrow="Over Clean Water Systems"
+          eyebrow="Over Clean Watersystems"
           title="Veilig drinkwater vraagt meer dan een vinkje op papier"
           cta={<SecondaryButton href="/over-ons">Over ons</SecondaryButton>}
         />
@@ -190,7 +189,7 @@ export default function HomePage() {
         <div className="overflow-hidden rounded-[32px] max-md:rounded-[24px]">
           <Media
             src="/images/fotos/leidingnet-manifold.jpg"
-            alt="Clean Water Systems aan het werk aan een drinkwaterinstallatie"
+            alt="Clean Watersystems aan het werk aan een drinkwaterinstallatie"
             ratio="21/10"
             className="w-full max-md:aspect-[16/9]"
             priority
@@ -203,7 +202,7 @@ export default function HomePage() {
             merkt u dat pas als de meting binnenkomt.
           </p>
           <p className="leading-[1.65em]">
-            Clean Water Systems houdt zich sinds {site.founded} bezig met
+            Clean Watersystems houdt zich sinds {site.founded} bezig met
             legionellapreventie en kent drinkwaterinstallaties van binnenuit. Dat geeft u
             snel en onderbouwd advies, met een blijvend resultaat als doel.
           </p>
@@ -360,7 +359,7 @@ export default function HomePage() {
         data={{
           "@context": "https://schema.org",
           "@type": "ItemList",
-          name: "Diensten van Clean Water Systems",
+          name: "Diensten van Clean Watersystems",
           itemListElement: services.map((s, i) => ({
             "@type": "ListItem",
             position: i + 1,

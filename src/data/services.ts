@@ -20,6 +20,7 @@ export type Service = {
   related: string[];
   image: string;
   imageAlt: string;
+  videoId?: string;
   featured?: boolean;
 };
 
@@ -254,6 +255,7 @@ export const services: Service[] = [
     ],
     image: "/images/fotos/installatie-appendages.jpg",
     imageAlt: "Appendages van een drinkwaterinstallatie",
+    videoId: "3jzL90m1dvs",
     related: [
       "thermische-desinfectie",
       "boilerreiniging",
@@ -347,6 +349,7 @@ export const services: Service[] = [
     ],
     image: "/images/fotos/keerklep-detail.jpg",
     imageAlt: "Detail van een appendage in een drinkwaterinstallatie",
+    videoId: "lYBj7dLxxwI",
     related: [
       "risicoanalyse-en-beheersplan",
       "sediment-verwijderen-uit-boilers",
@@ -668,7 +671,7 @@ export const services: Service[] = [
       "Wij nemen de uitvoering van uw beheersplan over: spoelen, meten, registreren en bijsturen, het hele jaar door.",
     metaTitle: "Uitvoering legionella beheersmaatregelen",
     metaDescription:
-      "Laat de uitvoering van uw legionella beheersplan over aan Clean Water Systems. Spoelen, temperatuurmetingen, logboekbeheer en periodieke rapportage.",
+      "Laat de uitvoering van uw legionella beheersplan over aan Clean Watersystems. Spoelen, temperatuurmetingen, logboekbeheer en periodieke rapportage.",
     keywords: [
       "uitvoering beheersmaatregelen",
       "legionella beheersplan uitvoeren",

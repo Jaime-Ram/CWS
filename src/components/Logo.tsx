@@ -2,8 +2,6 @@ import Link from "next/link";
 
 /**
  * Beeldmerk: een abstracte stroombocht met een verloop van cyaan naar diepblauw.
- * Het woordmerk staat als echte tekst naast het merk, zodat het scherp blijft en
- * mee schaalt met de rest van de typografie.
  */
 export function LogoMark({
   className = "",
@@ -28,10 +26,6 @@ export function LogoMark({
           <stop offset="45%" stopColor="#2365ff" />
           <stop offset="100%" stopColor="#102e97" />
         </linearGradient>
-        <linearGradient id={`${id}-fade`} x1="1" y1="0" x2="0" y2="0">
-          <stop offset="0%" stopColor="#8addff" stopOpacity="0.85" />
-          <stop offset="100%" stopColor="#8addff" stopOpacity="0" />
-        </linearGradient>
       </defs>
       <path
         d="M18 26 h30 a24 24 0 0 1 0 48 h-30"
@@ -44,41 +38,78 @@ export function LogoMark({
   );
 }
 
+/**
+ * Woordmerk: "Clean" groot met "watersystems" eronder. Beide regels staan op een
+ * vaste breedte via textLength, waardoor ze exact op elkaar uitlijnen, ongeacht
+ * of het lettertype al geladen is.
+ */
+export function LogoWordmark({
+  variant = "dark",
+  height = 40,
+  className = "",
+}: {
+  variant?: "light" | "dark";
+  height?: number;
+  className?: string;
+}) {
+  const onDark = variant === "dark";
+  return (
+    <svg
+      viewBox="0 0 100 50"
+      style={{ height, width: (height * 100) / 50 }}
+      className={className}
+      role="img"
+      aria-label="Clean Watersystems"
+    >
+      <text
+        x="0"
+        y="30"
+        textLength="100"
+        lengthAdjust="spacing"
+        fontSize="41"
+        fontWeight="600"
+        fill={onDark ? "#ffffff" : "#001035"}
+        style={{ fontFamily: "var(--font-inter-tight), sans-serif" }}
+      >
+        Clean
+      </text>
+      <text
+        x="0"
+        y="48"
+        textLength="100"
+        lengthAdjust="spacing"
+        fontSize="13"
+        fontWeight="500"
+        fill={onDark ? "#aab5d0" : "#515b79"}
+        style={{ fontFamily: "var(--font-inter-tight), sans-serif" }}
+      >
+        watersystems
+      </text>
+    </svg>
+  );
+}
+
 export default function Logo({
   variant = "dark",
   className = "",
-  markSize = 34,
+  markSize = 38,
+  wordHeight = 38,
   id = "cws",
 }: {
   variant?: "light" | "dark";
   className?: string;
   markSize?: number;
+  wordHeight?: number;
   id?: string;
 }) {
-  const onDark = variant === "dark";
   return (
     <Link
       href="/"
-      aria-label="Clean Water Systems, naar de homepage"
-      className={`flex items-center gap-3 ${className}`}
+      aria-label="Clean Watersystems, naar de homepage"
+      className={`flex items-center gap-2.5 ${className}`}
     >
       <LogoMark id={id} size={markSize} className="shrink-0" />
-      <span className="leading-none">
-        <span
-          className={`block whitespace-nowrap text-[21px] font-semibold tracking-[-0.035em] max-sm:text-[18px] ${
-            onDark ? "text-white" : "text-neutral-800"
-          }`}
-        >
-          Clean Water
-        </span>
-        <span
-          className={`mt-[3px] block whitespace-nowrap text-[11.5px] font-medium tracking-[0.22em] max-sm:text-[10px] ${
-            onDark ? "text-neutral-400" : "text-neutral-500"
-          }`}
-        >
-          SYSTEMS
-        </span>
-      </span>
+      <LogoWordmark variant={variant} height={wordHeight} className="shrink-0" />
     </Link>
   );
 }

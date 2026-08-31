@@ -15,8 +15,8 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Legionellapreventie & BRL 6010 risicoanalyse | Clean Water Systems",
-    template: "%s | Clean Water Systems",
+    default: "Legionellapreventie & BRL 6010 risicoanalyse | Clean Watersystems",
+    template: "%s | Clean Watersystems",
   },
   description: site.description,
   applicationName: site.legalName,

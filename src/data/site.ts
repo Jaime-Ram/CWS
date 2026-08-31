@@ -1,11 +1,11 @@
 export const site = {
-  name: "Clean Water Systems",
-  legalName: "Clean Water Systems B.V.",
+  name: "Clean Watersystems",
+  legalName: "Clean Watersystems B.V.",
   tagline: "Adviesbureau voor waterinstallaties",
   url: "https://www.cleanwatersystems.nl",
   founded: "2008",
   description:
-    "Clean Water Systems is specialist in legionellapreventie, BRL 6010 risicoanalyses, beheersplannen en waterveiligheid. Sinds 2008 actief in heel Nederland.",
+    "Clean Watersystems is specialist in legionellapreventie, BRL 6010 risicoanalyses, beheersplannen en waterveiligheid. Sinds 2008 actief in heel Nederland.",
   address: {
     street: "Parelhoenhof 3",
     postalCode: "2872 BC",

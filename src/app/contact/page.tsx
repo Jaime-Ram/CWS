@@ -11,9 +11,9 @@ import { faqSchema, pageMetadata } from "@/lib/seo";
 export const metadata = pageMetadata({
   title: "Contact en offerte aanvragen",
   description:
-    "Neem contact op met Clean Water Systems in Schoonhoven. Bel 0182-607675, mail ons of vraag direct een offerte aan voor legionellapreventie.",
+    "Neem contact op met Clean Watersystems in Schoonhoven. Bel 0182-607675, mail ons of vraag direct een offerte aan voor legionellapreventie.",
   path: "/contact",
-  keywords: ["contact legionella specialist", "offerte legionella", "Clean Water Systems contact"],
+  keywords: ["contact legionella specialist", "offerte legionella", "Clean Watersystems contact"],
 });
 
 const contactFaqs = [
@@ -174,7 +174,7 @@ export default function ContactPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          name: "Contact Clean Water Systems",
+          name: "Contact Clean Watersystems",
           url: `${site.url}/contact`,
           mainEntity: { "@id": `${site.url}/#organization` },
         }}
