@@ -73,28 +73,28 @@ const approach = [
     number: "01",
     title: "Inventarisatie",
     text: "We brengen uw installatie en uw verplichtingen in kaart en bepalen samen wat er werkelijk nodig is.",
-    image: "/images/fotos/inspectie-installatie.jpg",
+    image: "/images/fotos/inspectie-clipboard.jpg",
     imageAlt: "Inventarisatie van een drinkwaterinstallatie",
   },
   {
     number: "02",
     title: "Analyse op locatie",
     text: "Een BRL 6010 adviseur loopt de installatie na, meet temperaturen en legt elk tappunt vast.",
-    image: "/images/fotos/keerklepcontrole.jpg",
+    image: "/images/fotos/keerklep-detail.jpg",
     imageAlt: "Meetopstelling tijdens een analyse op locatie",
   },
   {
     number: "03",
     title: "Rapport en beheersplan",
     text: "U krijgt de risico's met een prioritering en per punt een concrete maatregel, plus een werkbaar spoelschema.",
-    image: "/images/fotos/meetapparatuur-registratie.jpg",
+    image: "/images/fotos/bedieningspaneel.jpg",
     imageAlt: "Registratie van meetwaarden op locatie",
   },
   {
     number: "04",
     title: "Uitvoering en nazorg",
     text: "Desgewenst voeren wij de maatregelen uit, bemonsteren wij periodiek en actualiseren wij de analyse.",
-    image: "/images/fotos/laboratorium-analyse.jpg",
+    image: "/images/fotos/watermonster-lab.jpg",
     imageAlt: "Analyse van watermonsters in het laboratorium",
   },
 ];
@@ -180,7 +180,7 @@ export default function HomePage() {
         <div className="divider my-10" />
         <div className="overflow-hidden rounded-[32px] max-md:rounded-[24px]">
           <Media
-            src="/images/fotos/waar-staan-wij-voor.jpg"
+            src="/images/fotos/leidingnet-manifold.jpg"
             alt="Clean Water Systems aan het werk aan een drinkwaterinstallatie"
             ratio="21/10"
             className="w-full max-md:aspect-[16/9]"

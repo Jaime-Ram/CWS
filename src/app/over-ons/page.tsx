@@ -1,9 +1,9 @@
-import HeroSplit from "@/components/HeroSplit";
+import { HeroCentered } from "@/components/heroes";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { CardTabs, QuoteSlider } from "@/components/Tabs";
-import { Badge, MilestoneList, QuoteCard, StatsCard } from "@/components/blocks";
-import { Card, PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
+import { CardTabs } from "@/components/Tabs";
+import { FeatureCard, MilestoneList, StatsCard } from "@/components/blocks";
+import { PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
 import { site } from "@/data/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -19,138 +19,156 @@ export const metadata = pageMetadata({
   ],
 });
 
-const werkwijze = [
+const values = [
   {
-    key: "eerlijk",
-    label: "Eerlijk advies",
-    badge: "01",
-    heading: "Wij zeggen het ook als u minder nodig heeft",
-    text: "Een adviesbureau dat overal een risico ziet, verkoopt meer. Wij werken liever met klanten die over vijf jaar nog klant zijn. Dus als een compacte analyse volstaat, adviseren wij die.",
-    bullets: [
-      "Vaste prijs op basis van een korte inventarisatie vooraf",
-      "Onderscheid tussen wat wettelijk moet en wat verstandig is",
-      "Doorverwijzing als een andere partij beter past",
-    ],
-    image: "/images/fotos/meetapparatuur-registratie.jpg",
-    imageAlt: "Legionella-logboek met beheersplan",
+    title: "Eerlijk advies",
+    text: "Een bureau dat overal een risico ziet, verkoopt meer. Wij zeggen het ook als u minder nodig heeft dan u dacht.",
+    image: "/images/fotos/inspectie-clipboard.jpg",
+    imageAlt: "Adviseur legt bevindingen vast op locatie",
   },
   {
-    key: "specialisatie",
-    label: "Specialisatie",
-    badge: "02",
-    heading: "Alleen opdrachten waar wij in gespecialiseerd zijn",
-    text: "Wij zijn geen installateur die er legionella bij doet. Doordat wij dagelijks in drinkwaterinstallaties zitten, doorgronden wij een installatie sneller en zien wij patronen die intern niet opvallen.",
-    bullets: [
-      "Legionellapreventie en waterveiligheid als enige werkterrein",
-      "Ervaring van kleine B&B's tot ziekenhuizen",
-      "Samenwerking met uw vaste installateur waar dat handiger is",
-    ],
-    image: "/images/fotos/inspectie-installatie.jpg",
-    imageAlt: "Leidingnet met tappunten",
+    title: "Alleen ons vak",
+    text: "Wij zijn geen installateur die er legionella bij doet. Daardoor doorgronden wij een installatie sneller.",
+    image: "/images/fotos/leidingnet-manifold.jpg",
+    imageAlt: "Leidingwerk van een drinkwaterinstallatie",
   },
   {
-    key: "praktisch",
-    label: "Praktisch",
-    badge: "03",
-    heading: "Een beheersplan dat daadwerkelijk wordt uitgevoerd",
-    text: "In de praktijk sneuvelt het spoelregime als eerste. Daarom schrijven wij beheersplannen die passen bij de mensen die ze moeten uitvoeren, met een spoelroute die in een vaste ronde te lopen is.",
-    bullets: [
-      "Spoelschema van één A4 op de plek waar gespoeld wordt",
-      "Aftekenlijsten die de drempel verlagen",
-      "Uitvoering geheel of gedeeltelijk over te nemen",
-    ],
-    image: "/images/fotos/aanpassen-leiding-wastafel.jpg",
-    imageAlt: "Drinkwaterinstallatie in een gebouw",
+    title: "Werkbaar in de praktijk",
+    text: "Een beheersplan dat te veel vraagt, wordt niet uitgevoerd. Wij schrijven ze zo dat uw eigen mensen ermee vooruit kunnen.",
+    image: "/images/fotos/bedieningspaneel.jpg",
+    imageAlt: "Beheer en registratie van een installatie",
   },
   {
-    key: "bereikbaar",
-    label: "Bereikbaar",
-    badge: "04",
-    heading: "Ook 's avonds, 's nachts en in het weekend",
-    text: "Uw bedrijfsvoering hoeft niet stil te liggen voor onze werkzaamheden. En bij een overschrijding wilt u niet tot maandag wachten.",
+    title: "Bereikbaar buiten kantooruren",
+    text: "Desinfecties in de avond, de nacht of het weekend. En bij een overschrijding wilt u niet tot maandag wachten.",
+    image: "/images/fotos/monteur-gereedschap.jpg",
+    imageAlt: "Monteur aan het werk aan een leidingnet",
+  },
+];
+
+const locations = [
+  {
+    key: "vestiging",
+    label: "Vestiging Schoonhoven",
+    badge: "NL",
+    heading: `${site.address.street}, ${site.address.city}`,
+    text: "Vanuit Schoonhoven rijden wij door heel Nederland. Voor locaties verder weg plannen wij meerdere aaneengesloten dagen in, zodat reistijd niet in uw offerte terechtkomt.",
     bullets: [
-      "Desinfecties buiten openingstijden uitvoerbaar",
-      "Indien nodig binnen 24 uur ter plaatse bij een uitbraak",
-      "Vast aanspreekpunt gedurende de opdracht",
+      `${site.address.street}, ${site.address.postalCode} ${site.address.city}`,
+      `Telefoon ${site.phone}`,
+      `Buiten kantooruren ${site.mobile}`,
+      site.email,
     ],
-    image: "/images/fotos/spoelen-leidingnet.jpg",
-    imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
+    image: "/images/fotos/laptop-werkplek.jpg",
+    imageAlt: "Werkplek van Clean Water Systems",
+  },
+  {
+    key: "werkgebied",
+    label: "Werkgebied Nederland",
+    badge: "24u",
+    heading: "Landelijke dekking, ook met spoed",
+    text: "Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit, ook in het weekend.",
+    bullets: [
+      "Losse opdrachten en doorlopende beheercontracten",
+      "Werk in de avond, de nacht en het weekend",
+      "Grotere projecten gefaseerd per bouwdeel",
+      "Samenwerking met uw eigen installateur mogelijk",
+    ],
+    image: "/images/fotos/waterstraal.jpg",
+    imageAlt: "Doorspoelen van een leidingnet",
+  },
+  {
+    key: "normen",
+    label: "Normen en keurmerken",
+    badge: "BRL",
+    heading: "Waarbinnen wij werken",
+    text: "Legionellabeheer is genormeerd werk. Dit is het kader waarbinnen elke opdracht wordt uitgevoerd.",
+    bullets: [
+      "BRL 6010 voor risicoanalyses en beheersplannen",
+      "BRL-K14032 voor reiniging en desinfectie",
+      "NEN 1006 en de waterwerkbladen, waaronder 1.4G",
+      "NEN 6265 voor monsterneming en analyse",
+    ],
+    image: "/images/fotos/watermonster-lab.jpg",
+    imageAlt: "Laboratoriumanalyse van een watermonster",
   },
 ];
 
 export default function OverOnsPage() {
   return (
     <>
-      <HeroSplit
-        image="/images/fotos/waar-staan-wij-voor.jpg"
-        imageAlt="Team van Clean Water Systems aan het werk"
-        eyebrow={`Sinds ${site.founded}`}
+      <HeroCentered
         title="Adviesbureau voor waterinstallaties"
-        text="Wij zijn een gespecialiseerd bureau, geen aannemer die er legionella bij doet. Dat verschil merkt u aan het advies dat u krijgt."
+        text={`Sinds ${site.founded} gespecialiseerd in legionellapreventie. Geen aannemer die er legionella bij doet, maar een bureau dat niets anders doet.`}
         actions={
           <>
             <PrimaryButton href="/contact">Neem contact op</PrimaryButton>
-            <SecondaryButton href="/diensten">Onze diensten</SecondaryButton>
+            <a href={site.phoneHref} className="font-semibold text-white">
+              {site.phone}
+            </a>
           </>
         }
       />
 
-      <Section className="pt-0">
+      <Section>
         <Breadcrumbs items={[{ label: "Over ons", href: "/over-ons" }]} />
+        <SectionHead
+          center
+          eyebrow="Onze cijfers"
+          title="Waarom voor ons kiezen?"
+          text="Veilig en schoon drinkwater is vanzelfsprekend, tot het dat niet meer is. Wij zorgen dat uw installatie die belofte waarmaakt en dat u dat kunt aantonen."
+        />
+        <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-1">
+          <StatsCard
+            value={site.founded}
+            title="Actief sinds 2008"
+            text="Ruim vijftien jaar ervaring met Nederlandse drinkwaterinstallaties, van kleine B&B's tot ziekenhuizen."
+          />
+          <StatsCard
+            value="100"
+            suffix="%"
+            title="Landelijke dekking"
+            text="Vanuit Schoonhoven werken wij in heel Nederland, voor losse opdrachten en doorlopende contracten."
+          />
+          <StatsCard
+            value="24"
+            suffix="u"
+            title="Respons bij een uitbraak"
+            text="Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit."
+          />
+        </div>
+      </Section>
 
-        <div className="grid grid-cols-[1fr_1fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div>
-            <SectionHead
-              eyebrow="Waar wij voor staan"
-              title="Veilig drinkwater is vanzelfsprekend, tot het dat niet meer is"
-            />
-            <div className="prose-cws mt-8">
-              <p>
-                Er zijn maar weinig mensen die weten wat er allemaal bij komt kijken om elk
-                moment van de dag betrouwbaar drinkwater uit de kraan te laten komen.
-                Drinkwaterinstallaties moeten volgens de daarvoor geldende regels worden
-                aangelegd, onderhouden en beheerd. Zodra daar iets in schuift, verandert
-                een installatie van nutsvoorziening in risicofactor.
-              </p>
-              <p>
-                Clean Water Systems houdt zich sinds {site.founded} bezig met
-                legionellapreventie en heeft ruime ervaring met en deskundigheid van
-                drinkwaterinstallaties. Dat biedt u de garantie dat wij snel en discreet
-                professioneel advies kunnen geven, ook bij een legionella-uitbraak, met een
-                blijvend resultaat als doel.
-              </p>
+      <Section className="pt-0">
+        <div className="rounded-[32px] bg-neutral-200/60 p-12 max-md:rounded-[24px] max-sm:p-6">
+          <div className="grid grid-cols-[1.6fr_1fr] gap-12 max-lg:grid-cols-1">
+            <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
+              {values.map((v) => (
+                <FeatureCard key={v.title} {...v} />
+              ))}
+            </div>
+            <div>
+              <SectionHead
+                eyebrow="Waar wij voor staan"
+                title="Vier dingen waar wij ons aan houden"
+                text="Drinkwaterinstallaties moeten volgens de geldende regels worden aangelegd, onderhouden en beheerd. Zodra daar iets in schuift, verandert een installatie van nutsvoorziening in risicofactor."
+              />
+              <div className="mt-8">
+                <PrimaryButton href="/diensten">Bekijk onze diensten</PrimaryButton>
+              </div>
             </div>
           </div>
-          <div className="grid content-start gap-5">
-            <StatsCard
-              featured
-              value={site.founded}
-              title="Ruim vijftien jaar praktijk"
-              text="Van kleine logiesverstrekkers tot ziekenhuizen en productielocaties. Die ervaring zit in elk advies dat wij geven."
-            />
-            <StatsCard
-              value="24"
-              suffix="u"
-              title="Respons bij een uitbraak"
-              text="Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit."
-            />
-          </div>
         </div>
       </Section>
 
-      <Section className="bg-neutral-200/50 pt-0">
-        <div className="pt-24 max-md:pt-16">
-          <SectionHead
-            eyebrow="Hoe wij werken"
-            title="Vier dingen waar wij ons aan houden"
-          />
-          <div className="mt-10">
-            <CardTabs items={werkwijze} />
-          </div>
+      <Section className="pt-0">
+        <SectionHead center eyebrow="Vestiging" title="Waar u ons vindt" />
+        <div className="mt-12">
+          <CardTabs items={locations} />
         </div>
       </Section>
 
-      <Section>
+      <Section className="pt-0">
         <div className="grid grid-cols-[1fr_1.15fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
           <div>
             <SectionHead
@@ -159,111 +177,38 @@ export default function OverOnsPage() {
               text="Van het eerste telefoontje tot doorlopend beheer. Elke stap levert iets op dat u kunt overleggen."
             />
             <div className="mt-8">
-              <PrimaryButton href="/contact">Begin met een gesprek</PrimaryButton>
+              <SecondaryButton href="/contact">Begin met een gesprek</SecondaryButton>
             </div>
           </div>
           <MilestoneList
             items={[
               {
                 badge: "Stap 1",
-                imageAlt: "",
                 title: "Inventarisatie en vaste prijs",
                 text: "Een kort gesprek over uw gebouw, uw installatie en uw verplichtingen. Daarna een vaste prijs, geen nacalculatie.",
+                image: "/images/fotos/laptop-werkplek.jpg",
+                imageAlt: "Inventarisatie van de opdracht",
               },
               {
                 badge: "Stap 2",
-                imageAlt: "",
                 title: "Onderzoek op locatie",
                 text: "Een BRL 6010 adviseur loopt de installatie na, meet temperaturen en legt elk tappunt vast met foto's.",
+                image: "/images/fotos/inspectie-clipboard.jpg",
+                imageAlt: "Onderzoek van de installatie op locatie",
               },
               {
                 badge: "Stap 3",
-                imageAlt: "",
                 title: "Rapport, beheersplan en logboek",
                 text: "Risico's met prioritering, per punt een maatregel en een logboekopzet die bij een controle voldoet.",
+                image: "/images/fotos/bedieningspaneel.jpg",
+                imageAlt: "Beheersplan en registratie",
               },
               {
                 badge: "Stap 4",
-                imageAlt: "",
                 title: "Uitvoering, meting en nazorg",
                 text: "Beheersmaatregelen, periodieke monstername en actualisatie zodra er iets aan de installatie wijzigt.",
-              },
-            ]}
-          />
-        </div>
-      </Section>
-
-      <Section className="pt-0">
-        <SectionHead
-          center
-          eyebrow="Onze garanties"
-          title="Waar u ons aan mag houden"
-        />
-        <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-1">
-          <QuoteCard
-            large
-            stat="100%"
-            statLabel="Resultaatgarantie"
-            text="Voldoet uw leidingsysteem aan de eisen uit de BRL 6010, dan geven wij garantie op de desinfectie. Is het resultaat niet behaald, dan komen wij terug."
-            author="Garantie op desinfectie"
-            role="Bij een systeem conform BRL 6010"
-          />
-          <QuoteCard
-            stat="24u"
-            statLabel="Responstijd"
-            text="Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit, ook in het weekend."
-            author="Snelle inzet"
-            role="Landelijk, buiten kantooruren"
-          />
-          <QuoteCard
-            stat="100%"
-            statLabel="Tevredenheid"
-            text="Clean Water Systems is pas tevreden als u dat ook bent. Is iets niet gegaan zoals afgesproken, dan lossen wij dat op zonder discussie over de factuur."
-            author="Tevredenheidsgarantie"
-            role="Op elke opdracht"
-          />
-        </div>
-      </Section>
-
-      <Section className="pt-0">
-        <div className="grid grid-cols-[1fr_1fr] items-center gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div>
-            <SectionHead
-              eyebrow="Normen en richtlijnen"
-              title="Waar wij volgens werken"
-              text="Legionellabeheer is genormeerd werk. Dit is het kader waarbinnen elke opdracht wordt uitgevoerd."
-            />
-            <div className="mt-8 flex flex-wrap gap-2">
-              {site.certifications.map((c) => (
-                <Badge key={c}>{c}</Badge>
-              ))}
-            </div>
-          </div>
-          <QuoteSlider
-            items={[
-              {
-                badge: "BRL 6010",
-                text: "Beoordelingsrichtlijn voor legionellapreventie-advisering bij collectieve leidingwaterinstallaties. Bepaalt hoe een risicoanalyse en beheersplan tot stand komen.",
-                author: "Risicoanalyse",
-                role: "Verplicht voor prioritaire instellingen",
-              },
-              {
-                badge: "BRL-K14032",
-                text: "Richtlijn voor het reinigen en desinfecteren van leidingwaterinstallaties. Legt vast hoe een desinfectie veilig en aantoonbaar wordt uitgevoerd.",
-                author: "Desinfectie",
-                role: "Met Kiwa-ATA goedgekeurde middelen",
-              },
-              {
-                badge: "NEN 1006",
-                text: "Algemene voorschriften voor leidingwaterinstallaties, met de waterwerkbladen als praktische uitwerking. Waterwerkblad 1.4G gaat over het beheer.",
-                author: "Installatie en beheer",
-                role: "Basis voor keerklep- en boilercontrole",
-              },
-              {
-                badge: "NEN 6265",
-                text: "Voorschrift voor monsterneming en analyse op legionella. Bepaalt hoe een monster genomen moet worden om bewijskracht te hebben.",
-                author: "Monstername",
-                role: "Door een geaccrediteerde partij",
+                image: "/images/fotos/watermonster-lab.jpg",
+                imageAlt: "Monstername en analyse",
               },
             ]}
           />

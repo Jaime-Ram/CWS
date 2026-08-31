@@ -245,6 +245,102 @@ export function IndustryCard({
 }
 
 /* -------------------------------------------------------------------------- */
+/*  FeatureCard — de waardenkaarten van de About-pagina: beeld boven, tekst    */
+/*  eronder, zonder link.                                                      */
+/* -------------------------------------------------------------------------- */
+
+export function FeatureCard({
+  title,
+  text,
+  image,
+  imageAlt,
+}: {
+  title: string;
+  text: string;
+  image?: string;
+  imageAlt: string;
+}) {
+  return (
+    <Card className="flex h-full flex-col overflow-hidden p-3">
+      <span className="overflow-hidden rounded-[20px]">
+        <Media src={image} alt={imageAlt} ratio="16/10" className="w-full" />
+      </span>
+      <span className="flex flex-1 flex-col p-6 max-sm:p-4">
+        <span className="text-[20px] font-semibold leading-[1.25em] text-neutral-800">{title}</span>
+        <span className="mt-2 text-[15px] leading-[1.6em] text-neutral-600">{text}</span>
+      </span>
+    </Card>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  TeamCard — de kaarten van de Investors-pagina: beeld, naam, rol.           */
+/* -------------------------------------------------------------------------- */
+
+export function TeamCard({
+  href,
+  name,
+  role,
+  image,
+  imageAlt,
+}: {
+  href: string;
+  name: string;
+  role: string;
+  image?: string;
+  imageAlt: string;
+}) {
+  return (
+    <Link href={href} className="group block">
+      <span className="block overflow-hidden rounded-[24px]">
+        <Media src={image} alt={imageAlt} ratio="1/1" className="w-full" />
+      </span>
+      <span className="mt-5 block text-[20px] font-semibold leading-[1.25em] text-neutral-800 transition-colors group-hover:text-primary">
+        {name}
+      </span>
+      <span className="mt-1 block text-[15px] text-neutral-500">{role}</span>
+    </Link>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*  PostCard — de kaarten in het blograster: beeld boven, titel, categorie      */
+/*  en datum eronder.                                                          */
+/* -------------------------------------------------------------------------- */
+
+export function PostCard({
+  href,
+  title,
+  category,
+  meta,
+  image,
+  imageAlt,
+}: {
+  href: string;
+  title: string;
+  category: string;
+  meta: string;
+  image?: string;
+  imageAlt: string;
+}) {
+  return (
+    <Link href={href} className="group block">
+      <span className="block overflow-hidden rounded-[24px]">
+        <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
+      </span>
+      <span className="mt-5 block text-[20px] font-semibold leading-[1.3em] text-neutral-800 transition-colors group-hover:text-primary">
+        {title}
+      </span>
+      <span className="mt-3 flex flex-wrap items-center gap-3 text-[15px] text-neutral-500">
+        <span className="font-medium text-neutral-600">{category}</span>
+        <span aria-hidden="true">·</span>
+        <span>{meta}</span>
+      </span>
+    </Link>
+  );
+}
+
+/* -------------------------------------------------------------------------- */
 /*  ImageLeftItem — .image-left-item-v1                                        */
 /* -------------------------------------------------------------------------- */
 

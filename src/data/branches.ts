@@ -61,8 +61,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij plannen ons werk buiten de check-in-uren en werken kamerblok voor kamerblok, zodat u geen kamers uit de verkoop hoeft te halen. Voor het spoelregime maken wij een schema dat uw huishoudelijke dienst zelf kan uitvoeren, gekoppeld aan de bezettingslijst.",
-    image: "/images/fotos/douchekop-vervangen.jpg",
-    imageAlt: "Douche in een hotelkamer",
+    image: "/images/fotos/hotel-badkamer.jpg",
+    imageAlt: "Badkamer in een hotelkamer",
     services: [
       "risicoanalyse-en-beheersplan",
       "legionella-watermonsters",
@@ -114,8 +114,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij plannen het zwaartepunt van het werk in de weken voor de opening, zodat u met een schoon en gecontroleerd net begint. Voor terreinen met veel afgelegen tappunten maken wij een spoelroute die uw eigen technische dienst in een vaste ronde kan lopen.",
-    image: "/images/fotos/spoelen-leidingnet.jpg",
-    imageAlt: "Doorspoelen van een leidingnet op een recreatieterrein",
+    image: "/images/fotos/vakantiepark.jpg",
+    imageAlt: "Vakantiepark met sanitairvoorzieningen",
     services: [
       "risicoanalyse-en-beheersplan",
       "reiniging-en-desinfectie",
@@ -167,8 +167,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij werken in de zorg altijd in overleg met de technische dienst en de afdeling infectiepreventie. Werkzaamheden worden gefaseerd uitgevoerd, zodat er nooit een hele vleugel tegelijk zonder water zit. Bij overschrijdingen adviseren wij over tijdelijke endpoint-filters, zodat kwetsbare bewoners beschermd zijn terwijl de oorzaak wordt aangepakt.",
-    image: "/images/fotos/aanpassen-leiding-wastafel.jpg",
-    imageAlt: "Werkzaamheden aan een tappunt in een zorginstelling",
+    image: "/images/fotos/zorg-gang.jpg",
+    imageAlt: "Gang in een zorginstelling",
     services: [
       "risicoanalyse-en-beheersplan",
       "legionella-watermonsters",
@@ -220,8 +220,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij combineren de inspectie van de drinkwaterinstallatie met een beoordeling van alle punten waar aerosolen ontstaan. Werkzaamheden voeren we uit tijdens sluitingsuren of geplande onderhoudsstops, zodat uw exploitatie doorloopt.",
-    image: "/images/fotos/douchekop-vervangen.jpg",
-    imageAlt: "Douche bij een badinrichting",
+    image: "/images/fotos/zwembad.jpg",
+    imageAlt: "Overdekt zwembad",
     services: [
       "risicoanalyse-en-beheersplan",
       "reiniging-en-desinfectie",
@@ -272,8 +272,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij maken een compacte risicoanalyse en vertalen die naar een spoelplan dat uw conciërge in een uur per week kan uitvoeren. Voor de zomervakantie leveren we een opstartprotocol: wat er in de laatste week voor de eerste schooldag gespoeld en gemeten moet worden.",
-    image: "/images/fotos/monstername-tappunt.jpg",
-    imageAlt: "Monstername aan een tappunt in een schoolgebouw",
+    image: "/images/fotos/school-entree.jpg",
+    imageAlt: "Schoolgebouw",
     services: [
       "risicoanalyse-en-beheersplan",
       "keerklepcontrole",
@@ -324,8 +324,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij brengen eerst helder in kaart waar het collectieve deel eindigt en het privédeel begint, want zonder die afbakening blijft het beheer onduidelijk. Daarna leveren wij een beheersplan dat aansluit op uw MJOP, met vaste jaarlijkse controlemomenten en een protocol voor mutatiewoningen.",
-    image: "/images/fotos/werk-aan-boiler.jpg",
-    imageAlt: "Collectief warmwatertoestel in een woongebouw",
+    image: "/images/fotos/appartementen.jpg",
+    imageAlt: "Appartementengebouw met een collectieve installatie",
     services: [
       "risicoanalyse-en-beheersplan",
       "keerklepcontrole",
@@ -376,8 +376,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij houden het bewust simpel: een spoelschema van één A4 dat aan de deur van de technische ruimte hangt, met een aftekenlijst. Voor de start van het seizoen komen wij langs voor de opstartspoeling en de controle, zodat de vereniging zelf alleen het wekelijkse werk hoeft te doen.",
-    image: "/images/fotos/keerklepcontrole.jpg",
-    imageAlt: "Controle van de installatie in een sportaccommodatie",
+    image: "/images/fotos/kleedkamer-douches.jpg",
+    imageAlt: "Kleedruimte met lockers en doucheruimte",
     services: [
       "risicoanalyse-en-beheersplan",
       "uitvoering-beheersmaatregelen",
@@ -428,8 +428,8 @@ export const branches: Branch[] = [
     ],
     approach:
       "Wij stemmen de planning af op uw onderhoudsstops en werken waar nodig in de nacht of het weekend. Voor nooddouches en oogspoelpunten leveren wij een testschema dat gecombineerd kan worden met uw bestaande veiligheidsrondes.",
-    image: "/images/fotos/chemische-desinfectie.jpg",
-    imageAlt: "Desinfectie op een industriële locatie",
+    image: "/images/fotos/industrie-installatie.jpg",
+    imageAlt: "Industriële installatie met leidingwerk",
     services: [
       "risicoanalyse-en-beheersplan",
       "reiniging-en-desinfectie",

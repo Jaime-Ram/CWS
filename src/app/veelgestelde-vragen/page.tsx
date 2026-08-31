@@ -1,4 +1,4 @@
-import HeroSplit from "@/components/HeroSplit";
+import { HeroSmall } from "@/components/heroes";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
@@ -100,11 +100,8 @@ const all = [...algemeen, ...praktisch, ...uitvoering, ...services.flatMap((s) =
 export default function FaqPage() {
   return (
     <>
-      <HeroSplit
-        image="/images/fotos/monstername-tappunt.jpg"
-        imageAlt="Beheersplan en logboek op tafel"
-        eyebrow="Veelgestelde vragen"
-        title="Antwoord op de vragen die wij het vaakst krijgen"
+      <HeroSmall
+        title="Veelgestelde vragen"
         text="Van wettelijke verplichtingen tot praktische uitvoering. Staat uw vraag er niet bij, bel of mail gerust."
         actions={<PrimaryButton href="/contact">Stel uw vraag</PrimaryButton>}
       />

@@ -48,7 +48,7 @@ const routes = [
       "Bestaande risicoanalyse of monsterresultaten meesturen",
       "Gewenste planning of deadline",
     ],
-    image: "/images/fotos/meetapparatuur-registratie.jpg",
+    image: "/images/fotos/bedieningspaneel.jpg",
     imageAlt: "Legionella-logboek met beheersplan",
   },
   {
@@ -63,7 +63,7 @@ const routes = [
       "Indien nodig binnen 24 uur ter plaatse",
       "Ondersteuning bij de melding richting de ILT",
     ],
-    image: "/images/fotos/spoelen-leidingnet.jpg",
+    image: "/images/fotos/waterstraal.jpg",
     imageAlt: "Buiten gebruik gesteld tappunt na een overschrijding",
   },
   {
@@ -78,7 +78,7 @@ const routes = [
       "Advies over een klacht aan het water",
       "Doorverwijzing als een andere partij beter past",
     ],
-    image: "/images/fotos/monstername-tappunt.jpg",
+    image: "/images/fotos/handen-onder-kraan.jpg",
     imageAlt: "Watermonster uit een leidingnet",
   },
   {
@@ -93,7 +93,7 @@ const routes = [
       "Werk in de avond, nacht en het weekend mogelijk",
       "Grotere projecten gefaseerd per bouwdeel",
     ],
-    image: "/images/fotos/waar-staan-wij-voor.jpg",
+    image: "/images/fotos/leidingnet-manifold.jpg",
     imageAlt: "Werkgebied door heel Nederland",
   },
 ];

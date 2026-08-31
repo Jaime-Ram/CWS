@@ -1,19 +1,12 @@
 import { notFound } from "next/navigation";
-import HeroSplit from "@/components/HeroSplit";
+import { HeroPanel } from "@/components/heroes";
 import CtaSection from "@/components/CtaSection";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import JsonLd from "@/components/JsonLd";
-import Newsletter from "@/components/Newsletter";
 import { NumberedAccordion } from "@/components/Tabs";
-import { ImageLeftItem, VisualCard } from "@/components/blocks";
-import {
-  PrimaryButton,
-  SecondaryButton,
-  Section,
-  SectionHead,
-} from "@/components/ui";
+import { PortfolioCard } from "@/components/blocks";
+import { PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
 import { getService, services } from "@/data/services";
-import { branches } from "@/data/branches";
 import { site } from "@/data/site";
 import { faqSchema, pageMetadata, serviceSchema } from "@/lib/seo";
 
@@ -50,27 +43,21 @@ export default async function ServicePage({
     .map((r) => getService(r))
     .filter((s): s is NonNullable<typeof s> => Boolean(s));
 
-  const relevantBranches = branches
-    .filter((b) => b.services.includes(service.slug))
-    .slice(0, 4);
-
   return (
     <>
-      <HeroSplit
+      <HeroPanel
         eyebrow={service.eyebrow}
         title={service.h1}
         text={service.intro}
-        image={service.image}
-        imageAlt={service.imageAlt}
-        actions={
-          <>
-            <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
-            <SecondaryButton href={site.phoneHref}>Bel {site.phone}</SecondaryButton>
-          </>
-        }
+        details={[
+          { label: "Dienst", value: service.navName },
+          { label: "Norm", value: service.eyebrow },
+          { label: "Werkgebied", value: "Heel Nederland" },
+          { label: "Uitvoering", value: "Ook buiten kantooruren" },
+        ]}
       />
 
-      <Section>
+      <Section className="pt-0">
         <Breadcrumbs
           items={[
             { label: "Diensten", href: "/diensten" },
@@ -104,64 +91,43 @@ export default async function ServicePage({
               ))}
             </ul>
           </article>
+
+          <div className="mt-10 flex flex-wrap gap-3">
+            <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
+            <SecondaryButton href={site.phoneHref}>Bel {site.phone}</SecondaryButton>
+          </div>
         </div>
       </Section>
 
-      {relevantBranches.length > 0 && (
-        <Section className="bg-neutral-200/50 pt-0">
-          <div className="pt-24 max-md:pt-16">
-            <SectionHead
-              eyebrow="Per branche"
-              title={`${service.navName} in uw situatie`}
-              text="De uitvoering verschilt per type gebouw. Bekijk wat er specifiek voor uw branche geldt."
-              cta={<SecondaryButton href="/branches">Alle branches</SecondaryButton>}
-            />
-            <div className="mt-10 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-              {relevantBranches.map((b) => (
-                <VisualCard
-                  key={b.slug}
-                  href={`/branches/${b.slug}`}
-                  image={b.image}
-                imageAlt={b.imageAlt}
-                  title={b.shortName}
-                  subtitle={b.name}
-                  badge={b.priority ? "Prioritair" : "Zorgplicht"}
-                />
-              ))}
-            </div>
-          </div>
-        </Section>
-      )}
-
-      <Section>
+      <Section className="pt-0">
         <SectionHead
-              eyebrow="Veelgestelde vragen"
-              title={`Over ${service.navName.toLowerCase()}`}
-              cta={<SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>}
-            />
-            <div className="mt-12">
-              <NumberedAccordion items={service.faqs} />
-            </div>
+          eyebrow="Veelgestelde vragen"
+          title={`Over ${service.navName.toLowerCase()}`}
+          cta={<SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>}
+        />
+        <div className="mt-12">
+          <NumberedAccordion items={service.faqs} />
+        </div>
       </Section>
 
       <Section className="pt-0">
-        <div className="grid grid-cols-[1fr_1.1fr] items-start gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div>
-            <SectionHead eyebrow="Ook interessant" title="Gerelateerde diensten" />
-            <div className="mt-8 grid gap-7">
-              {related.map((r) => (
-                <ImageLeftItem
-                  key={r.slug}
-                  href={`/diensten/${r.slug}`}
-                  image={r.image}
-                imageAlt={r.imageAlt}
-                  title={r.name}
-                  badge={r.eyebrow}
-                />
-              ))}
-            </div>
-          </div>
-          <Newsletter />
+        <SectionHead
+          eyebrow="Ook interessant"
+          title="Gerelateerde diensten"
+          cta={<SecondaryButton href="/diensten">Alle diensten</SecondaryButton>}
+        />
+        <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {related.map((r) => (
+            <PortfolioCard
+              key={r.slug}
+              href={`/diensten/${r.slug}`}
+              title={r.name}
+              text={r.summary}
+              badge={r.eyebrow}
+              image={r.image}
+              imageAlt={r.imageAlt}
+            />
+          ))}
         </div>
       </Section>
 

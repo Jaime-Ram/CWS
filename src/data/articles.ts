@@ -35,8 +35,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "De meeste legionellaproblemen zijn terug te voeren op temperatuur. Wat de norm precies zegt, waar het in de praktijk misgaat en hoe u het goed meet.",
-    image: "/images/fotos/meetapparatuur-registratie.jpg",
-    imageAlt: "Temperatuurmeting bij een tappunt",
+    image: "/images/fotos/glas-op-radiator.jpg",
+    imageAlt: "Water dat opwarmt naast een verwarmingselement",
     blocks: [
       {
         type: "p",
@@ -105,8 +105,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Zes weken zomervakantie, een winterstop of een verbouwing: stilstand is de grootste risicofactor die er is. Dit doet u voordat de eerste gebruiker de kraan opendraait.",
-    image: "/images/fotos/spoelen-leidingnet.jpg",
-    imageAlt: "Doorspoelen van een leidingnet na leegstand",
+    image: "/images/fotos/douchekop.jpg",
+    imageAlt: "Ongebruikte douche in een leegstaand gebouw",
     blocks: [
       {
         type: "p",
@@ -170,8 +170,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Een afgedopt leidingstuk achter een dichtgezette wand blijft jarenlang water vasthouden. Het is de meest voorkomende oorzaak van een besmetting die telkens terugkomt.",
-    image: "/images/fotos/aanpassen-leiding-wastafel.jpg",
-    imageAlt: "Leidingwerk in een schacht",
+    image: "/images/fotos/leidingnet-manifold.jpg",
+    imageAlt: "Leidingwerk met aftakkingen",
     blocks: [
       {
         type: "p",
@@ -226,8 +226,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Een eerlijke uitleg over waar de kosten uit bestaan, welke factoren de prijs bepalen en waarom achteraf repareren bijna altijd duurder uitpakt.",
-    image: "/images/fotos/inspectie-installatie.jpg",
-    imageAlt: "Inventarisatie van een drinkwaterinstallatie",
+    image: "/images/fotos/laptop-werkplek.jpg",
+    imageAlt: "Beheerder bekijkt de kosten van legionellabeheer",
     blocks: [
       {
         type: "p",
@@ -293,8 +293,8 @@ export const articles: Article[] = [
     ],
     excerpt:
       "Bij een controle is het logboek het eerste wat gevraagd wordt. Wat erin hoort, hoe u het praktisch houdt en welke fouten het vaakst terugkomen.",
-    image: "/images/fotos/keerklepcontrole.jpg",
-    imageAlt: "Registratie tijdens een controle",
+    image: "/images/fotos/inspectie-clipboard.jpg",
+    imageAlt: "Bijhouden van het legionella-logboek",
     blocks: [
       {
         type: "p",

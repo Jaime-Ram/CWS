@@ -93,11 +93,31 @@ CONTACT_FROM_EMAIL=website@cleanwatersystems.nl
 Zonder deze variabelen weigert de route de aanvraag met een duidelijke melding
 (telefoonnummer en e-mailadres), zodat er nooit stilzwijgend een aanvraag verdwijnt.
 
+## Paginaopbouw per template-pagina
+
+Elke pagina is nagebouwd op de template-pagina die er qua functie bij hoort:
+
+| Onze pagina | Template-pagina |
+| --- | --- |
+| Home | Home V1 |
+| Diensten | Portfolio V1 |
+| Dienst (detail) | Portfolio single |
+| Branches | Investors |
+| Branche (detail) | Blog post + About-onderdelen |
+| Kenniscentrum | Blog V1 |
+| Artikel | Blog post |
+| Legionellapreventie | Blog post |
+| Over ons | About |
+| Contact | Contact |
+| Veelgestelde vragen | Portfolio-hero + FAQ-sectie |
+
 ## Beeldmateriaal
 
-Alle fotografie komt van de bestaande site cleanwatersystems.nl en staat in
-`public/images/fotos/`. De keurmerken (Kiwa, CE, NEN-EN 1112) zijn uit de
-gecombineerde afbeelding van die site gesneden tot losse logo's.
+De keurmerken (Kiwa, CE, NEN-EN 1112) komen van de bestaande site en zijn uit de
+gecombineerde afbeelding gesneden. De overige fotografie bestaat uit stockfoto's
+van Pexels (Pexels-licentie: vrij te gebruiken, ook commercieel, zonder
+naamsvermelding). De herkomst per bestand staat in
+`public/images/fotos/BRONNEN.json`, met het Pexels-nummer en de bron-URL.
 
 Beelden worden gerenderd via `<Media>`, dat de verhouding vasthoudt en op
 `next/image` draait. Koppelingen staan als `image` en `imageAlt` in
@@ -105,7 +125,7 @@ Beelden worden gerenderd via `<Media>`, dat de verhouding vasthoudt en op
 
 ## Nog te doen voor livegang
 
-- Eventueel nieuwe fotografie aanleveren; de huidige beelden komen van de oude site
+- Eigen fotografie aanleveren ter vervanging van de stockfoto's
 - Content juridisch laten toetsen door de eigenaar (normen, frequenties, verplichtingen)
 - Google Analytics / Tag Manager plus cookiebanner koppelen indien gewenst
 - 301-redirects instellen vanaf de oude `.html`-URL's naar de nieuwe structuur

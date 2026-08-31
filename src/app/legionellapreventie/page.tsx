@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Hero from "@/components/Hero";
+import { HeroPost } from "@/components/heroes";
 import Newsletter from "@/components/Newsletter";
 import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
 import {
@@ -22,6 +22,7 @@ import {
 } from "@/components/ui";
 import { services } from "@/data/services";
 import { branches } from "@/data/branches";
+import { site } from "@/data/site";
 import { faqSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -70,17 +71,21 @@ const faqs = [
 export default function LegionellapreventiePage() {
   return (
     <>
-      <Hero
-        compact
-        eyebrow="Kennisdossier"
+      <HeroPost
+        badge="Kennisdossier"
         title="Legionellapreventie: van wettelijke plicht naar werkende praktijk"
-        text="Wat de regels van u vragen, waar het in de praktijk misgaat en welke maatregelen daadwerkelijk effect hebben. Het complete overzicht."
-        actions={
+        text="Wat de regels van u vragen, waar het in de praktijk misgaat en welke maatregelen daadwerkelijk effect hebben."
+        image="/images/fotos/leidingnet-manifold.jpg"
+        imageAlt="Leidingwerk van een collectieve drinkwaterinstallatie"
+        card={
           <>
+            <span>
+              <span className="block text-[15px] text-neutral-500">Advies nodig?</span>
+              <a href={site.phoneHref} className="mt-1 block text-[20px] font-semibold text-primary">
+                {site.phone}
+              </a>
+            </span>
             <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
-            <SecondaryButton href="/diensten/risicoanalyse-en-beheersplan" variant="dark">
-              Risicoanalyse aanvragen
-            </SecondaryButton>
           </>
         }
       />
