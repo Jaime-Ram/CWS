@@ -129,8 +129,10 @@ derde partij aan te pas. Vraag daarvoor het originele bestand op bij de klant.
 ## Logo en favicon
 
 Het beeldmerk is een monogram-C waarvan de staart uitvloeit, met een punt in de
-opening. Geometrie: middelpunt (50,50), straal 30, lijndikte 15, opening ±35
-graden, punt op de middellijn van de boog op (80,50) met straal 7.5. Het verloop
+opening. Geometrie: middelpunt (50,50), straal 30, lijndikte 15, opening ±44
+graden (een boog van 272°), punt op de middellijn van de boog op (80,50) met
+straal 7.5. Die opening is zo gekozen dat de punt een halve lijndikte vrij ligt
+van de uiteindes. Het verloop
 loopt van diepblauw (#102e97) via het merkblauw (#2365ff) naar cyaan (#6ccfff)
 dat uitvloeit tot 40% dekking. Het woordmerk zet "Clean" groot
 met "watersystems" in het merkblauw eronder. De uitlijning is uitgemeten op de

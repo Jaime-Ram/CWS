@@ -8,6 +8,6 @@
       <stop offset="0%" stop-color="#7ad4ff"/><stop offset="100%" stop-color="#2365ff"/>
     </linearGradient>
   </defs>
-  <path d="M74.57 32.79a30 30 0 1 0 0 34.42" fill="none" stroke="url(#g)" stroke-width="15" stroke-linecap="round"/>
+  <path d="M71.58 29.16a30 30 0 1 0 0 41.68" fill="none" stroke="url(#g)" stroke-width="15" stroke-linecap="round"/>
   <circle cx="80" cy="50" r="7.5" fill="url(#d)"/>
 </svg>

@@ -3,8 +3,9 @@ import Link from "next/link";
 /**
  * Beeldmerk: een monogram-C waarvan de staart uitvloeit, met een punt in de
  * opening. Geometrie: middelpunt (50,50), straal 30, lijndikte 15, opening
- * symmetrisch op ±35 graden. De punt ligt op de middellijn van de boog, op
- * (80,50), zodat hij precies in het verlengde van de lijn valt.
+ * symmetrisch op ±44 graden, dus een boog van 272 graden. De punt ligt op de
+ * middellijn van de boog, op (80,50), en houdt zo 7,5 eenheden vrij van de
+ * uiteindes: precies een halve lijndikte lucht rondom.
  */
 export function LogoMark({
   className = "",
@@ -36,7 +37,7 @@ export function LogoMark({
         </linearGradient>
       </defs>
       <path
-        d="M74.57 32.79a30 30 0 1 0 0 34.42"
+        d="M71.58 29.16a30 30 0 1 0 0 41.68"
         fill="none"
         stroke={`url(#${id}-grad)`}
         strokeWidth="15"
