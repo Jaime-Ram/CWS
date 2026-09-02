@@ -128,8 +128,8 @@ derde partij aan te pas. Vraag daarvoor het originele bestand op bij de klant.
 
 ## Logo en favicon
 
-Het beeldmerk is een abstracte stroombocht met een verloop van cyaan (#6ccfff) via
-het merkblauw (#2365ff) naar diepblauw (#102e97). Het woordmerk zet "Clean" groot
+Het beeldmerk is een monogram-C met een druppelpunt in de opening, met een verloop
+van cyaan (#6ccfff) via het merkblauw (#2365ff) naar diepblauw (#102e97). Het woordmerk zet "Clean" groot
 met "watersystems" eronder. Beide regels staan op een vaste breedte via
 `textLength` in SVG, waardoor ze exact op elkaar uitlijnen ongeacht of het
 lettertype al geladen is. Alles staat in `src/components/Logo.tsx`.

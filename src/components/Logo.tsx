@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 /**
- * Beeldmerk: een abstracte stroombocht met een verloop van cyaan naar diepblauw.
+ * Beeldmerk: een monogram-C met een druppelpunt in de opening. Het verloop
+ * loopt van cyaan linksboven naar diepblauw rechtsonder.
  */
 export function LogoMark({
   className = "",
@@ -26,14 +27,19 @@ export function LogoMark({
           <stop offset="45%" stopColor="#2365ff" />
           <stop offset="100%" stopColor="#102e97" />
         </linearGradient>
+        <linearGradient id={`${id}-dot`} x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="#7ad4ff" />
+          <stop offset="100%" stopColor="#2365ff" />
+        </linearGradient>
       </defs>
       <path
-        d="M18 26 h30 a24 24 0 0 1 0 48 h-30"
+        d="M76 28 a32 32 0 1 0 0 44"
         fill="none"
         stroke={`url(#${id}-grad)`}
-        strokeWidth="17"
+        strokeWidth="16"
         strokeLinecap="round"
       />
+      <circle cx="72" cy="50" r="8.5" fill={`url(#${id}-dot)`} />
     </svg>
   );
 }
