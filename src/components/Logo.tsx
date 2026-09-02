@@ -1,8 +1,10 @@
 import Link from "next/link";
 
 /**
- * Beeldmerk: een monogram-C met een druppelpunt in de opening. Het verloop
- * loopt van cyaan linksboven naar diepblauw rechtsonder.
+ * Beeldmerk: een monogram-C waarvan de staart uitvloeit, met een punt in de
+ * opening. Geometrie: middelpunt (50,50), straal 30, lijndikte 15, opening
+ * symmetrisch op ±35 graden. De punt ligt op de middellijn van de boog, op
+ * (80,50), zodat hij precies in het verlengde van de lijn valt.
  */
 export function LogoMark({
   className = "",
@@ -22,10 +24,11 @@ export function LogoMark({
       role="presentation"
     >
       <defs>
-        <linearGradient id={`${id}-grad`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#6ccfff" />
-          <stop offset="45%" stopColor="#2365ff" />
-          <stop offset="100%" stopColor="#102e97" />
+        <linearGradient id={`${id}-grad`} x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stopColor="#102e97" />
+          <stop offset="40%" stopColor="#2365ff" />
+          <stop offset="78%" stopColor="#6ccfff" />
+          <stop offset="100%" stopColor="#6ccfff" stopOpacity="0.4" />
         </linearGradient>
         <linearGradient id={`${id}-dot`} x1="0" y1="0" x2="1" y2="1">
           <stop offset="0%" stopColor="#7ad4ff" />
@@ -33,13 +36,13 @@ export function LogoMark({
         </linearGradient>
       </defs>
       <path
-        d="M76 28 a32 32 0 1 0 0 44"
+        d="M74.57 32.79a30 30 0 1 0 0 34.42"
         fill="none"
         stroke={`url(#${id}-grad)`}
-        strokeWidth="16"
+        strokeWidth="15"
         strokeLinecap="round"
       />
-      <circle cx="72" cy="50" r="8.5" fill={`url(#${id}-dot)`} />
+      <circle cx="80" cy="50" r="7.5" fill={`url(#${id}-dot)`} />
     </svg>
   );
 }
