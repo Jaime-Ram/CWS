@@ -186,7 +186,7 @@ export default function HomePage() {
           cta={<SecondaryButton href="/over-ons">Over ons</SecondaryButton>}
         />
         <div className="divider my-10" />
-        <div className="overflow-hidden rounded-[32px] max-md:rounded-[24px]">
+        <div className="overflow-hidden rounded-[24px] max-md:rounded-[18px]">
           <Media
             src="/images/fotos/leidingnet-manifold.jpg"
             alt="Clean Watersystems aan het werk aan een drinkwaterinstallatie"
@@ -293,7 +293,7 @@ export default function HomePage() {
 
       {/* Garanties, in de testimonial-opzet */}
       <Section className="pt-0">
-        <div className="rounded-[32px] bg-neutral-200/60 p-12 max-md:rounded-[24px] max-sm:p-6">
+        <div className="rounded-[24px] bg-neutral-200/60 p-12 max-md:rounded-[18px] max-sm:p-6">
           <div className="flex flex-wrap items-start justify-between gap-8">
             <div>
               <Eyebrow>Onze garanties</Eyebrow>

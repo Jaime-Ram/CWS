@@ -73,7 +73,7 @@ export function StatsCard({
 }) {
   return (
     <div
-      className={`flex flex-col justify-between gap-16 rounded-[32px] border p-10 max-md:gap-8 max-md:rounded-[24px] max-sm:p-6 ${
+      className={`flex flex-col justify-between gap-16 rounded-[24px] border p-10 max-md:gap-8 max-md:rounded-[18px] max-sm:p-6 ${
         featured
           ? "border-primary/25 bg-secondary-100"
           : "border-neutral-200 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f]"
@@ -121,7 +121,7 @@ export function PortfolioCard({
   return (
     <Link
       href={href}
-      className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-[32px] border border-neutral-200 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[24px]"
+      className="group relative flex min-h-[340px] flex-col overflow-hidden rounded-[24px] border border-neutral-200 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[18px]"
     >
       <span
         className="absolute inset-0 bg-cta-sweep opacity-0 transition-opacity duration-500 group-hover:opacity-100"
@@ -189,7 +189,7 @@ export function VisualCard({
   return (
     <Link href={href} className="group">
       <Card className="flex h-full flex-col overflow-hidden p-3 transition-shadow duration-300 hover:shadow-[0_18px_40px_-18px_rgba(31,47,84,0.25)]">
-        <span className="relative block overflow-hidden rounded-[20px]">
+        <span className="relative block overflow-hidden rounded-[16px]">
           <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
           {badge && (
             <span className="absolute left-4 top-4">
@@ -262,7 +262,7 @@ export function FeatureCard({
 }) {
   return (
     <Card className="flex h-full flex-col overflow-hidden p-3">
-      <span className="overflow-hidden rounded-[20px]">
+      <span className="overflow-hidden rounded-[16px]">
         <Media src={image} alt={imageAlt} ratio="16/10" className="w-full" />
       </span>
       <span className="flex flex-1 flex-col p-6 max-sm:p-4">
@@ -292,7 +292,7 @@ export function TeamCard({
 }) {
   return (
     <Link href={href} className="group block">
-      <span className="block overflow-hidden rounded-[24px]">
+      <span className="block overflow-hidden rounded-[18px]">
         <Media src={image} alt={imageAlt} ratio="1/1" className="w-full" />
       </span>
       <span className="mt-5 block text-[20px] font-semibold leading-[1.25em] text-neutral-800 transition-colors group-hover:text-primary">
@@ -325,7 +325,7 @@ export function PostCard({
 }) {
   return (
     <Link href={href} className="group block">
-      <span className="block overflow-hidden rounded-[24px]">
+      <span className="block overflow-hidden rounded-[18px]">
         <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
       </span>
       <span className="mt-5 block text-[20px] font-semibold leading-[1.3em] text-neutral-800 transition-colors group-hover:text-primary">
@@ -364,7 +364,7 @@ export function ImageLeftItem({
       href={href}
       className="group grid grid-cols-[120px_1fr] items-center gap-6 max-sm:grid-cols-[88px_1fr] max-sm:gap-4"
     >
-      <span className="overflow-hidden rounded-[16px] border border-neutral-200 shadow-[0_4px_4px_#9ac4ff0f]">
+      <span className="overflow-hidden rounded-[12px] border border-neutral-200 shadow-[0_4px_4px_#9ac4ff0f]">
         <Media src={image} alt={imageAlt} ratio="1/1" className="w-full" />
       </span>
       <span>
@@ -404,11 +404,11 @@ export function FeaturedCard({
   return (
     <Link
       href={href}
-      className="group block overflow-hidden rounded-[32px] bg-secondary-100 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[24px]"
+      className="group block overflow-hidden rounded-[24px] bg-secondary-100 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[18px]"
     >
       <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" />
       <span className="block px-8 pb-8 max-sm:px-4 max-sm:pb-4">
-        <span className="block rounded-[24px] bg-white p-8 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-sm:rounded-[16px] max-sm:p-5">
+        <span className="block rounded-[18px] bg-white p-8 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-sm:rounded-[12px] max-sm:p-5">
           <span className="block text-[28px] font-semibold leading-[1.25em] text-neutral-800 transition-colors group-hover:text-primary max-md:text-[22px]">
             {title}
           </span>
@@ -562,7 +562,7 @@ export function MilestoneList({
             <Badge>{item.badge}</Badge>
             {i < items.length - 1 && <span className="w-px flex-1 bg-neutral-300" />}
           </div>
-          <div className="overflow-hidden rounded-[16px] border border-neutral-200 max-sm:hidden">
+          <div className="overflow-hidden rounded-[12px] border border-neutral-200 max-sm:hidden">
             <Media src={item.image} alt={item.imageAlt} ratio="1/1" className="w-full" />
           </div>
           <div className="pt-1">
@@ -591,7 +591,7 @@ export function CardCta({
   action: ReactNode;
 }) {
   return (
-    <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-[24px] bg-grid-lines bg-cta-sweep p-10 max-sm:p-6">
+    <div className="relative flex h-full flex-col justify-between gap-8 overflow-hidden rounded-[18px] bg-grid-lines bg-cta-sweep p-10 max-sm:p-6">
       <div className="relative">
         {eyebrow && <div className="text-[15px] text-neutral-400">{eyebrow}</div>}
         <p className="mt-2 text-[24px] font-semibold leading-[1.25em] text-white">{title}</p>
@@ -615,7 +615,7 @@ export function PillNav({
 }) {
   return (
     <div className="flex justify-center">
-      <nav className="flex flex-wrap items-center justify-center gap-1 rounded-full border border-neutral-300 bg-white p-3 max-sm:rounded-[16px]">
+      <nav className="flex flex-wrap items-center justify-center gap-1 rounded-full border border-neutral-300 bg-white p-3 max-sm:rounded-[12px]">
         {items.map((i) => {
           const isActive = i.href === active;
           return (

@@ -30,7 +30,7 @@ export default function HeroCardSplit({
       <section className="pb-24 pt-10 max-lg:pb-16">
         <div className="container-default">
           <div className="grid grid-cols-[1fr_1.15fr] items-stretch gap-12 max-lg:grid-cols-1 max-lg:gap-8">
-            <div className="relative flex flex-col justify-between gap-10 overflow-hidden rounded-[32px] bg-neutral-800 p-12 max-md:rounded-[24px] max-sm:p-7">
+            <div className="relative flex flex-col justify-between gap-10 overflow-hidden rounded-[24px] bg-neutral-800 p-12 max-md:rounded-[18px] max-sm:p-7">
               <HeroBackground variant="contact" />
               <div className="relative">
                 {eyebrow && (
@@ -40,7 +40,7 @@ export default function HeroCardSplit({
                 <p className="mt-4 leading-[1.6em] text-neutral-300">{text}</p>
               </div>
               {bottomTitle && (
-                <div className="relative rounded-[24px] bg-white p-8 shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f] max-sm:p-5">
+                <div className="relative rounded-[18px] bg-white p-8 shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f] max-sm:p-5">
                   <p className="text-[24px] font-semibold text-neutral-800">{bottomTitle}</p>
                   {bottomText && (
                     <p className="mt-2 text-[15px] leading-[1.6em] text-neutral-600">{bottomText}</p>

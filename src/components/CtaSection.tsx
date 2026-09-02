@@ -18,7 +18,7 @@ export default function CtaSection({
   return (
     <section className="section pt-0">
       <div className="container-default">
-        <div className="relative overflow-hidden rounded-[32px] max-md:rounded-[24px]">
+        <div className="relative overflow-hidden rounded-[24px] max-md:rounded-[18px]">
           <HeroBackground variant="cta" />
           <div className="relative flex justify-end px-16 py-24 max-lg:px-10 max-lg:py-16 max-md:px-7 max-md:py-12">
             <div className="max-w-[460px] max-lg:max-w-none">

@@ -106,7 +106,7 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
                   <Link
                     key={l.href}
                     href={l.href}
-                    className="rounded-lg px-3 py-2 text-[15px] font-medium text-neutral-800"
+                    className="rounded-[6px] px-3 py-2 text-[15px] font-medium text-neutral-800"
                   >
                     {l.label}
                   </Link>
@@ -172,7 +172,7 @@ function NavDropdown({
             <Link
               key={i.href}
               href={i.href}
-              className="rounded-lg px-3 py-[7px] text-[14px] text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-800"
+              className="rounded-[6px] px-3 py-[7px] text-[14px] text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-800"
             >
               {i.label}
             </Link>
@@ -199,7 +199,7 @@ function MobileGroup({
       </Link>
       <div className="grid gap-0.5">
         {items.map((i) => (
-          <Link key={i.href} href={i.href} className="rounded-lg px-3 py-[7px] text-[14px] text-neutral-600">
+          <Link key={i.href} href={i.href} className="rounded-[6px] px-3 py-[7px] text-[14px] text-neutral-600">
             {i.label}
           </Link>
         ))}

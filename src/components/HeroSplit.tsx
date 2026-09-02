@@ -63,7 +63,7 @@ export default function HeroSplit({
                 </div>
               )}
             </div>
-            <div className="overflow-hidden rounded-[32px] border border-neutral-200 max-md:rounded-[24px]">
+            <div className="overflow-hidden rounded-[24px] border border-neutral-200 max-md:rounded-[18px]">
               <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" priority />
             </div>
           </div>

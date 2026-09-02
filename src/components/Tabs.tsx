@@ -17,7 +17,7 @@ export function AccordionTabs({
   const [active, setActive] = useState(0);
 
   return (
-    <div className="grid grid-cols-2 items-center gap-10 rounded-[32px] bg-neutral-200/60 p-10 max-lg:grid-cols-1 max-md:rounded-[24px] max-sm:p-5">
+    <div className="grid grid-cols-2 items-center gap-10 rounded-[24px] bg-neutral-200/60 p-10 max-lg:grid-cols-1 max-md:rounded-[18px] max-sm:p-5">
       <div className="grid content-start gap-2">
         {items.map((item, i) => {
           const isActive = i === active;
@@ -27,7 +27,7 @@ export function AccordionTabs({
               type="button"
               onClick={() => setActive(i)}
               aria-expanded={isActive}
-              className={`flex items-start justify-between gap-6 rounded-[24px] px-7 py-6 text-left transition-colors duration-300 max-sm:px-5 max-sm:py-4 ${
+              className={`flex items-start justify-between gap-6 rounded-[18px] px-7 py-6 text-left transition-colors duration-300 max-sm:px-5 max-sm:py-4 ${
                 isActive ? "bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f]" : "hover:bg-white/60"
               }`}
             >
@@ -67,7 +67,7 @@ export function AccordionTabs({
         })}
       </div>
 
-      <div className="relative overflow-hidden rounded-[24px] border border-neutral-200 bg-white">
+      <div className="relative overflow-hidden rounded-[18px] border border-neutral-200 bg-white">
         <span className="absolute right-4 top-4 z-10 inline-flex items-center rounded-full bg-white px-4 py-1.5 text-[14px] font-medium text-primary shadow-[0_4px_4px_#9ac4ff1f]">
           Stap {items[active].number ?? String(active + 1).padStart(2, "0")}
         </span>
@@ -116,7 +116,7 @@ export function CardTabs({
               type="button"
               onClick={() => setActive(i.key)}
               aria-pressed={isActive}
-              className={`flex min-h-[122px] flex-col items-start justify-between gap-4 rounded-[16px] border p-5 text-left transition-colors duration-300 max-sm:min-h-0 max-sm:flex-row max-sm:items-center max-sm:justify-start max-sm:gap-3 ${
+              className={`flex min-h-[122px] flex-col items-start justify-between gap-4 rounded-[12px] border p-5 text-left transition-colors duration-300 max-sm:min-h-0 max-sm:flex-row max-sm:items-center max-sm:justify-start max-sm:gap-3 ${
                 isActive
                   ? "border-primary bg-primary text-white"
                   : "border-neutral-200 bg-white text-neutral-600 shadow-[0_4px_5px_#9ac4ff0f,0_1px_5px_#05112d0f] hover:border-primary/30"
@@ -148,7 +148,7 @@ export function CardTabs({
             ))}
           </ul>
         </div>
-        <div className="overflow-hidden rounded-[24px] border border-neutral-200">
+        <div className="overflow-hidden rounded-[18px] border border-neutral-200">
           <Media src={current.image} alt={current.imageAlt} ratio="4/3" className="w-full" />
         </div>
       </div>
@@ -174,7 +174,7 @@ export function NumberedAccordion({
         return (
           <div
             key={item.q}
-            className="overflow-hidden rounded-[32px] border border-neutral-300 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f] max-md:rounded-[24px]"
+            className="overflow-hidden rounded-[24px] border border-neutral-300 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f] max-md:rounded-[18px]"
           >
             <button
               type="button"
@@ -236,7 +236,7 @@ export function QuoteSlider({
 
   return (
     <div>
-      <div className="rounded-[32px] border border-neutral-200 bg-white p-10 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[24px] max-sm:p-6">
+      <div className="rounded-[24px] border border-neutral-200 bg-white p-10 shadow-[0_4px_4px_#9ac4ff0f,0_1px_1px_#05112d0f] max-md:rounded-[18px] max-sm:p-6">
         <Badge>{item.badge}</Badge>
         <p className="mt-6 text-[24px] font-semibold leading-[1.4em] text-neutral-800 max-sm:text-[19px]">
           {item.text}

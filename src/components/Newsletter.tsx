@@ -40,7 +40,7 @@ export default function Newsletter({
   }
 
   return (
-    <div className="relative flex h-full flex-col justify-end overflow-hidden rounded-[32px] bg-newsletter p-12 max-md:rounded-[24px] max-sm:p-6">
+    <div className="relative flex h-full flex-col justify-end overflow-hidden rounded-[24px] bg-newsletter p-12 max-md:rounded-[18px] max-sm:p-6">
       <div className="relative">
         <div className="text-[15px] text-white/70">Nieuwsbrief</div>
         <h2 className="mt-2 max-w-[440px] text-[32px] text-white max-md:text-[24px]">{title}</h2>

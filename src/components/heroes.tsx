@@ -23,7 +23,7 @@ export function HeroCentered({
       <TopBar />
       <div className="relative mx-auto max-w-[1440px] px-5 pt-5 max-lg:px-4 max-lg:pt-4">
         <Header variant="dark" />
-        <div className="relative overflow-hidden rounded-[32px] bg-grid-lines bg-contact-glow max-md:rounded-[24px]">
+        <div className="relative overflow-hidden rounded-[24px] bg-grid-lines bg-contact-glow max-md:rounded-[18px]">
           <div className="container-default relative">
             <div className="mx-auto max-w-[620px] pb-44 pt-32 text-center max-lg:pt-28 max-md:pb-28 max-md:pt-20">
               <h1 className="text-white">{title}</h1>
@@ -58,7 +58,7 @@ export function HeroSmall({
       <TopBar />
       <div className="relative mx-auto max-w-[1440px] px-5 pt-5 max-lg:px-4 max-lg:pt-4">
         <Header variant="dark" />
-        <div className="relative overflow-hidden rounded-[32px] bg-grid-lines bg-hero-sweep max-md:rounded-[24px]">
+        <div className="relative overflow-hidden rounded-[24px] bg-grid-lines bg-hero-sweep max-md:rounded-[18px]">
           <div className="container-default relative">
             <div className="max-w-[420px] pb-16 pt-36 max-lg:pt-32 max-md:pb-12 max-md:pt-28">
               <h1 className="text-white">{title}</h1>
@@ -144,7 +144,7 @@ export function HeroPost({
                 </div>
               )}
             </div>
-            <div className="overflow-hidden rounded-[32px] max-md:rounded-[24px]">
+            <div className="overflow-hidden rounded-[24px] max-md:rounded-[18px]">
               <Media src={image} alt={imageAlt} ratio="4/3" className="w-full" priority />
             </div>
           </div>
@@ -176,7 +176,7 @@ export function HeroPanel({
       <Header variant="light" />
       <section className="pb-20 pt-6 max-lg:pb-14">
         <div className="container-default">
-          <div className="rounded-[32px] bg-neutral-200/70 p-10 max-md:rounded-[24px] max-sm:p-5">
+          <div className="rounded-[24px] bg-neutral-200/70 p-10 max-md:rounded-[18px] max-sm:p-5">
             <div className="mx-auto max-w-[620px] py-12 text-center max-md:py-8">
               {eyebrow && (
                 <div className="mb-5 flex justify-center">

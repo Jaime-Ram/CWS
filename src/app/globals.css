@@ -33,12 +33,12 @@
   --color-system-blue-100: #e3efff;
 
   /* Radii */
-  --radius-br1: 4px;
-  --radius-br2: 8px;
-  --radius-br3: 16px;
-  --radius-br4: 24px;
-  --radius-br5: 32px;
-  --radius-br7: 48px;
+  --radius-br1: 3px;
+  --radius-br2: 6px;
+  --radius-br3: 12px;
+  --radius-br4: 18px;
+  --radius-br5: 24px;
+  --radius-br7: 36px;
   --radius-pill: 300px;
 
   /* Type-schaal (displays) */

@@ -15,7 +15,7 @@ const year = 2026;
 export default function Footer() {
   return (
     <footer className="px-5 pb-5 max-lg:px-4 max-lg:pb-4">
-      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[32px] bg-grid-lines bg-footer-glow max-md:rounded-[24px]">
+      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[24px] bg-grid-lines bg-footer-glow max-md:rounded-[18px]">
         <div className="container-default relative">
           {/* CTA bovenin, op het donkere deel */}
           <div className="mx-auto max-w-[640px] pb-16 pt-24 text-center max-md:pb-10 max-md:pt-16">

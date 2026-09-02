@@ -140,7 +140,7 @@ export default function OverOnsPage() {
       </Section>
 
       <Section className="pt-0">
-        <div className="rounded-[32px] bg-neutral-200/60 p-12 max-md:rounded-[24px] max-sm:p-6">
+        <div className="rounded-[24px] bg-neutral-200/60 p-12 max-md:rounded-[18px] max-sm:p-6">
           <div className="grid grid-cols-[1.6fr_1fr] gap-12 max-lg:grid-cols-1">
             <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
               {values.map((v) => (

@@ -28,7 +28,7 @@ export default function Hero({
       <TopBar />
       <div className="relative mx-auto max-w-[1440px] px-5 pt-5 max-lg:px-4 max-lg:pt-4">
       <Header variant="dark" />
-      <div className="relative overflow-hidden rounded-[32px] bg-neutral-800 max-md:rounded-[24px] max-sm:rounded-[16px]">
+      <div className="relative overflow-hidden rounded-[24px] bg-neutral-800 max-md:rounded-[18px] max-sm:rounded-[12px]">
         {background ?? <HeroBackground />}
         <div className="container-default relative">
           <div

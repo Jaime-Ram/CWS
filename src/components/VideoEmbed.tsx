@@ -23,7 +23,7 @@ export default function VideoEmbed({
 
   return (
     <div
-      className={`relative overflow-hidden rounded-[24px] border border-white/12 bg-neutral-800 ${className}`}
+      className={`relative overflow-hidden rounded-[18px] border border-white/12 bg-neutral-800 ${className}`}
       style={{ aspectRatio: "16/9" }}
     >
       {playing ? (

@@ -64,7 +64,7 @@ export default function ContactForm() {
         <span className="text-[15px] font-medium text-neutral-800">Onderwerp</span>
         <select
           name="onderwerp"
-          className="h-[52px] rounded-[12px] border border-neutral-200 bg-white px-4 text-[15px] text-neutral-800 outline-none transition-colors focus:border-primary"
+          className="h-[52px] rounded-[10px] border border-neutral-200 bg-white px-4 text-[15px] text-neutral-800 outline-none transition-colors focus:border-primary"
           defaultValue={subjects[0]}
         >
           {subjects.map((s) => (
@@ -82,7 +82,7 @@ export default function ContactForm() {
           rows={5}
           required
           placeholder="Om wat voor gebouw gaat het, hoeveel tappunten ongeveer, en wat is uw vraag?"
-          className="rounded-[12px] border border-neutral-200 bg-white px-4 py-3 text-[15px] leading-[1.6em] text-neutral-800 outline-none transition-colors placeholder:text-neutral-400 focus:border-primary"
+          className="rounded-[10px] border border-neutral-200 bg-white px-4 py-3 text-[15px] leading-[1.6em] text-neutral-800 outline-none transition-colors placeholder:text-neutral-400 focus:border-primary"
         />
       </label>
 
@@ -115,12 +115,12 @@ export default function ContactForm() {
       </div>
 
       {status === "ok" && (
-        <p className="rounded-[12px] bg-system-green-100 px-4 py-3 text-[15px] text-neutral-700">
+        <p className="rounded-[10px] bg-system-green-100 px-4 py-3 text-[15px] text-neutral-700">
           {message}
         </p>
       )}
       {status === "error" && (
-        <p className="rounded-[12px] bg-system-red-100 px-4 py-3 text-[15px] text-neutral-700">
+        <p className="rounded-[10px] bg-system-red-100 px-4 py-3 text-[15px] text-neutral-700">
           {message}
         </p>
       )}
@@ -152,7 +152,7 @@ function Field({
         name={name}
         required={required}
         autoComplete={autoComplete}
-        className="h-[52px] rounded-[12px] border border-neutral-200 bg-white px-4 text-[15px] text-neutral-800 outline-none transition-colors focus:border-primary"
+        className="h-[52px] rounded-[10px] border border-neutral-200 bg-white px-4 text-[15px] text-neutral-800 outline-none transition-colors focus:border-primary"
       />
     </label>
   );

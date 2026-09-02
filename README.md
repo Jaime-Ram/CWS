@@ -69,6 +69,7 @@ in het `@theme`-blok van `src/app/globals.css`.
 | Lichte vlakken | `#f1f4ff` |
 | Font | Inter Tight |
 | Container | 1208 px |
+| Hoekradii | 3 / 6 / 12 / 18 / 24 / 36 px |
 | Sectiepadding | 100 px |
 
 ## SEO
