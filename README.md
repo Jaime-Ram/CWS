@@ -139,6 +139,16 @@ lettertype al geladen is. Alles staat in `src/components/Logo.tsx`.
 - `public/images/logo-mark.svg` is het losse merk voor extern gebruik
 - `src/app/icon.png` en `apple-icon.png` zijn de favicon en het app-icoon
 
+Alle veertien onderzochte richtingen staan als specimenblad op
+https://claude.ai/code/artifact/44b27853-29fa-4f97-913f-668abbdd5f4f
+
+## Google-beoordelingen
+
+De reviewknop uit de bestaande site staat in de hero (`GoogleReviews`). Score en
+aantal komen uit `site.reviews` en zijn nog leeg: zolang dat zo is toont de badge
+alleen de vijf sterren, precies zoals de huidige site doet. Vul `rating` en
+`count` in zodra de actuele cijfers bekend zijn, dan verschijnen ze automatisch.
+
 ## Beeldmateriaal
 
 De keurmerken (Kiwa, CE, NEN-EN 1112) komen van de bestaande site en zijn uit de

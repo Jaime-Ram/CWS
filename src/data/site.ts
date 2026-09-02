@@ -18,6 +18,13 @@ export const site = {
   mobileHref: "tel:+31644948799",
   email: "info@cleanwatersystems.nl",
   routeUrl: "https://maps.google.com/?q=Parelhoenhof+3,+2872+BC+Schoonhoven",
+  // Vul rating en count in zodra de actuele cijfers bekend zijn; zolang ze leeg
+  // zijn toont de badge alleen de sterren, net als op de bestaande site.
+  reviews: {
+    url: "https://www.google.com/search?q=Clean+Water+Systems+-+Adviesbureau+voor+waterinstallaties",
+    rating: "",
+    count: "",
+  },
   socials: {
     linkedin:
       "https://www.linkedin.com/in/clean-water-systems-viktoriya-copier-761ab63b0/",

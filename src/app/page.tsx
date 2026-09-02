@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Hero from "@/components/Hero";
 import HeroVideo from "@/components/HeroVideo";
+import GoogleReviews from "@/components/GoogleReviews";
 import CtaSection from "@/components/CtaSection";
 import JsonLd from "@/components/JsonLd";
 import Media from "@/components/Media";
@@ -146,7 +147,12 @@ export default function HomePage() {
         eyebrow={`Adviesbureau waterinstallaties sinds ${site.founded}`}
         title="Legionellapreventie en BRL 6010 risicoanalyse in heel Nederland"
         text="Wij helpen bedrijven en instellingen aan een veilige drinkwaterinstallatie en een aantoonbaar legionellabeheer dat de inspectie doorstaat."
-        actions={<PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>}
+        actions={
+          <>
+            <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
+            <GoogleReviews />
+          </>
+        }
         background={
           <HeroVideo
             videoId="iE9gWUet-lM"
