@@ -45,13 +45,17 @@ export function LogoMark({
 }
 
 /**
- * Woordmerk: "Clean" groot met "watersystems" eronder. Beide regels staan op een
- * vaste breedte via textLength, waardoor ze exact op elkaar uitlijnen, ongeacht
- * of het lettertype al geladen is.
+ * Woordmerk: "Clean" groot met "watersystems" eronder.
+ *
+ * De uitlijning is niet met textLength geforceerd maar uitgemeten op de
+ * gerenderde pixels: bij font-size 41 met letter-spacing -1.4 loopt de inkt van
+ * "Clean" van x 1.43 tot 98.85. Met letter-spacing 1.5 en een x-offset van 1.36
+ * valt "watersystems" op precies dezelfde randen. De viewBox is dat inktvlak,
+ * zodat de afstand tot het beeldmerk optisch klopt.
  */
 export function LogoWordmark({
   variant = "dark",
-  height = 40,
+  height = 38,
   className = "",
 }: {
   variant?: "light" | "dark";
@@ -59,35 +63,34 @@ export function LogoWordmark({
   className?: string;
 }) {
   const onDark = variant === "dark";
+  const font = "var(--font-inter-tight), sans-serif";
   return (
     <svg
-      viewBox="0 0 100 50"
-      style={{ height, width: (height * 100) / 50 }}
+      viewBox="1.43 9.75 97.42 48.82"
+      style={{ height, width: (height * 97.42) / 48.82 }}
       className={className}
       role="img"
       aria-label="Clean Watersystems"
     >
       <text
         x="0"
-        y="30"
-        textLength="100"
-        lengthAdjust="spacing"
+        y="40"
         fontSize="41"
         fontWeight="600"
+        letterSpacing="-1.4"
         fill={onDark ? "#ffffff" : "#001035"}
-        style={{ fontFamily: "var(--font-inter-tight), sans-serif" }}
+        style={{ fontFamily: font }}
       >
         Clean
       </text>
       <text
-        x="0"
-        y="48"
-        textLength="100"
-        lengthAdjust="spacing"
+        x="1.36"
+        y="56"
         fontSize="13"
         fontWeight="500"
-        fill={onDark ? "#aab5d0" : "#515b79"}
-        style={{ fontFamily: "var(--font-inter-tight), sans-serif" }}
+        letterSpacing="1.5"
+        fill={onDark ? "#6ccfff" : "#2365ff"}
+        style={{ fontFamily: font }}
       >
         watersystems
       </text>
@@ -99,7 +102,7 @@ export default function Logo({
   variant = "dark",
   className = "",
   markSize = 38,
-  wordHeight = 38,
+  wordHeight = 34,
   id = "cws",
 }: {
   variant?: "light" | "dark";

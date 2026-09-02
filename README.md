@@ -130,9 +130,12 @@ derde partij aan te pas. Vraag daarvoor het originele bestand op bij de klant.
 
 Het beeldmerk is een monogram-C met een druppelpunt in de opening, met een verloop
 van cyaan (#6ccfff) via het merkblauw (#2365ff) naar diepblauw (#102e97). Het woordmerk zet "Clean" groot
-met "watersystems" eronder. Beide regels staan op een vaste breedte via
-`textLength` in SVG, waardoor ze exact op elkaar uitlijnen ongeacht of het
-lettertype al geladen is. Alles staat in `src/components/Logo.tsx`.
+met "watersystems" in het merkblauw eronder. De uitlijning is uitgemeten op de
+gerenderde pixels in plaats van geforceerd met `textLength`: bij font-size 41 met
+letter-spacing -1.4 loopt de inkt van "Clean" van x 1.43 tot 98.85, en met
+letter-spacing 1.5 plus een x-offset van 1.36 valt "watersystems" op dezelfde
+randen. De viewBox is precies dat inktvlak, zodat de afstand tot het beeldmerk
+optisch klopt. Alles staat in `src/components/Logo.tsx`.
 
 - `LogoMark` levert alleen het merk, met een `size` in pixels
 - `Logo` levert het volledige lockup, met `variant="light"` of `"dark"`
