@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Hero from "@/components/Hero";
 import HeroVideo from "@/components/HeroVideo";
 import GoogleReviews from "@/components/GoogleReviews";
+import Certifications from "@/components/Certifications";
 import CtaSection from "@/components/CtaSection";
 import JsonLd from "@/components/JsonLd";
 import Media from "@/components/Media";
@@ -153,6 +153,7 @@ export default function HomePage() {
             <GoogleReviews />
           </>
         }
+        footnote={<Certifications scale={1.1} />}
         background={
           <HeroVideo
             videoId="iE9gWUet-lM"
@@ -161,28 +162,6 @@ export default function HomePage() {
           />
         }
       />
-
-      {/* Logostrook met de keurmerken van de bestaande site */}
-      <section className="border-b border-neutral-200 py-12">
-        <div className="container-default">
-          <div className="flex flex-wrap items-center justify-center gap-x-24 gap-y-10 max-md:gap-x-14">
-            {[
-              { src: "keurmerk-kiwa", alt: "Kiwa gecertificeerd, BRL-K14010 deel 1", h: "h-[76px]" },
-              { src: "keurmerk-ce", alt: "CE-markering", h: "h-[46px]" },
-              { src: "keurmerk-nen-en-1112", alt: "NEN-EN 1112, CE Medical klasse 2A", h: "h-[54px]" },
-            ].map((l) => (
-              <Image
-                key={l.src}
-                src={`/images/fotos/${l.src}.jpg`}
-                alt={l.alt}
-                width={400}
-                height={400}
-                className={`${l.h} w-auto`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Over ons */}
       <Section>

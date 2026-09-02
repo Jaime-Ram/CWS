@@ -13,6 +13,7 @@ export default function Hero({
   actions,
   aside,
   background,
+  footnote,
   compact = false,
 }: {
   eyebrow?: string;
@@ -21,6 +22,7 @@ export default function Hero({
   actions?: ReactNode;
   aside?: ReactNode;
   background?: ReactNode;
+  footnote?: ReactNode;
   compact?: boolean;
 }) {
   return (
@@ -33,7 +35,7 @@ export default function Hero({
         <div className="container-default relative">
           <div
             className={`${
-              aside ? "pb-24 pt-36" : compact ? "pb-20 pt-36" : "pb-[190px] pt-36"
+              aside ? "pb-24 pt-36" : footnote ? "pb-14 pt-36" : compact ? "pb-20 pt-36" : "pb-[190px] pt-36"
             } max-lg:pb-20 max-lg:pt-32 max-md:pb-14 max-md:pt-28`}
           >
             <div className={aside ? "grid grid-cols-[1fr_auto] items-center gap-14 max-lg:grid-cols-1 max-lg:gap-10" : ""}>
@@ -51,6 +53,11 @@ export default function Hero({
               </div>
               {aside}
             </div>
+            {footnote && (
+              <div className="mt-24 flex justify-end max-lg:mt-12 max-lg:justify-start">
+                {footnote}
+              </div>
+            )}
           </div>
         </div>
       </div>

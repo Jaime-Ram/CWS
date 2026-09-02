@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import Certifications from "./Certifications";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
 import { branches } from "@/data/branches";
@@ -112,7 +113,15 @@ export default function Footer() {
             </FooterColumn>
           </div>
 
-          <div className="mt-14 h-px w-full bg-primary-dark/15" />
+          <div className="mt-16 flex flex-wrap items-center justify-between gap-8">
+            <Certifications variant="light" scale={1.15} />
+            <p className="max-w-[380px] text-[14px] leading-[1.6em] text-primary-dark/70">
+              Wij werken volgens BRL 6010 en BRL-K14032 en gebruiken uitsluitend Kiwa-ATA
+              goedgekeurde reinigings- en desinfectiemiddelen.
+            </p>
+          </div>
+
+          <div className="mt-10 h-px w-full bg-primary-dark/15" />
 
           <div className="flex flex-wrap items-center justify-between gap-4 py-6 text-[14px] text-primary-dark/70">
             <p>
