@@ -50,6 +50,15 @@ export default function HeroVideo({
       <div className="absolute inset-0 bg-neutral-800/35" />
       <div className="absolute inset-0 bg-gradient-to-r from-neutral-800 via-neutral-800/75 to-transparent" />
       <div className="absolute inset-0 bg-gradient-to-t from-neutral-800/55 to-transparent" />
+      {/* Zachte verduistering rechtsonder, zodat de keurmerken op elk beeld
+          leesbaar blijven zonder dat er een vlak omheen staat. */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(60% 45% at 88% 88%, rgba(0,16,53,0.72) 0%, rgba(0,16,53,0.45) 45%, rgba(0,16,53,0) 78%)",
+        }}
+      />
     </div>
   );
 }
