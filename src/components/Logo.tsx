@@ -1,21 +1,29 @@
 import Link from "next/link";
 
 /**
- * Beeldmerk: een monogram-C waarvan de staart uitvloeit, met een punt in de
- * opening. Geometrie: middelpunt (50,50), straal 30, lijndikte 15, opening
- * symmetrisch op ±44 graden, dus een boog van 272 graden. De punt ligt op de
- * middellijn van de boog, op (80,50), en houdt zo 7,5 eenheden vrij van de
- * uiteindes: precies een halve lijndikte lucht rondom.
+ * Merkkleuren. Op een donkere ondergrond wordt donkerblauw wit en schuift het
+ * merkblauw op naar cyaan, omdat #2365ff tegen #001035 te weinig contrast geeft.
+ */
+const tint = (onDark: boolean) => ({
+  navy: onDark ? "#ffffff" : "#001035",
+  blue: onDark ? "#6ccfff" : "#2365ff",
+});
+
+/**
+ * Beeldmerk: drie geneste bogen met de opening naar rechts, waardoor de vorm als
+ * een C leest. De middelste boog staat in het merkblauw. De paden zijn 2,25
+ * naar rechts geschoven zodat het inktvlak precies in het 100-vak centreert.
  */
 export function LogoMark({
   className = "",
-  id = "cws",
   size,
+  variant = "dark",
 }: {
   className?: string;
-  id?: string;
   size?: number;
+  variant?: "light" | "dark";
 }) {
+  const c = tint(variant === "dark");
   return (
     <svg
       viewBox="0 0 100 100"
@@ -24,76 +32,57 @@ export function LogoMark({
       aria-hidden="true"
       role="presentation"
     >
-      <defs>
-        <linearGradient id={`${id}-grad`} x1="0" y1="1" x2="1" y2="0">
-          <stop offset="0%" stopColor="#102e97" />
-          <stop offset="40%" stopColor="#2365ff" />
-          <stop offset="78%" stopColor="#6ccfff" />
-          <stop offset="100%" stopColor="#6ccfff" stopOpacity="0.4" />
-        </linearGradient>
-        <linearGradient id={`${id}-dot`} x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#7ad4ff" />
-          <stop offset="100%" stopColor="#2365ff" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M71.58 29.16a30 30 0 1 0 0 41.68"
-        fill="none"
-        stroke={`url(#${id}-grad)`}
-        strokeWidth="15"
-        strokeLinecap="round"
-      />
-      <circle cx="80" cy="50" r="7.5" fill={`url(#${id}-dot)`} />
+      <g fill="none" strokeWidth="9">
+        <path d="M86.25 16H52.25A34 34 0 0 0 52.25 84H86.25" stroke={c.navy} />
+        <path d="M86.25 29H52.25A21 21 0 0 0 52.25 71H86.25" stroke={c.blue} />
+        <path d="M86.25 42H52.25A8 8 0 0 0 52.25 58H86.25" stroke={c.navy} />
+      </g>
     </svg>
   );
 }
 
 /**
- * Woordmerk: "Clean" groot met "watersystems" eronder.
- *
- * De uitlijning is niet met textLength geforceerd maar uitgemeten op de
- * gerenderde pixels: bij font-size 41 met letter-spacing -1.4 loopt de inkt van
- * "Clean" van x 1.43 tot 98.85. Met letter-spacing 1.5 en een x-offset van 1.36
- * valt "watersystems" op precies dezelfde randen. De viewBox is dat inktvlak,
- * zodat de afstand tot het beeldmerk optisch klopt.
+ * Woordmerk op een regel: "clean" in het merkblauw, "watersystems" in
+ * donkerblauw. Breedtes zijn uitgemeten in Inter Tight op 34 punt met een
+ * spatiering van -1.1: clean is 77,2 breed, watersystems 205,2.
  */
 export function LogoWordmark({
   variant = "dark",
-  height = 38,
+  height = 20,
   className = "",
 }: {
   variant?: "light" | "dark";
   height?: number;
   className?: string;
 }) {
-  const onDark = variant === "dark";
+  const c = tint(variant === "dark");
   const font = "var(--font-inter-tight), sans-serif";
   return (
     <svg
-      viewBox="1.43 9.75 97.42 48.82"
-      style={{ height, width: (height * 97.42) / 48.82 }}
+      viewBox="0 8 292 34"
+      style={{ height, width: (height * 292) / 34 }}
       className={className}
       role="img"
-      aria-label="Clean Watersystems"
+      aria-label="clean watersystems"
     >
       <text
         x="0"
-        y="40"
-        fontSize="41"
+        y="34"
+        fontSize="34"
         fontWeight="600"
-        letterSpacing="-1.4"
-        fill={onDark ? "#ffffff" : "#001035"}
+        letterSpacing="-1.1"
+        fill={c.blue}
         style={{ fontFamily: font }}
       >
-        Clean
+        clean
       </text>
       <text
-        x="1.36"
-        y="56"
-        fontSize="13"
-        fontWeight="500"
-        letterSpacing="1.5"
-        fill={onDark ? "#6ccfff" : "#2365ff"}
+        x="85"
+        y="34"
+        fontSize="34"
+        fontWeight="600"
+        letterSpacing="-1.1"
+        fill={c.navy}
         style={{ fontFamily: font }}
       >
         watersystems
@@ -105,23 +94,21 @@ export function LogoWordmark({
 export default function Logo({
   variant = "dark",
   className = "",
-  markSize = 38,
-  wordHeight = 34,
-  id = "cws",
+  markSize = 36,
+  wordHeight = 19,
 }: {
   variant?: "light" | "dark";
   className?: string;
   markSize?: number;
   wordHeight?: number;
-  id?: string;
 }) {
   return (
     <Link
       href="/"
       aria-label="Clean Watersystems, naar de homepage"
-      className={`flex items-center gap-2.5 ${className}`}
+      className={`flex items-center gap-3 ${className}`}
     >
-      <LogoMark id={id} size={markSize} className="shrink-0" />
+      <LogoMark variant={variant} size={markSize} className="shrink-0" />
       <LogoWordmark variant={variant} height={wordHeight} className="shrink-0" />
     </Link>
   );

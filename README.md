@@ -128,21 +128,20 @@ derde partij aan te pas. Vraag daarvoor het originele bestand op bij de klant.
 
 ## Logo en favicon
 
-Het beeldmerk is een monogram-C waarvan de staart uitvloeit, met een punt in de
-opening. Geometrie: middelpunt (50,50), straal 30, lijndikte 15, opening ±44
-graden (een boog van 272°), punt op de middellijn van de boog op (80,50) met
-straal 7.5. Die opening is zo gekozen dat de punt een halve lijndikte vrij ligt
-van de uiteindes. Het verloop
-loopt van diepblauw (#102e97) via het merkblauw (#2365ff) naar cyaan (#6ccfff)
-dat uitvloeit tot 40% dekking. Het woordmerk zet "Clean" groot
-met "watersystems" in het merkblauw eronder. De uitlijning is uitgemeten op de
-gerenderde pixels in plaats van geforceerd met `textLength`: bij font-size 41 met
-letter-spacing -1.4 loopt de inkt van "Clean" van x 1.43 tot 98.85, en met
-letter-spacing 1.5 plus een x-offset van 1.36 valt "watersystems" op dezelfde
-randen. De viewBox is precies dat inktvlak, zodat de afstand tot het beeldmerk
-optisch klopt. Alles staat in `src/components/Logo.tsx`.
+Het beeldmerk bestaat uit drie geneste bogen met de opening naar rechts, waardoor
+de vorm als een C leest. De middelste boog staat in het merkblauw (#2365ff), de
+buitenste en binnenste in donkerblauw (#001035). In het woordmerk is "clean"
+blauw en "watersystems" donkerblauw, zodat het blauw op twee plekken terugkomt.
+
+Op een donkere ondergrond wordt donkerblauw wit en schuift het merkblauw op naar
+cyaan (#6ccfff): #2365ff geeft tegen #001035 te weinig contrast.
+
+De paden zijn 2,25 naar rechts geschoven zodat het inktvlak precies in het
+100-vak centreert. Woordmerkbreedtes zijn uitgemeten in Inter Tight op 34 punt
+met spatiering -1.1: clean is 77,2 breed, watersystems 205,2.
 
 - `LogoMark` levert alleen het merk, met een `size` in pixels
+- `LogoWordmark` levert alleen het woordmerk, met een `height`
 - `Logo` levert het volledige lockup, met `variant="light"` of `"dark"`
 - `public/images/logo-mark.svg` is het losse merk voor extern gebruik
 - `src/app/icon.png` en `apple-icon.png` zijn de favicon en het app-icoon
