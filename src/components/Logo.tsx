@@ -11,7 +11,7 @@ export default function Logo({ variant = "dark", className = "", markSize = 40, 
   const id = useId().replace(/:/g, "");
   return <Link href="/" aria-label="Clean Watersystems, naar de homepage"
     className={`inline-flex min-w-0 items-center ${className}`}>
-    <svg viewBox="350 165 1500 385" width={Math.round((markSize + wordHeight) * 2.5)}
+    <svg viewBox="350 165 1500 385" width={Math.round((markSize + wordHeight) * 2.05)}
       className="block h-auto max-w-full" role="img" aria-label="Clean Watersystems">
       <defs>
         <clipPath id={`${id}-mark-clip`}><rect width="690" height="724" /></clipPath>
