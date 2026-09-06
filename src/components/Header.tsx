@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Logo from "./Logo";
+import MobileMenu from "./MobileMenu";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { site } from "@/data/site";
@@ -34,7 +35,7 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
     >
       <div className="container-default">
         <div className="flex items-center justify-between gap-6 py-6">
-          <Logo variant={dark ? "dark" : "light"} markSize={36} wordHeight={19} className="shrink-0" />
+          <Logo variant={dark ? "dark" : "light"} markSize={40} wordHeight={36} className="shrink-0" />
 
           {/* Desktop-navigatie */}
           <nav className="flex items-center gap-8 max-lg:hidden" aria-label="Hoofdnavigatie">
@@ -81,7 +82,9 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
             onClick={() => setOpen((v) => !v)}
             aria-expanded={open}
             aria-label="Navigatie openen"
-            className={`hidden size-11 items-center justify-center rounded-full border max-lg:flex ${
+            aria-controls="mobile-navigation"
+            aria-haspopup="dialog"
+            className={`hidden size-11 shrink-0 items-center justify-center rounded-full border max-lg:flex ${
               dark ? "border-white/25 text-white" : "border-neutral-200 text-neutral-800"
             }`}
           >
@@ -93,38 +96,7 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
         </div>
       </div>
 
-      {/* Mobiel menu */}
-      {open && (
-        <div className="hidden max-lg:block">
-          <div className="container-default pb-6">
-            <div className="card max-h-[70vh] overflow-y-auto p-5">
-              <MobileGroup title="Diensten" href="/diensten" items={services.map((s) => ({ label: s.navName, href: `/diensten/${s.slug}` }))} />
-              <MobileGroup title="Branches" href="/branches" items={branches.map((b) => ({ label: b.name, href: `/branches/${b.slug}` }))} />
-              <div className="divider my-4" />
-              <div className="grid gap-1">
-                {mainLinks.map((l) => (
-                  <Link
-                    key={l.href}
-                    href={l.href}
-                    className="rounded-[6px] px-3 py-2 text-[15px] font-medium text-neutral-800"
-                  >
-                    {l.label}
-                  </Link>
-                ))}
-              </div>
-              <div className="divider my-4" />
-              <div className="flex flex-col gap-3">
-                <a href={site.phoneHref} className="px-3 font-semibold text-primary">
-                  {site.phone}
-                </a>
-                <PrimaryButton href="/contact" className="self-start">
-                  Offerte aanvragen
-                </PrimaryButton>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      <MobileMenu open={open} onClose={() => setOpen(false)} />
     </header>
   );
 }
@@ -180,31 +152,6 @@ function NavDropdown({
         </div>
       </div>
     </li>
-  );
-}
-
-function MobileGroup({
-  title,
-  href,
-  items,
-}: {
-  title: string;
-  href: string;
-  items: { label: string; href: string }[];
-}) {
-  return (
-    <div className="mb-4">
-      <Link href={href} className="block px-3 pb-1 text-[13px] font-semibold uppercase tracking-wide text-neutral-400">
-        {title}
-      </Link>
-      <div className="grid gap-0.5">
-        {items.map((i) => (
-          <Link key={i.href} href={i.href} className="rounded-[6px] px-3 py-[7px] text-[14px] text-neutral-600">
-            {i.label}
-          </Link>
-        ))}
-      </div>
-    </div>
   );
 }
 

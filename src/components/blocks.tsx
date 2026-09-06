@@ -84,7 +84,7 @@ export function StatsCard({
           className="pointer-events-none absolute -left-3 -top-2 size-16 rounded-full bg-secondary-200/20 blur-xl"
           aria-hidden="true"
         />
-        <span className="relative block text-[48px] font-semibold leading-none text-primary max-md:text-[40px]">
+        <span className="relative block text-[48px] font-semibold leading-none text-cta max-md:text-[40px]">
           {value}
           {suffix}
         </span>
@@ -446,11 +446,11 @@ export function QuoteCard({
   statOnRight?: boolean;
 }) {
   const person = (
-    <div className="flex items-center gap-3">
+    <div className="flex min-w-0 items-center gap-3">
       <span className="flex size-11 shrink-0 items-center justify-center rounded-full border-[1.5px] border-white bg-secondary-100 text-[15px] font-semibold text-primary shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f]">
         {author.slice(0, 2).toUpperCase()}
       </span>
-      <span>
+      <span className="min-w-0 [overflow-wrap:anywhere]">
         <span className="block text-[15px] font-semibold text-neutral-800">{author}</span>
         <span className="block text-[15px] text-neutral-500">{role}</span>
       </span>
@@ -460,7 +460,7 @@ export function QuoteCard({
   const statBlock = (align: "left" | "right") => (
     <div className={align === "right" ? "text-right" : ""}>
       <div
-        className={`font-semibold leading-none text-neutral-800 ${
+        className={`font-semibold leading-none text-cta ${
           large ? "text-[40px] max-md:text-[32px]" : "text-[32px]"
         }`}
       >
@@ -471,10 +471,10 @@ export function QuoteCard({
   );
 
   return (
-    <Card className={`flex h-full flex-col justify-between gap-8 p-10 max-sm:p-6 ${compact ? "gap-6" : ""}`}>
+    <Card className={`flex h-full min-w-0 flex-col justify-between gap-8 p-6 max-sm:p-5 [overflow-wrap:anywhere] ${compact ? "gap-6" : ""}`}>
       <div>
         {statOnRight ? (
-          <div className="flex items-start justify-between gap-6">
+          <div className="flex flex-wrap items-start justify-between gap-4">
             {person}
             {statBlock("right")}
           </div>
@@ -498,7 +498,7 @@ export function QuoteCard({
 function QuoteMark({ className = "" }: { className?: string }) {
   return (
     <svg
-      className={`text-primary ${className}`}
+      className={`text-cta ${className}`}
       width="34"
       height="26"
       viewBox="0 0 34 26"
@@ -528,11 +528,11 @@ export function TestimonialGrid({
 }) {
   const [a, b, c, d] = items;
   return (
-    <div className="grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-      <div className="col-span-2 row-span-2 max-sm:col-span-1">
+    <div className="grid grid-cols-4 gap-5 max-xl:grid-cols-2 max-md:grid-cols-1">
+      <div className="min-w-0 col-span-2 row-span-2 max-xl:col-span-1 max-xl:row-span-1">
         <QuoteCard {...a} large />
       </div>
-      <div className="col-span-2 max-sm:col-span-1">
+      <div className="min-w-0 col-span-2 max-xl:col-span-1">
         <QuoteCard {...b} statOnRight />
       </div>
       {[c, d].filter(Boolean).map((q) => (

@@ -52,7 +52,7 @@ export default function VideoEmbed({
           <span className="absolute inset-0 flex items-center justify-center">
             <span className="flex size-[68px] items-center justify-center rounded-full bg-white/95 shadow-[0_8px_30px_rgba(0,16,53,0.35)] transition-transform duration-300 group-hover:scale-110 max-sm:size-14">
               <svg width="20" height="24" viewBox="0 0 20 24" fill="none" aria-hidden="true">
-                <path d="M19 12 0 24V0l19 12z" fill="#2365ff" />
+                <path d="M19 12 0 24V0l19 12z" fill="#0d509c" />
               </svg>
             </span>
           </span>

@@ -114,8 +114,7 @@ export default function ContactPage() {
         }
       >
         <div className="pl-2 max-lg:pl-0">
-          <Badge>Binnen één werkdag antwoord</Badge>
-          <h2 className="mt-4">Stuur ons een bericht</h2>
+          <h2>Stuur ons een bericht</h2>
           <p className="mt-3 max-w-[520px] leading-[1.6em]">
             Hoe concreter uw omschrijving, hoe scherper wij kunnen antwoorden. Vermeld bij
             voorkeur het type gebouw, het aantal tappunten en of u prioritaire instelling

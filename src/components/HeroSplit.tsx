@@ -54,7 +54,7 @@ export default function HeroSplit({
                 <div className="mt-10 flex flex-wrap gap-10 border-t border-neutral-200 pt-8">
                   {stats.map((s) => (
                     <div key={s.label}>
-                      <div className="text-[32px] font-semibold leading-none text-primary">
+                      <div className="text-[32px] font-semibold leading-none text-cta">
                         {s.value}
                       </div>
                       <div className="mt-1.5 text-[15px] text-neutral-600">{s.label}</div>

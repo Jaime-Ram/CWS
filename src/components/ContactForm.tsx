@@ -100,12 +100,12 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status === "sending"}
-          className="group inline-flex items-center rounded-[300px] bg-primary py-2 pl-6 pr-2 font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 disabled:opacity-60"
+          className="group inline-flex items-center rounded-[300px] bg-cta py-2 pl-6 pr-2 font-semibold text-white disabled:opacity-60"
         >
           <span className="text-[15px]">
             {status === "sending" ? "Versturen..." : "Verstuur aanvraag"}
           </span>
-          <span className="ml-4 flex size-[38px] shrink-0 items-center justify-center rounded-full bg-white text-primary transition-transform duration-300 group-hover:rotate-45">
+          <span className="ml-4 flex size-[38px] shrink-0 items-center justify-center rounded-full bg-white text-cta transition-transform duration-300 group-hover:rotate-45">
             <ArrowIcon />
           </span>
         </button>

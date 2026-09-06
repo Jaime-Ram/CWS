@@ -1,58 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useState } from "react";
 
-export default function Faq({
-  items,
-  className = "",
-}: {
+export default function Faq({ items, className = "", defaultOpen = null }: {
   items: { q: string; a: string }[];
   className?: string;
+  defaultOpen?: number | null;
 }) {
-  const [open, setOpen] = useState<number | null>(0);
-
-  return (
-    <div className={`grid gap-3 ${className}`}>
-      {items.map((item, i) => {
-        const isOpen = open === i;
-        return (
-          <div key={item.q} className="card overflow-hidden">
-            <button
-              type="button"
-              onClick={() => setOpen(isOpen ? null : i)}
-              aria-expanded={isOpen}
-              className="flex w-full items-start gap-5 p-6 text-left max-sm:p-5"
-            >
-              <span className="mt-0.5 w-7 shrink-0 font-semibold text-neutral-400 tabular-nums">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="flex-1 text-[18px] font-semibold leading-[1.35em] text-neutral-800 max-sm:text-[16px]">
-                {item.q}
-              </span>
-              <span
-                className={`mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-neutral-800 transition-transform duration-300 ${
-                  isOpen ? "rotate-45" : ""
-                }`}
-              >
-                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-                  <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-                </svg>
-              </span>
-            </button>
-            <div
-              className={`grid transition-all duration-300 ${
-                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-              }`}
-            >
-              <div className="overflow-hidden">
-                <p className="px-6 pb-6 pl-[72px] leading-[1.65em] max-sm:px-5 max-sm:pb-5 max-sm:pl-5">
-                  {item.a}
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+  const [open, setOpen] = useState<number | null>(defaultOpen);
+  const id = useId();
+  return <div className={`faq-list ${className}`}>
+    {items.map((item, i) => {
+      const expanded = open === i;
+      return <div key={item.q} className="faq-item">
+        <h3>
+          <button id={`${id}-question-${i}`} type="button" className="faq-question"
+            aria-expanded={expanded} aria-controls={`${id}-answer-${i}`}
+            onClick={() => setOpen(expanded ? null : i)}>
+            <span className="faq-number" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+            <span className="min-w-0 flex-1">{item.q}</span>
+            <svg className={`faq-plus ${expanded ? "rotate-45" : ""}`} width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path d="M9 3v12M3 9h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+          </button>
+        </h3>
+        <div id={`${id}-answer-${i}`} aria-labelledby={`${id}-question-${i}`} role="region"
+          className="faq-answer" data-open={expanded} aria-hidden={!expanded} inert={!expanded}>
+          <div className="overflow-hidden"><p>{item.a}</p></div>
+        </div>
+      </div>;
+    })}
+  </div>;
 }

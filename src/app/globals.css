@@ -9,19 +9,20 @@
 
   /* Core neutrals */
   --color-neutral-100: #ffffff;
-  --color-neutral-200: #f1f4ff;
-  --color-neutral-300: #cbd2ea;
-  --color-neutral-400: #b3bad3;
-  --color-neutral-500: #8791ad;
-  --color-neutral-600: #515b79;
-  --color-neutral-700: #00143f;
-  --color-neutral-800: #001035;
+  --color-neutral-200: #eef2f7;
+  --color-neutral-300: #c3cfdd;
+  --color-neutral-400: #a9b6c8;
+  --color-neutral-500: #7b8798;
+  --color-neutral-600: #4a5768;
+  --color-neutral-700: #002a5a;
+  --color-neutral-800: #001f43;
 
   /* Primary / secondary */
-  --color-primary: #2365ff;
-  --color-primary-dark: #1d36b6;
-  --color-secondary-100: #ebf4ff;
-  --color-secondary-200: #2db2ff;
+  --color-primary: #0d509c;
+  --color-cta: #2365ff;
+  --color-primary-dark: #06305f;
+  --color-secondary-100: #e8f1fa;
+  --color-secondary-200: #3d8fd6;
 
   /* Systeemkleuren */
   --color-system-red-100: #fff5f6;
@@ -277,49 +278,49 @@
 
 /* Hero: lichtsweep diagonaal vanaf rechts, donkere navy linksboven. */
 .bg-hero-sweep {
-  background-color: #011135;
+  background-color: #001f43;
   background-image: linear-gradient(
     151deg,
-    #011135 0%,
-    #011135 40%,
-    #062561 45%,
-    #123a92 48%,
-    #2a6cf2 51%,
-    #5c9ffd 54%,
-    #9ad4ff 58%,
-    #d8eeff 63%,
-    #f4faff 71%,
+    #001f43 0%,
+    #001f43 40%,
+    #06305f 45%,
+    #0a4179 48%,
+    #0d509c 51%,
+    #3d8fd6 54%,
+    #8cc4ee 58%,
+    #d6e7f5 63%,
+    #f3f8fc 71%,
     #ffffff 82%
   );
 }
 
 /* CTA-band: lichtsweep vanaf links, inhoud rechts. */
 .bg-cta-sweep {
-  background-color: #011135;
+  background-color: #001f43;
   background-image: linear-gradient(
     142deg,
-    #f3f5ff 0%,
-    #f3f5ff 27%,
-    #d6e9ff 32%,
-    #8fc2ff 36%,
-    #3f8bf7 40%,
-    #14459e 44%,
-    #05205c 48%,
-    #011135 54%
+    #f3f7fb 0%,
+    #f3f7fb 27%,
+    #d6e7f5 32%,
+    #7db4e2 36%,
+    #2f7ac2 40%,
+    #0a4179 44%,
+    #052c58 48%,
+    #001f43 54%
   );
 }
 
-/* Footer: donker bovenin, gloed die onderaan uitloopt naar #f1f3ff. */
+/* Footer: donker bovenin, gloed die onderaan uitloopt naar #eff4f9. */
 .bg-footer-glow {
-  background-color: #011135;
+  background-color: #001f43;
   background-image: radial-gradient(
     96% 62% at 50% 92%,
-    #f1f3ff 0%,
-    #f1f3ff 40%,
-    #cfdcff 50%,
-    #86b1fb 60%,
-    #3f7cf5 69%,
-    #1a49b8 78%,
+    #eff4f9 0%,
+    #eff4f9 40%,
+    #cbdcec 50%,
+    #7db4e2 60%,
+    #2f7ac2 69%,
+    #0a4179 78%,
     #06215f 88%,
     rgba(1, 17, 53, 0) 97%
   );
@@ -327,24 +328,24 @@
 
 /* Contactkaart: dezelfde gloed, maar compacter en onderaan. */
 .bg-contact-glow {
-  background-color: #011135;
+  background-color: #001f43;
   background-image: radial-gradient(
     120% 48% at 50% 86%,
-    #f1f3ff 0%,
-    #dfe8ff 26%,
-    #9dbffc 44%,
+    #eff4f9 0%,
+    #dde9f4 26%,
+    #8cc4ee 44%,
     #4a84f7 58%,
-    #17419e 72%,
+    #0a4179 72%,
     rgba(1, 17, 53, 0) 88%
   );
 }
 
 /* Nieuwsbriefkaart: fel blauw met lichte kern linksonder. */
 .bg-newsletter {
-  background-color: #2365ff;
+  background-color: #0d509c;
   background-image:
-    radial-gradient(70% 110% at 6% 104%, #e8f1ff 0%, #8fbaff 26%, #2f74ff 52%, rgba(35, 101, 255, 0) 74%),
-    linear-gradient(122deg, #05205c 0%, #1a48c6 44%, #2f74ff 100%);
+    radial-gradient(70% 110% at 6% 104%, #e4edf7 0%, #7db4e2 26%, #1c62ad 52%, rgba(35, 101, 255, 0) 74%),
+    linear-gradient(122deg, #052c58 0%, #0a4179 44%, #1c62ad 100%);
 }
 
 /* Fijne rasterlijnen zoals in de template-achtergronden. */
@@ -359,4 +360,74 @@
     transparent 1px
   );
   background-size: 72px 100%;
+}
+
+/* Mobile navigation lives in the browser's top layer, above clipped heroes. */
+.mobile-navigation {
+  position: fixed;
+  inset: 0;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  height: 100dvh;
+  max-height: none;
+  border: 0;
+  padding: 0;
+  background: white;
+  color: var(--color-neutral-800);
+  overflow: hidden;
+}
+.mobile-navigation[open] { display: flex; flex-direction: column; animation: mobile-menu-enter 200ms ease-out; }
+.mobile-navigation::backdrop { background: #001f4380; }
+.mobile-navigation-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-shrink: 0;
+  padding: max(16px, env(safe-area-inset-top)) 20px 16px;
+  border-bottom: 1px solid var(--color-neutral-200);
+}
+.mobile-navigation-scroll { flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain; padding: 24px 24px 16px; }
+.mobile-nav-link, .mobile-nav-group {
+  display: flex; align-items: center; justify-content: space-between;
+  min-height: 54px; width: 100%; padding: 10px 0;
+  font-size: 20px; font-weight: 600; text-align: left; line-height: 1.3;
+}
+.mobile-nav-link { border-bottom: 1px solid var(--color-neutral-200); }
+.mobile-nav-link[aria-current="page"] { color: var(--color-cta); }
+.mobile-nav-sublink { min-height: 44px; padding: 10px 14px; font-size: 15px; font-weight: 500; border: 0; border-radius: 8px; }
+.mobile-nav-sublink:hover { background: var(--color-neutral-200); }
+.mobile-nav-plus { font-size: 26px; font-weight: 400; transition: transform 180ms ease; }
+.mobile-nav-accordion { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 200ms ease, visibility 200ms; }
+.mobile-nav-accordion[data-open="true"] { grid-template-rows: 1fr; visibility: visible; }
+.mobile-navigation-contact { display: grid; gap: 4px; flex-shrink: 0; border-top: 1px solid var(--color-neutral-200); padding: 16px 24px max(12px, env(safe-area-inset-bottom)); background: #f7f9fc; }
+.mobile-navigation :focus-visible { outline: 2px solid var(--color-cta); outline-offset: 3px; }
+@keyframes mobile-menu-enter { from { opacity: 0; transform: translateY(-12px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) {
+  .mobile-navigation[open] { animation: none; }
+  .mobile-nav-accordion, .mobile-nav-plus { transition: none; }
+}
+
+/* Compact FAQ rows share the site's thin dividers and blue accents. */
+.faq-list { border-top: 1px solid var(--color-neutral-200); }
+.faq-item { border-bottom: 1px solid var(--color-neutral-200); }
+.faq-question { display: flex; width: 100%; align-items: center; gap: 16px; padding: 18px 0; text-align: left; font-size: 17px; line-height: 1.45; font-weight: 500; color: var(--color-neutral-800); }
+.faq-question:hover, .faq-question[aria-expanded="true"] { color: var(--color-cta); }
+.faq-question:focus-visible { outline: 2px solid var(--color-cta); outline-offset: 4px; }
+.faq-number { flex: 0 0 24px; color: var(--color-neutral-500); font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
+.faq-plus { flex-shrink: 0; color: var(--color-cta); transition: transform 180ms ease; }
+.faq-answer { display: grid; grid-template-rows: 0fr; visibility: hidden; transition: grid-template-rows 180ms ease, visibility 180ms; }
+.faq-answer[data-open="true"] { grid-template-rows: 1fr; visibility: visible; }
+.faq-answer p { max-width: 820px; padding: 0 34px 20px 40px; font-size: 15px; line-height: 1.7; }
+@media (max-width: 1023px) {
+
+}
+@media (max-width: 479px) {
+
+  .faq-question { gap: 12px; font-size: 16px; padding-block: 16px; }
+  .faq-answer p { padding-left: 36px; padding-right: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .faq-answer, .faq-plus { transition: none; }
 }

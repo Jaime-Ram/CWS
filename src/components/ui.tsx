@@ -38,11 +38,11 @@ export function PrimaryButton({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center bg-primary py-2 pl-6 pr-2 font-semibold text-white transition-transform duration-300 hover:-translate-y-0.5 max-sm:pl-5 ${className}`}
+      className={`group inline-flex items-center bg-cta py-2 pl-6 pr-2 font-semibold text-white max-sm:pl-5 ${className}`}
       style={{ borderRadius: 300 }}
     >
       <span className="text-[15px] leading-[1.25em]">{children}</span>
-      <span className="ml-4 flex size-[38px] shrink-0 items-center justify-center rounded-full bg-white text-primary transition-transform duration-300 group-hover:rotate-45 max-sm:ml-3 max-sm:size-[30px]">
+      <span className="ml-4 flex size-[38px] shrink-0 items-center justify-center rounded-full bg-white text-cta transition-transform duration-300 group-hover:rotate-45 max-sm:ml-3 max-sm:size-[30px]">
         <ArrowIcon />
       </span>
     </Link>
@@ -64,7 +64,7 @@ export function SecondaryButton({
   return (
     <Link
       href={href}
-      className={`group inline-flex items-center border py-2 pl-6 pr-2 font-semibold transition-transform duration-300 hover:-translate-y-0.5 max-sm:pl-5 ${
+      className={`group inline-flex items-center border py-2 pl-6 pr-2 font-semibold max-sm:pl-5 ${
         isDark
           ? "border-white/25 bg-white/5 text-white"
           : "border-neutral-200 bg-white text-neutral-800"

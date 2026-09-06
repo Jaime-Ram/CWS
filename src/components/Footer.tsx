@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Logo from "./Logo";
+import FooterSurface from "./FooterSurface";
 import Certifications from "./Certifications";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
@@ -16,12 +17,12 @@ const year = 2026;
 export default function Footer() {
   return (
     <footer className="px-5 pb-5 max-lg:px-4 max-lg:pb-4">
-      <div className="relative mx-auto max-w-[1440px] overflow-hidden rounded-[24px] bg-grid-lines bg-footer-glow max-md:rounded-[18px]">
+      <FooterSurface>
         <div className="container-default relative">
           {/* CTA bovenin, op het donkere deel */}
           <div className="mx-auto max-w-[640px] pb-16 pt-24 text-center max-md:pb-10 max-md:pt-16">
             <div className="flex justify-center">
-              <Logo variant="dark" markSize={44} wordHeight={23} />
+              <Logo variant="dark" markSize={48} wordHeight={44} />
             </div>
 
             <h2 className="mt-8 text-white">
@@ -39,8 +40,9 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Linkkolommen, op het lichte deel van de gloed */}
-          <div className="grid grid-cols-4 gap-10 pt-40 max-lg:grid-cols-2 max-sm:grid-cols-1 max-md:pt-24">
+          {/* Text adapts to its position on the original footer gradient. */}
+          <div className="footer-details">
+          <div className="grid grid-cols-4 gap-10 pt-40 max-lg:grid-cols-2 max-sm:grid-cols-1 max-lg:pt-10">
             <FooterColumn title="Diensten">
               {services.slice(0, 7).map((s) => (
                 <FooterLink key={s.slug} href={`/diensten/${s.slug}`}>
@@ -136,8 +138,9 @@ export default function Footer() {
               </Link>
             </div>
           </div>
+          </div>
         </div>
-      </div>
+      </FooterSurface>
     </footer>
   );
 }

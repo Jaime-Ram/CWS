@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Media from "./Media";
+import Faq from "./Faq";
 import { Badge } from "./blocks";
 
 /* -------------------------------------------------------------------------- */
@@ -160,66 +161,8 @@ export function CardTabs({
 /*  NumberedAccordion — .accordion-item met nummer en achtergrondvisual        */
 /* -------------------------------------------------------------------------- */
 
-export function NumberedAccordion({
-  items,
-}: {
-  items: { q: string; a: string }[];
-}) {
-  const [open, setOpen] = useState<number | null>(null);
-
-  return (
-    <div className="grid gap-4">
-      {items.map((item, i) => {
-        const isOpen = open === i;
-        return (
-          <div
-            key={item.q}
-            className="overflow-hidden rounded-[24px] border border-neutral-300 bg-white shadow-[0_4px_4px_#9ac4ff0f,0_1px_5px_#05112d0f] max-md:rounded-[18px]"
-          >
-            <button
-              type="button"
-              onClick={() => setOpen(isOpen ? null : i)}
-              aria-expanded={isOpen}
-              className="flex w-full items-center gap-6 p-8 text-left max-sm:gap-4 max-sm:p-5"
-            >
-              <span className="shrink-0 text-[15px] font-semibold text-neutral-400 tabular-nums">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="flex-1 text-[24px] font-semibold leading-[1.3em] text-neutral-800 max-md:text-[19px] max-sm:text-[17px]">
-                {item.q}
-              </span>
-              <span
-                className={`flex size-10 shrink-0 items-center justify-center rounded-full bg-neutral-200 text-neutral-800 transition-transform duration-300 ${
-                  isOpen ? "rotate-90" : ""
-                }`}
-              >
-                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                  <path
-                    d="M5.63068 12.4001L10.3691 8.0001L5.63068 3.6001"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-            </button>
-            <div
-              className={`grid transition-all duration-300 ${
-                isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
-              }`}
-            >
-              <div className="overflow-hidden">
-                <p className="max-w-[820px] px-8 pb-8 pl-[74px] leading-[1.65em] max-sm:px-5 max-sm:pb-5 max-sm:pl-5">
-                  {item.a}
-                </p>
-              </div>
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
+export function NumberedAccordion({ items }: { items: { q: string; a: string }[] }) {
+  return <Faq items={items} defaultOpen={null} />;
 }
 
 /* -------------------------------------------------------------------------- */

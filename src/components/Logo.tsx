@@ -1,115 +1,34 @@
 import Link from "next/link";
+import { useId } from "react";
 
-/**
- * Merkkleuren. Op een donkere ondergrond wordt donkerblauw wit en schuift het
- * merkblauw op naar cyaan, omdat #2365ff tegen #001035 te weinig contrast geeft.
- */
-const tint = (onDark: boolean) => ({
-  navy: onDark ? "#ffffff" : "#001035",
-  blue: onDark ? "#6ccfff" : "#2365ff",
-});
-
-/**
- * Beeldmerk: drie geneste bogen met de opening naar rechts, waardoor de vorm als
- * een C leest. De middelste boog staat in het merkblauw. De paden zijn 2,25
- * naar rechts geschoven zodat het inktvlak precies in het 100-vak centreert.
- */
-export function LogoMark({
-  className = "",
-  size,
-  variant = "dark",
-}: {
-  className?: string;
-  size?: number;
-  variant?: "light" | "dark";
-}) {
-  const c = tint(variant === "dark");
-  return (
-    <svg
-      viewBox="0 0 100 100"
-      className={className}
-      style={size ? { width: size, height: size } : undefined}
-      aria-hidden="true"
-      role="presentation"
-    >
-      <g fill="none" strokeWidth="9">
-        <path d="M86.25 16H52.25A34 34 0 0 0 52.25 84H86.25" stroke={c.navy} />
-        <path d="M86.25 29H52.25A21 21 0 0 0 52.25 71H86.25" stroke={c.blue} />
-        <path d="M86.25 42H52.25A8 8 0 0 0 52.25 58H86.25" stroke={c.navy} />
-      </g>
-    </svg>
-  );
-}
-
-/**
- * Woordmerk op een regel: "clean" in het merkblauw, "watersystems" in
- * donkerblauw. Breedtes zijn uitgemeten in Inter Tight op 34 punt met een
- * spatiering van -1.1: clean is 77,2 breed, watersystems 205,2.
- */
-export function LogoWordmark({
-  variant = "dark",
-  height = 20,
-  className = "",
-}: {
-  variant?: "light" | "dark";
-  height?: number;
-  className?: string;
-}) {
-  const c = tint(variant === "dark");
-  const font = "var(--font-inter-tight), sans-serif";
-  return (
-    <svg
-      viewBox="0 8 292 34"
-      style={{ height, width: (height * 292) / 34 }}
-      className={className}
-      role="img"
-      aria-label="clean watersystems"
-    >
-      <text
-        x="0"
-        y="34"
-        fontSize="34"
-        fontWeight="600"
-        letterSpacing="-1.1"
-        fill={c.blue}
-        style={{ fontFamily: font }}
-      >
-        clean
-      </text>
-      <text
-        x="85"
-        y="34"
-        fontSize="34"
-        fontWeight="600"
-        letterSpacing="-1.1"
-        fill={c.navy}
-        style={{ fontFamily: font }}
-      >
-        watersystems
-      </text>
-    </svg>
-  );
-}
-
-export default function Logo({
-  variant = "dark",
-  className = "",
-  markSize = 36,
-  wordHeight = 19,
-}: {
+/** Render the supplied artwork directly; isolate its blue mark and white lettering. */
+export default function Logo({ variant = "dark", className = "", markSize = 40, wordHeight = 36 }: {
   variant?: "light" | "dark";
   className?: string;
   markSize?: number;
   wordHeight?: number;
 }) {
-  return (
-    <Link
-      href="/"
-      aria-label="Clean Watersystems, naar de homepage"
-      className={`flex items-center gap-3 ${className}`}
-    >
-      <LogoMark variant={variant} size={markSize} className="shrink-0" />
-      <LogoWordmark variant={variant} height={wordHeight} className="shrink-0" />
-    </Link>
-  );
+  const id = useId().replace(/:/g, "");
+  return <Link href="/" aria-label="Clean Watersystems, naar de homepage"
+    className={`inline-flex min-w-0 items-center ${className}`}>
+    <svg viewBox="350 165 1500 385" width={Math.round((markSize + wordHeight) * 2.5)}
+      className="block h-auto max-w-full" role="img" aria-label="Clean Watersystems">
+      <defs>
+        <clipPath id={`${id}-mark-clip`}><rect width="690" height="724" /></clipPath>
+        <clipPath id={`${id}-text-clip`}><rect x="690" width="1482" height="724" /></clipPath>
+        <filter id={`${id}-mark`} colorInterpolationFilters="sRGB">
+          <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  -4 0 4 0 -0.5" />
+        </filter>
+        <filter id={`${id}-letters`} colorInterpolationFilters="sRGB">
+          <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  20 0 0 0 -18" result="letters" />
+          <feFlood floodColor={variant === "dark" ? "#ffffff" : "#001f43"} />
+          <feComposite in2="letters" operator="in" />
+        </filter>
+      </defs>
+      <image href="/images/brand/new-logo.png" width="2172" height="724"
+        clipPath={`url(#${id}-mark-clip)`} filter={`url(#${id}-mark)`} />
+      <image href="/images/brand/new-logo.png" width="2172" height="724"
+        clipPath={`url(#${id}-text-clip)`} filter={`url(#${id}-letters)`} />
+    </svg>
+  </Link>;
 }

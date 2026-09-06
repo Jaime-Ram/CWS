@@ -173,8 +173,8 @@ export default function HomePage() {
         <div className="divider my-10" />
         <div className="overflow-hidden rounded-[24px] max-md:rounded-[18px]">
           <Media
-            src="/images/fotos/leidingnet-manifold.jpg"
-            alt="Clean Watersystems aan het werk aan een drinkwaterinstallatie"
+            src="/images/fotos/handen-onder-kraan.jpg"
+            alt="Handen wassen met schoon stromend kraanwater"
             ratio="21/10"
             className="w-full max-md:aspect-[16/9]"
             priority
@@ -192,13 +192,13 @@ export default function HomePage() {
             snel en onderbouwd advies, met een blijvend resultaat als doel.
           </p>
           <div>
-            <div className="text-[48px] font-semibold leading-none text-primary max-md:text-[36px]">
+            <div className="text-[48px] font-semibold leading-none text-cta max-md:text-[36px]">
               {site.founded}
             </div>
             <div className="mt-2 text-[15px] text-neutral-600">Actief sinds</div>
           </div>
           <div>
-            <div className="text-[48px] font-semibold leading-none text-primary max-md:text-[36px]">
+            <div className="text-[48px] font-semibold leading-none text-cta max-md:text-[36px]">
               24u
             </div>
             <div className="mt-2 text-[15px] text-neutral-600">Respons bij een uitbraak</div>
@@ -278,7 +278,7 @@ export default function HomePage() {
 
       {/* Garanties, in de testimonial-opzet */}
       <Section className="pt-0">
-        <div className="rounded-[24px] bg-neutral-200/60 p-12 max-md:rounded-[18px] max-sm:p-6">
+        <div className="rounded-[24px] bg-neutral-200/60 p-10 max-lg:p-6 max-md:rounded-[18px] max-sm:p-4">
           <div className="flex flex-wrap items-start justify-between gap-8">
             <div>
               <Eyebrow>Onze garanties</Eyebrow>
