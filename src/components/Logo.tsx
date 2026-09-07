@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useId } from "react";
 
 /** Render the supplied artwork directly; isolate its blue mark and white lettering. */
-export default function Logo({ variant = "dark", className = "", markSize = 32, wordHeight = 29 }: {
+export default function Logo({ variant = "dark", className = "", markSize = 36, wordHeight = 32 }: {
   variant?: "light" | "dark";
   className?: string;
   markSize?: number;

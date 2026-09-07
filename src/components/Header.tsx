@@ -35,7 +35,7 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
     >
       <div className="container-default">
         <div className="flex items-center justify-between gap-6 py-6">
-          <Logo variant={dark ? "dark" : "light"} markSize={32} wordHeight={29} className="shrink-0" />
+          <Logo variant={dark ? "dark" : "light"} markSize={36} wordHeight={32} className="shrink-0" />
 
           {/* Desktop-navigatie */}
           <nav className="flex items-center gap-8 max-lg:hidden" aria-label="Hoofdnavigatie">

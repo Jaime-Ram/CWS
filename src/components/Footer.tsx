@@ -22,7 +22,7 @@ export default function Footer() {
           {/* CTA bovenin, op het donkere deel */}
           <div className="mx-auto max-w-[640px] pb-16 pt-24 text-center max-md:pb-10 max-md:pt-16">
             <div className="flex justify-center">
-              <Logo variant="dark" markSize={40} wordHeight={34} />
+              <Logo variant="dark" markSize={44} wordHeight={38} />
             </div>
 
             <h2 className="mt-8 text-white">
