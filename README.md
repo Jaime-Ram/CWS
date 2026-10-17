@@ -84,11 +84,14 @@ in het `@theme`-blok van `src/app/globals.css`.
 
 ## Contactformulier
 
-`/api/contact` verstuurt via Resend. Zet in `.env.local`:
+`/api/contact` verstuurt via de eigen Microsoft 365-omgeving van Clean Water Systems
+(Graph `sendMail`, app-registratie in Entra met applicatierecht `Mail.Send`). Zet in Vercel:
 
 ```
-RESEND_API_KEY=re_...
-CONTACT_FROM_EMAIL=website@cleanwatersystems.nl
+MS_TENANT_ID=...
+MS_CLIENT_ID=...
+MS_CLIENT_SECRET=...
+CONTACT_SENDER=info@cleanwatersystems.nl   # mailbox die verstuurt, optioneel
 ```
 
 Zonder deze variabelen weigert de route de aanvraag met een duidelijke melding

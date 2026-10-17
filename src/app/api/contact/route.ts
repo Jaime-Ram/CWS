@@ -2,8 +2,8 @@ import { NextResponse } from "next/server";
 import { site } from "@/data/site";
 
 /**
- * Verstuurt het contactformulier via Resend wanneer RESEND_API_KEY is ingesteld.
- * Zonder key wordt de aanvraag geweigerd met een duidelijke melding, zodat er
+ * Verstuurt het contactformulier via de eigen Microsoft 365-mailbox (Graph sendMail).
+ * Zonder app-registratie wordt de aanvraag geweigerd met een duidelijke melding, zodat er
  * nooit stilzwijgend een aanvraag verloren gaat.
  */
 export async function POST(request: Request) {
@@ -36,10 +36,12 @@ export async function POST(request: Request) {
     );
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.CONTACT_FROM_EMAIL;
+  const tenant = process.env.MS_TENANT_ID;
+  const clientId = process.env.MS_CLIENT_ID;
+  const secret = process.env.MS_CLIENT_SECRET;
+  const sender = process.env.CONTACT_SENDER ?? site.email;
 
-  if (!apiKey || !from) {
+  if (!tenant || !clientId || !secret) {
     return NextResponse.json(
       {
         error: `Het formulier is nog niet gekoppeld aan een mailserver. Mail uw vraag naar ${site.email} of bel ${site.phone}.`,
@@ -58,20 +60,34 @@ export async function POST(request: Request) {
     bericht,
   ];
 
-  const res = await fetch("https://api.resend.com/emails", {
+  // Token voor de eigen Microsoft 365-omgeving (app-registratie met Mail.Send).
+  const tokenRes = await fetch(`https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`, {
     method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [site.email],
-      reply_to: email,
-      subject: `Website-aanvraag: ${body.onderwerp || "Contact"} (${naam})`,
-      text: lines.join("\n"),
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      client_id: clientId,
+      client_secret: secret,
+      scope: "https://graph.microsoft.com/.default",
+      grant_type: "client_credentials",
     }),
   });
+  const token = tokenRes.ok ? ((await tokenRes.json()) as { access_token?: string }).access_token : undefined;
+
+  const res = token
+    ? await fetch(`https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/sendMail`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: {
+            subject: `Website-aanvraag: ${body.onderwerp || "Contact"} (${naam})`,
+            body: { contentType: "Text", content: lines.join("\n") },
+            toRecipients: [{ emailAddress: { address: site.email } }],
+            replyTo: [{ emailAddress: { address: email, name: naam } }],
+          },
+          saveToSentItems: false,
+        }),
+      })
+    : tokenRes;
 
   if (!res.ok) {
     return NextResponse.json(
