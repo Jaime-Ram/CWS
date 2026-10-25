@@ -402,6 +402,21 @@
   );
 }
 
+/* Onder lg staat de tekst links over de hele breedte: lichtsweep dan alleen
+   als gloed onderin, zodat witte tekst overal op donker staat. */
+@media (max-width: 1023px) {
+  .bg-cta-sweep {
+    background-image: linear-gradient(
+      172deg,
+      #001f43 0%,
+      #001f43 62%,
+      #06305f 78%,
+      #0a4179 90%,
+      #2f7ac2 100%
+    );
+  }
+}
+
 /* Footer: donker bovenin, gloed die onderaan uitloopt naar #eff4f9. */
 .bg-footer-glow {
   background-color: #001f43;
@@ -416,6 +431,35 @@
     #06215f 88%,
     rgba(1, 17, 53, 0) 97%
   );
+}
+
+/* Onder lg loopt de gloed niet goed onder de linkkolommen door: dan alleen
+   het CTA-blok donker met een zachte overgang, de kolommen op licht. */
+@media (max-width: 1023px) {
+  .bg-footer-glow {
+    background-color: #eff4f9;
+    background-image: none;
+  }
+  .footer-cta {
+    position: relative;
+    isolation: isolate;
+  }
+  .footer-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0 -100vw;
+    z-index: -1;
+    background-image: linear-gradient(
+      180deg,
+      #001f43 0%,
+      #001f43 72%,
+      #0a4179 81%,
+      #2f7ac2 88%,
+      #7db4e2 93%,
+      #cbdcec 96%,
+      #eff4f9 100%
+    );
+  }
 }
 
 /* Contactkaart: dezelfde gloed, maar compacter en onderaan. */

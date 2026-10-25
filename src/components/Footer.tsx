@@ -26,7 +26,7 @@ export default function Footer() {
       <FooterSurface>
         <div className="container-default relative">
           {/* CTA bovenin, op het donkere deel */}
-          <div className="mx-auto max-w-[640px] pb-16 pt-24 text-center max-md:pb-10 max-md:pt-16">
+          <div className="footer-cta mx-auto max-w-[640px] pb-16 pt-24 text-center max-lg:pb-36 max-md:pt-16">
             <div className="flex justify-center">
               <Logo variant="dark" markSize={44} wordHeight={38} />
             </div>
