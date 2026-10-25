@@ -1,11 +1,11 @@
 export const site = {
-  name: "Clean Watersystems",
-  legalName: "Clean Watersystems B.V.",
+  name: "Clean Water Systems",
+  legalName: "Clean Water Systems B.V.",
   tagline: "Adviesbureau voor waterinstallaties",
   url: "https://www.cleanwatersystems.nl",
   founded: "2008",
   description:
-    "Clean Watersystems is specialist in legionellapreventie, BRL 6010 risicoanalyses, beheersplannen en waterveiligheid. Sinds 2008 actief in heel Nederland.",
+    "Clean Water Systems is specialist in legionellapreventie, BRL 6010 risicoanalyses, beheersplannen en waterveiligheid. Sinds 2008 actief in heel Nederland.",
   address: {
     street: "Parelhoenhof 3",
     postalCode: "2872 BC",
@@ -18,12 +18,11 @@ export const site = {
   mobileHref: "tel:+31644948799",
   email: "info@cleanwatersystems.nl",
   routeUrl: "https://maps.google.com/?q=Parelhoenhof+3,+2872+BC+Schoonhoven",
-  // Vul rating en count in zodra de actuele cijfers bekend zijn; zolang ze leeg
-  // zijn toont de badge alleen de sterren, net als op de bestaande site.
+  // Cijfers zoals op de oude reviewpagina (archief 3 sep 2026).
   reviews: {
     url: "https://www.google.com/search?q=Clean+Water+Systems+-+Adviesbureau+voor+waterinstallaties",
-    rating: "",
-    count: "",
+    rating: "4,9",
+    count: "7",
   },
   socials: {
     linkedin:
@@ -46,11 +45,37 @@ export const site = {
   ],
 } as const;
 
-export const nav = [
-  { label: "Legionellapreventie", href: "/legionellapreventie" },
-  { label: "Diensten", href: "/diensten" },
-  { label: "Branches", href: "/branches" },
-  { label: "Kenniscentrum", href: "/kenniscentrum" },
-  { label: "Over ons", href: "/over-ons" },
+/** Hoofdmenu, in dezelfde opbouw als de oude site. */
+export const menu = [
+  {
+    label: "Legionellapreventie",
+    href: "/legionellapreventie",
+    items: [
+      { label: "Legionellapreventie", href: "/legionellapreventie" },
+      { label: "Risico inventarisatie en beheersplan", href: "/risico-inventarisatie-en-beheersplan" },
+      { label: "Keerklepcontrole", href: "/keerklepcontrole" },
+      { label: "Sediment verwijderen uit boilers", href: "/sediment-verwijderen-uit-boilers" },
+      { label: "Legionella douchekoppen", href: "/legionella-douchekoppen" },
+      { label: "Legionella watermonsters", href: "/legionella-watermonsters" },
+    ],
+  },
+  {
+    label: "Diensten",
+    href: "/diensten",
+    items: [
+      { label: "Reiniging en desinfectie", href: "/reiniging-en-desinfectie-van-een-drinkwaterleidingsysteem" },
+      { label: "Boiler reiniging", href: "/boiler-reiniging" },
+      { label: "Thermisch desinfecteren", href: "/thermisch-desinfecteren-van-een-drinkwaterleidingsysteem" },
+      { label: "Uitvoering beheersmaatregelen", href: "/uitvoering-beheersmaatregelen" },
+      { label: "Aanpassen drinkwaterinstallatie", href: "/aanpassen-drinkwaterinstallatie" },
+      { label: "Stinkend drinkwater verhelpen", href: "/stinkend-drinkwater-uit-uw-waterleidingsysteem-verhelpen" },
+      { label: "Koeltoren reinigen en desinfecteren", href: "/koeltoren-reinigen-en-desinfecteren" },
+    ],
+  },
+  { label: "Veelgestelde vragen", href: "/veelgestelde-vragen" },
+  { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
 ] as const;
+
+/** Alle dienst- en infopagina's, voor het zijmenu en de footer. */
+export const serviceLinks = [...menu[0].items, ...menu[1].items];

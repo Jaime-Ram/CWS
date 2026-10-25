@@ -1,155 +1,78 @@
+import Link from "next/link";
 import Hero from "@/components/Hero";
 import HeroVideo from "@/components/HeroVideo";
 import GoogleReviews from "@/components/GoogleReviews";
 import Certifications from "@/components/Certifications";
 import CtaSection from "@/components/CtaSection";
 import JsonLd from "@/components/JsonLd";
-import Media from "@/components/Media";
-import { AccordionTabs, NumberedAccordion } from "@/components/Tabs";
+import { NumberedAccordion } from "@/components/Tabs";
 import {
-  FeaturedCard,
-  ImageLeftItem,
-  IndustryCard,
-  PortfolioCard,
-  TestimonialGrid,
-} from "@/components/blocks";
-import {
-  Eyebrow,
-  PrimaryButton,
-  SecondaryButton,
-  Section,
-  SectionHead,
-} from "@/components/ui";
-import { site } from "@/data/site";
-import { services, featuredServices } from "@/data/services";
-import { branches } from "@/data/branches";
-import { articles } from "@/data/articles";
+  ImageCard,
+  Quote,
+  ReasonsWhy,
+  Results,
+  ReviewsSection,
+  ServiceGuarantees,
+  StandingFor,
+} from "@/components/content";
+import { PrimaryButton, SecondaryButton, Section, SectionHead } from "@/components/ui";
+import { home, shared } from "@/content";
 import { faqSchema, pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
-  title: "Legionellapreventie & BRL 6010 | Clean Watersystems",
-  description:
-    "Specialist in legionellapreventie en BRL 6010 risicoanalyses. Inspectie, beheersplannen, desinfectie en watermonsters. Landelijk, sinds 2008.",
+  title: home.title,
+  description: home.description,
   path: "/",
   absolute: true,
-  keywords: [
-    "legionellapreventie",
-    "BRL 6010 risicoanalyse",
-    "legionella beheersplan",
-    "keerklepcontrole",
-    "reiniging en desinfectie drinkwaterinstallatie",
-    "legionella watermonsters",
-    "adviesbureau waterinstallaties",
-  ],
 });
 
-const homeFaqs = [
-  {
-    q: "Wanneer is een legionella risicoanalyse verplicht?",
-    a: "Voor prioritaire instellingen zoals ziekenhuizen, zorginstellingen, hotels, campings, jachthavens, zwembaden, justitiële inrichtingen en asielzoekerscentra is een risicoanalyse en beheersplan wettelijk verplicht. Andere gebouweigenaren vallen onder de zorgplicht uit de Drinkwaterwet en zijn ook verantwoordelijk voor de waterkwaliteit.",
-  },
-  {
-    q: "Wat doe ik bij een legionella-overschrijding?",
-    a: "Beperk eerst de blootstelling door risicovolle tappunten buiten gebruik te stellen. Achterhaal daarna de oorzaak en voer een beheersmaatregel uit, zoals spoelen, temperatuurcorrectie of desinfectie. Bemonster vervolgens opnieuw. Boven 1000 kve/l geldt voor prioritaire instellingen een meldplicht bij de Inspectie Leefomgeving en Transport.",
-  },
-  {
-    q: "Hoe vaak moet een keerklep gecontroleerd worden?",
-    a: "Waterwerkblad 1.4G gaat uit van een jaarlijkse controle van de terugstroombeveiligingen. Voor bepaalde typen beveiliging of risicovolle toepassingen kan een kortere interval gelden. Dit wordt vastgelegd in uw beheersplan.",
-  },
-  {
-    q: "Hoe snel kunnen jullie ter plaatse zijn bij een uitbraak?",
-    a: "Bij een aangetoonde overschrijding of uitbraak voeren wij indien nodig binnen 24 uur een desinfectie uit. Bel in dat geval direct, ook buiten kantooruren.",
-  },
-  {
-    q: "Werken jullie in heel Nederland?",
-    a: "Ja. Vanuit Schoonhoven werken wij landelijk, voor zowel eenmalige opdrachten als doorlopende beheercontracten.",
-  },
-  {
-    q: "Wat kost een risicoanalyse en beheersplan?",
-    a: "Dat hangt af van het aantal tappunten, de bouwlagen en de complexiteit van de installatie. Wij maken op basis van een korte inventarisatie vooraf een vaste prijs, zodat u niet voor verrassingen komt te staan.",
-  },
-];
+/** De oude homepagetekst opgeknipt per h2, zodat elk deel een eigen sectie krijgt. */
+const html = home.blocks.map((b) => (b.type === "html" ? b.html : "")).join("");
+const [introHtml, ...rest] = html.split(/(?=<h2>)/);
+const sections = Object.fromEntries(
+  rest.map((s) => {
+    const title = s.match(/<h2>(.*?)<\/h2>/)?.[1].replace(/<[^>]+>/g, "") ?? "";
+    return [title.replace(/\.$/, ""), { title: title.replace(/\.$/, ""), body: s.replace(/<h2>.*?<\/h2>/, "") }];
+  }),
+);
+const strip = (s: string) => s.replace(/<[^>]+>/g, "").trim();
+const intro = [...introHtml.matchAll(/<h3>(.*?)<\/h3>/g)].map((m) => strip(m[1]));
+const items = (body: string) => [...body.matchAll(/<li>(.*?)<\/li>/g)].map((m) => m[1]);
+const lead = (body: string) => strip(body.match(/<p>(.*?)<\/p>/)?.[1] ?? "");
 
-const approach = [
-  {
-    number: "01",
-    title: "Inventarisatie",
-    text: "We brengen uw installatie en uw verplichtingen in kaart en bepalen samen wat er werkelijk nodig is.",
-    image: "/images/fotos/inspectie-clipboard.jpg",
-    imageAlt: "Inventarisatie van een drinkwaterinstallatie",
-  },
-  {
-    number: "02",
-    title: "Analyse op locatie",
-    text: "Een BRL 6010 adviseur loopt de installatie na, meet temperaturen en legt elk tappunt vast.",
-    image: "/images/fotos/keerklep-detail.jpg",
-    imageAlt: "Meetopstelling tijdens een analyse op locatie",
-  },
-  {
-    number: "03",
-    title: "Rapport en beheersplan",
-    text: "U krijgt de risico's met een prioritering en per punt een concrete maatregel, plus een werkbaar spoelschema.",
-    image: "/images/fotos/bedieningspaneel.jpg",
-    imageAlt: "Registratie van meetwaarden op locatie",
-  },
-  {
-    number: "04",
-    title: "Uitvoering en nazorg",
-    text: "Desgewenst voeren wij de maatregelen uit, bemonsteren wij periodiek en actualiseren wij de analyse.",
-    image: "/images/fotos/watermonster-lab.jpg",
-    imageAlt: "Analyse van watermonsters in het laboratorium",
-  },
-];
+const faqs = (() => {
+  const body = sections["Veelgestelde vragen"]?.body ?? "";
+  const ps = [...body.matchAll(/<p>(.*?)<\/p>/g)].map((m) => strip(m[1]));
+  const out: { q: string; a: string }[] = [];
+  for (let i = 0; i + 1 < ps.length; i += 2) out.push({ q: ps[i], a: ps[i + 1] });
+  return out;
+})();
 
-const guarantees = [
-  {
-    stat: "100%",
-    statLabel: "Resultaatgarantie",
-    text: "Voldoet uw leidingsysteem aan de eisen uit de BRL 6010, dan geven wij garantie op de desinfectie. Blijkt uit de controlemonsters dat het resultaat niet is behaald, dan komen wij terug.",
-    author: "Garantie op desinfectie",
-    role: "Bij een systeem conform BRL 6010",
-  },
-  {
-    stat: "24u",
-    statLabel: "Responstijd",
-    text: "Bij een aangetoonde overschrijding voeren wij indien nodig binnen 24 uur een desinfectie uit, ook in het weekend.",
-    author: "Snelle inzet",
-    role: "Landelijk, buiten kantooruren",
-  },
-  {
-    stat: "1-1000",
-    statLabel: "Tappunten",
-    text: "Of het nu om één douche gaat of om een compleet ziekenhuis: snel, vakkundig en volledig geregistreerd.",
-    author: "Elke schaal",
-    role: "Van B&B tot productielocatie",
-  },
-  {
-    stat: "100%",
-    statLabel: "Tevredenheid",
-    text: "Is iets niet gegaan zoals afgesproken, dan lossen wij dat op zonder discussie over de factuur.",
-    author: "Tevredenheidsgarantie",
-    role: "Op elke opdracht",
-  },
-];
+const projects = [...(sections["Projecten"]?.body ?? "").matchAll(/<a href="([^"]+)">(.*?)<\/a>/g)].map((m) => ({
+  href: m[1],
+  title: strip(m[2]).replace(/\.$/, ""),
+}));
 
-const dateFormat = new Intl.DateTimeFormat("nl-NL", {
-  day: "numeric",
-  month: "long",
-  year: "numeric",
-});
+function Prose({ body }: { body: string }) {
+  return <div className="prose-cws" dangerouslySetInnerHTML={{ __html: body }} />;
+}
 
 export default function HomePage() {
-  const [featuredArticle, ...restArticles] = articles;
+  const diensten = sections["Onze diensten"];
+  const voorWie = sections["Voor wie werken wij?"];
+  const verwachten = sections["Wat u van ons mag verwachten?"];
+  const aanpak = sections["Wat te doen bij legionellarisico of overschrijding?"];
+  const contact = sections["Contact"];
 
   return (
     <>
       <Hero
-        eyebrow={`Adviesbureau waterinstallaties sinds ${site.founded}`}
-        title="Legionellapreventie en BRL 6010 risicoanalyse in heel Nederland"
-        text="Wij helpen bedrijven en instellingen aan een veilige drinkwaterinstallatie en een aantoonbaar legionellabeheer dat de inspectie doorstaat."
+        eyebrow="Adviesbureau voor waterinstallaties sinds 2008"
+        title={home.h1}
+        text={intro[0]}
         actions={
           <>
-            <PrimaryButton href="/contact">Vrijblijvend advies</PrimaryButton>
+            <PrimaryButton href="/offerte-aanvragen">Offerte aanvragen</PrimaryButton>
             <GoogleReviews />
           </>
         }
@@ -157,202 +80,139 @@ export default function HomePage() {
         background={
           <HeroVideo
             videoId="iE9gWUet-lM"
-            poster="/images/fotos/video-bedrijfsimpressie.jpg"
-            posterAlt="Clean Watersystems aan het werk aan een drinkwaterinstallatie"
+            poster="/images/oud/clean-water-systems-slide.webp"
+            posterAlt="Clean Water Systems aan het werk aan een drinkwaterinstallatie"
           />
         }
       />
 
-      {/* Over ons */}
+      {/* Intro en uitgelichte diensten */}
       <Section>
-        <SectionHead
-          eyebrow="Over Clean Watersystems"
-          title="Veilig drinkwater vraagt meer dan een vinkje op papier"
-          cta={<SecondaryButton href="/over-ons">Over ons</SecondaryButton>}
-        />
-        <div className="divider my-10" />
-        <div className="overflow-hidden rounded-[24px] max-md:rounded-[18px]">
-          <Media
-            src="/images/fotos/handen-onder-kraan.jpg"
-            alt="Handen wassen met schoon stromend kraanwater"
-            ratio="21/10"
-            className="w-full max-md:aspect-[16/9]"
-            priority
-          />
-        </div>
-        <div className="mt-10 grid grid-cols-[1fr_1fr_auto_auto] gap-12 max-lg:grid-cols-2 max-sm:grid-cols-1 max-sm:gap-8">
-          <p className="leading-[1.65em]">
-            Tussen de watermeter en de kraan ligt een installatie die volgens de geldende
-            regels aangelegd, onderhouden en beheerd moet worden. Gaat daar iets mis, dan
-            merkt u dat pas als de meting binnenkomt.
+        <div className="grid grid-cols-[1.3fr_1fr] gap-14 max-lg:grid-cols-1 max-lg:gap-6">
+          <p className="text-[26px] font-semibold leading-[1.35em] text-neutral-800 max-md:text-[20px]">
+            {intro.slice(1, 3).join(" ")}
           </p>
-          <p className="leading-[1.65em]">
-            Clean Watersystems houdt zich sinds {site.founded} bezig met
-            legionellapreventie en kent drinkwaterinstallaties van binnenuit. Dat geeft u
-            snel en onderbouwd advies, met een blijvend resultaat als doel.
-          </p>
-          <div>
-            <div className="text-[48px] font-semibold leading-none text-cta max-md:text-[36px]">
-              {site.founded}
-            </div>
-            <div className="mt-2 text-[15px] text-neutral-600">Actief sinds</div>
-          </div>
-          <div>
-            <div className="text-[48px] font-semibold leading-none text-cta max-md:text-[36px]">
-              24u
-            </div>
-            <div className="mt-2 text-[15px] text-neutral-600">Respons bij een uitbraak</div>
+          <div className="flex flex-col items-start justify-end gap-5">
+            <p className="leading-[1.65em]">{intro[3]}</p>
+            <SecondaryButton href="/contact">Neem contact op</SecondaryButton>
           </div>
         </div>
-      </Section>
-
-      {/* Diensten, in de opzet van de portfolio-sectie */}
-      <Section className="pt-0">
-        <SectionHead
-          center
-          eyebrow="Onze diensten"
-          title="Complete ondersteuning op het gebied van waterveiligheid"
-          text="Van de verplichte risicoanalyse tot de uitvoering van de beheersmaatregelen. U kunt bij ons terecht voor het hele traject of voor precies dat ene onderdeel."
-          cta={
-            <>
-              <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
-              <SecondaryButton href="/diensten">Alle diensten</SecondaryButton>
-            </>
-          }
-        />
-        <div className="mt-12 grid grid-cols-3 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          {featuredServices.slice(0, 3).map((s) => (
-            <PortfolioCard
-              key={s.slug}
-              href={`/diensten/${s.slug}`}
-              title={s.name}
-              text={s.summary}
-              badge={s.eyebrow}
-              image={s.image}
-              imageAlt={s.imageAlt}
-            />
+        <div className="mt-14 grid grid-cols-4 gap-5 max-lg:grid-cols-2 max-sm:grid-cols-1">
+          {shared.homeServices.map((c) => (
+            <ImageCard key={c.title} card={c} cta="Meer info" />
           ))}
         </div>
       </Section>
 
-      {/* Aanpak */}
-      <Section className="pt-0">
-        <SectionHead
-          center
-          eyebrow="Onze aanpak"
-          title="Van eerste inventarisatie tot aantoonbaar beheer"
-        />
-        <div className="mt-12">
-          <AccordionTabs items={approach} />
-        </div>
-      </Section>
-
-      {/* Branches, in de opzet van de industries-sectie */}
-      <Section className="pt-0">
-        <div className="grid grid-cols-[1fr_1.6fr] gap-16 max-lg:grid-cols-1 max-lg:gap-10">
-          <div>
-            <SectionHead
-              eyebrow="Voor wie werken wij"
-              title="Elke branche heeft een eigen risicoprofiel"
-              text="Wij vertalen de regels naar maatregelen die passen bij uw gebouw en uw gebruikspatroon."
-            />
-            <div className="mt-8">
-              <SecondaryButton href="/branches">Alle branches</SecondaryButton>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-5 max-sm:grid-cols-1">
-            {branches.slice(0, 4).map((b) => (
-              <IndustryCard
-                key={b.slug}
-                href={`/branches/${b.slug}`}
-                title={b.shortName}
-                text={b.name}
-                badge={b.priority ? "Prioritair" : "Zorgplicht"}
-              />
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      <CtaSection />
-
-      {/* Garanties, in de testimonial-opzet */}
-      <Section className="pt-0">
-        <div className="rounded-[24px] bg-neutral-200/60 p-10 max-lg:p-6 max-md:rounded-[18px] max-sm:p-4">
-          <div className="flex flex-wrap items-start justify-between gap-8">
+      {/* Onze diensten + producten */}
+      {diensten && (
+        <Section className="pt-0">
+          <div className="grid grid-cols-[1fr_1.2fr] gap-14 max-lg:grid-cols-1 max-lg:gap-10">
             <div>
-              <Eyebrow>Onze garanties</Eyebrow>
-              <h2>Waar u ons aan mag houden</h2>
+              <SectionHead title={diensten.title} text={lead(diensten.body)} />
+              <ul className="mt-8 grid gap-2">
+                {items(diensten.body).map((li) => {
+                  const m = li.match(/<a href="([^"]+)">(.*?)<\/a>/);
+                  return m ? (
+                    <li key={m[1]}>
+                      <Link
+                        href={m[1]}
+                        className="group flex items-center justify-between gap-4 border-b border-neutral-200 py-3 text-[17px] font-medium text-neutral-800 transition-colors hover:text-primary"
+                      >
+                        {strip(m[2])}
+                        <span aria-hidden="true" className="transition-transform group-hover:translate-x-1">→</span>
+                      </Link>
+                    </li>
+                  ) : null;
+                })}
+              </ul>
             </div>
-            <p className="max-w-[380px] leading-[1.6em]">
-              Geen kleine lettertjes. Dit leggen wij vast in elke opdracht, ongeacht de
-              omvang van uw installatie.
-            </p>
+            <div className="grid grid-cols-2 content-start gap-5 max-sm:grid-cols-1">
+              {shared.homeProducts.map((c) => (
+                <ImageCard key={c.title} card={c} cta="Meer info" />
+              ))}
+            </div>
           </div>
-          <div className="mt-10">
-            <TestimonialGrid items={guarantees} />
-          </div>
+        </Section>
+      )}
+
+      {/* Voor wie + wat u mag verwachten */}
+      <Section className="pt-0">
+        <div className="grid grid-cols-2 gap-5 max-md:grid-cols-1">
+          {[voorWie, verwachten].filter(Boolean).map((s) => (
+            <div key={s!.title} className="card p-10 max-sm:p-6">
+              <h2 className="text-[28px]">{s!.title}</h2>
+              <div className="mt-5">
+                <Prose body={s!.body} />
+              </div>
+            </div>
+          ))}
         </div>
       </Section>
 
-      {/* Kenniscentrum */}
-      <Section className="pt-0">
-        <SectionHead
-          center
-          eyebrow="Kenniscentrum"
-          title="Praktische kennis uit Nederlandse installaties"
-        />
-        <div className="mt-12 grid grid-cols-[1.2fr_1fr] gap-8 max-lg:grid-cols-1">
-          <FeaturedCard
-            href={`/kenniscentrum/${featuredArticle.slug}`}
-            title={featuredArticle.title}
-            badge={featuredArticle.category}
-            meta={dateFormat.format(new Date(featuredArticle.date))}
-            image={featuredArticle.image}
-            imageAlt={featuredArticle.imageAlt}
-          />
-          <div className="grid content-start gap-7">
-            {restArticles.map((a) => (
-              <ImageLeftItem
-                key={a.slug}
-                href={`/kenniscentrum/${a.slug}`}
-                title={a.title}
-                badge={a.category}
-                meta={a.readingTime}
-                image={a.image}
-                imageAlt={a.imageAlt}
-              />
+      {/* Aanpak bij een overschrijding */}
+      {aanpak && (
+        <Section className="pt-0">
+          <div className="rounded-[24px] bg-primary-dark p-12 text-white max-lg:p-8 max-md:rounded-[18px] max-sm:p-6">
+            <div className="max-w-[640px]">
+              <h2 className="text-white">{aanpak.title}</h2>
+              <p className="mt-3 leading-[1.6em] text-neutral-300">{lead(aanpak.body)}</p>
+            </div>
+            <ol className="mt-10 grid grid-cols-5 gap-4 max-lg:grid-cols-2 max-sm:grid-cols-1">
+              {items(aanpak.body).map((step, i) => (
+                <li key={step} className="rounded-[16px] border border-white/12 bg-white/5 p-5">
+                  <span className="text-[14px] font-semibold text-secondary-200">{String(i + 1).padStart(2, "0")}</span>
+                  <p className="mt-3 font-medium leading-[1.45em] text-white">{strip(step)}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-10 flex flex-wrap items-center gap-5">
+              <PrimaryButton href="/contact">Direct contact</PrimaryButton>
+              <a href="tel:+31644948799" className="font-semibold text-white">06 44 94 87 99</a>
+            </div>
+          </div>
+        </Section>
+      )}
+
+      <StandingFor />
+      <ReasonsWhy />
+      <ServiceGuarantees />
+      <Results />
+
+      {/* Projecten */}
+      {projects.length > 0 && (
+        <Section className="pt-0">
+          <SectionHead title="Projecten" />
+          <div className="mt-10 grid grid-cols-2 gap-5 max-md:grid-cols-1">
+            {projects.map((p) => (
+              <ImageCard key={p.title} card={{ title: p.title, text: "", image: null, href: p.href }} cta="Bekijk" />
             ))}
           </div>
-        </div>
-      </Section>
+        </Section>
+      )}
 
-      {/* Veelgestelde vragen */}
-      <Section className="pt-0">
-        <SectionHead
-          eyebrow="Veelgestelde vragen"
-          title="De vragen die wij het vaakst krijgen"
-          cta={<SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>}
-        />
-        <div className="mt-12">
-          <NumberedAccordion items={homeFaqs} />
-        </div>
-      </Section>
+      {faqs.length > 0 && (
+        <Section className="pt-0">
+          <SectionHead
+            title="Veelgestelde vragen"
+            cta={<SecondaryButton href="/veelgestelde-vragen">Alle vragen</SecondaryButton>}
+          />
+          <div className="mt-12">
+            <NumberedAccordion items={faqs} />
+          </div>
+        </Section>
+      )}
 
-      <JsonLd data={faqSchema(homeFaqs)} />
-      <JsonLd
-        data={{
-          "@context": "https://schema.org",
-          "@type": "ItemList",
-          name: "Diensten van Clean Watersystems",
-          itemListElement: services.map((s, i) => ({
-            "@type": "ListItem",
-            position: i + 1,
-            name: s.name,
-            url: `${site.url}/diensten/${s.slug}`,
-          })),
-        }}
+      <ReviewsSection />
+      <Quote />
+
+      <CtaSection
+        eyebrow="Direct contact"
+        title="Contact"
+        text={contact ? strip(contact.body) : undefined}
       />
+
+      {faqs.length > 0 && <JsonLd data={faqSchema(faqs)} />}
     </>
   );
 }

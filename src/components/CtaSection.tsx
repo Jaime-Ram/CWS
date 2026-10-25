@@ -8,8 +8,8 @@ import { PrimaryButton } from "./ui";
  */
 export default function CtaSection({
   eyebrow = "Direct contact",
-  title = "Advies nodig over legionellapreventie?",
-  text = "Vertel ons kort om wat voor gebouw en installatie het gaat. U hoort binnen één werkdag wat er nodig is en wat het kost.",
+  title = "Offerte aanvragen?",
+  text = `Vraag nu een offerte aan bij ${site.legalName}`,
 }: {
   eyebrow?: string;
   title?: string;
@@ -26,7 +26,7 @@ export default function CtaSection({
               <h2 className="mt-2 text-white">{title}</h2>
               <p className="mt-3 leading-[1.6em] text-neutral-300">{text}</p>
               <div className="mt-7 flex flex-wrap items-center gap-5">
-                <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
+                <PrimaryButton href="/offerte-aanvragen">Offerte aanvragen</PrimaryButton>
                 <a href={site.phoneHref} className="font-semibold text-white">
                   {site.phone}
                 </a>

@@ -79,7 +79,7 @@ export default function GoogleReviews({
           )}
         </span>
         <span className={`text-[13px] ${onDark ? "text-neutral-300" : "text-neutral-500"}`}>
-          {count ? `${count} Google-beoordelingen` : "Beoordeeld op Google"}
+          {count ? `${count} beoordelingen` : "Beoordeeld op Google"}
         </span>
       </span>
     </a>

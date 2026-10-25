@@ -1,48 +1,44 @@
 import type { NextConfig } from "next";
+import oldSite from "./src/content/redirects.json";
 
-/** Oude URL's van de vorige cleanwatersystems.nl, permanent naar de nieuwe pagina's. */
-const legacy: [string, string][] = [
-  ["/home.html", "/"],
-  ["/site-index.html", "/"],
-  ["/sitemap.html", "/"],
-  ["/page.php", "/"],
-  ["/news.php", "/kenniscentrum"],
-  ["/nieuwsbrief.html", "/"],
+/** Oude cleanwatersystems.nl-adressen (.html en /sitemap/lp/...) naar dezelfde pagina zonder .html. */
+const escape = (path: string) => path.replace(/[()[\]{}*+?:!]/g, (c) => `\\${c}`);
+const legacy = Object.entries(oldSite as Record<string, string>)
+  .filter(([from, to]) => from !== to && !from.includes("%") && !from.includes(" "))
+  .map(([from, to]) => [escape(from), to] as const);
+
+/** Adressen van de tussenversie (okt 2026) naar de best passende oude pagina. */
+const interim: [string, string][] = [
+  ["/diensten/risicoanalyse-en-beheersplan", "/risico-inventarisatie-en-beheersplan"],
+  ["/diensten/reiniging-en-desinfectie", "/reiniging-en-desinfectie-van-een-drinkwaterleidingsysteem"],
+  ["/diensten/keerklepcontrole", "/keerklepcontrole"],
+  ["/diensten/sediment-verwijderen-uit-boilers", "/sediment-verwijderen-uit-boilers"],
+  ["/diensten/legionella-watermonsters", "/legionella-watermonsters"],
+  ["/diensten/thermische-desinfectie", "/thermisch-desinfecteren-van-een-drinkwaterleidingsysteem"],
+  ["/diensten/boilerreiniging", "/boiler-reiniging"],
+  ["/diensten/uitvoering-beheersmaatregelen", "/uitvoering-beheersmaatregelen"],
+  ["/diensten/legionella-douchekoppen", "/legionella-douchekoppen"],
+  ["/diensten/aanpassen-drinkwaterinstallatie", "/aanpassen-drinkwaterinstallatie"],
+  ["/diensten/stinkend-drinkwater-verhelpen", "/stinkend-drinkwater-uit-uw-waterleidingsysteem-verhelpen"],
+  ["/diensten/legionella-uitbraak", "/lp/legionellabestrijding"],
+  ["/branches/hotels", "/lp/legionellabestrijding/hotels"],
+  ["/branches/zorginstellingen", "/lp/legionellabestrijding/verzorgingstehuizen"],
+  ["/branches/sportaccommodaties", "/lp/legionellabestrijding/sportverenigingen"],
+  ["/branches/:slug", "/lp/legionellabestrijding"],
+  ["/branches", "/lp/legionellabestrijding"],
+  ["/kenniscentrum/:slug*", "/veelgestelde-vragen"],
+  ["/over-ons", "/"],
+  ["/adviesbureau-voor-waterinstallaties", "/"],
+  ["/categorie/:path*", "/"],
   ["/nieuwsbrief/:path*", "/"],
-  ["/contact.html", "/contact"],
+  ["/nieuwsbrief.html", "/"],
+  ["/news.php", "/"],
+  ["/page.php", "/"],
+  ["/index.php", "/"],
   ["/contact.php", "/contact"],
-  ["/afspraak-maken.html", "/contact"],
-  ["/offerte-aanvragen.html", "/contact"],
-  ["/adviesbureau-voor-waterinstallaties.html", "/over-ons"],
-  ["/referenties.html", "/over-ons"],
-  ["/referenties/:path*", "/over-ons"],
-  ["/reviews.html", "/over-ons"],
-  ["/contractmanagement.html", "/diensten/uitvoering-beheersmaatregelen"],
-  ["/inspectie-en-inventarisatie.html", "/diensten/risicoanalyse-en-beheersplan"],
-  ["/risico-inventarisatie-en-beheersplan.html", "/diensten/risicoanalyse-en-beheersplan"],
-  ["/diensten/risico-inventarisatie-en-beheersplan", "/diensten/risicoanalyse-en-beheersplan"],
-  ["/diensten/chemisch-technisch", "/diensten/reiniging-en-desinfectie"],
-  ["/legionellapreventie.html", "/legionellapreventie"],
-  ["/legionella-watermonsters.html", "/diensten/legionella-watermonsters"],
-  ["/legionella-douchekoppen.html", "/diensten/legionella-douchekoppen"],
-  ["/legionella-douchekoppen/:path*", "/diensten/legionella-douchekoppen"],
-  ["/sitemap/lp/:path*", "/diensten/legionella-douchekoppen"],
-  ["/aanpassen-drinkwaterinstallatie.html", "/diensten/aanpassen-drinkwaterinstallatie"],
-  ["/herstellen-gebreken-waterleiding.html", "/diensten/aanpassen-drinkwaterinstallatie"],
-  ["/boiler-reiniging.html", "/diensten/boilerreiniging"],
-  ["/sediment-verwijderen-boilers.html", "/diensten/sediment-verwijderen-uit-boilers"],
-  ["/sediment-verwijderen-uit-boilers.html", "/diensten/sediment-verwijderen-uit-boilers"],
-  ["/keerklep-controle.html", "/diensten/keerklepcontrole"],
-  ["/keerklepcontrole.html", "/diensten/keerklepcontrole"],
-  ["/koeltoren-reinigen-en-desinfecteren.html", "/diensten/reiniging-en-desinfectie"],
-  ["/reiniging-en-desinfectie.html", "/diensten/reiniging-en-desinfectie"],
-  ["/reiniging-en-desinfectie", "/diensten/reiniging-en-desinfectie"],
-  ["/reiniging-en-desinfectie-van-een-drinkwaterleidingsysteem.html", "/diensten/reiniging-en-desinfectie"],
-  ["/reiniging-en-desinfece-van-een-drinkwaterleidingsysteem.html", "/diensten/reiniging-en-desinfectie"],
-  ["/privacyverklaring.html", "/privacyverklaring"],
-  ["/cookies.html", "/privacyverklaring"],
-  ["/cookieverklaring.html", "/privacyverklaring"],
-  ["/categorie/:path*", "/diensten/reiniging-en-desinfectie"],
+  ["/referenties/:path*", "/reviews"],
+  ["/legionella-douchekoppen/categorie/:path*", "/legionella-douchekoppen"],
+  ["/sitemap/lp/:path*", "/sitemap"],
 ];
 
 const nextConfig: NextConfig = {
@@ -50,7 +46,7 @@ const nextConfig: NextConfig = {
   compress: true,
   images: { formats: ["image/avif", "image/webp"] },
   async redirects() {
-    return legacy.map(([source, destination]) => ({ source, destination, permanent: true }));
+    return [...legacy, ...interim].map(([source, destination]) => ({ source, destination, permanent: true }));
   },
 };
 

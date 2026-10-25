@@ -5,20 +5,12 @@ import Logo from "./Logo";
 import MobileMenu from "./MobileMenu";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { site } from "@/data/site";
-import { services } from "@/data/services";
-import { branches } from "@/data/branches";
+import { menu } from "@/data/site";
 import { PrimaryButton } from "./ui";
-
-const mainLinks = [
-  { label: "Legionellapreventie", href: "/legionellapreventie" },
-  { label: "Kenniscentrum", href: "/kenniscentrum" },
-  { label: "Over ons", href: "/over-ons" },
-];
 
 export default function Header({ variant = "light" }: { variant?: "light" | "dark" }) {
   const [open, setOpen] = useState(false);
-  const [dropdown, setDropdown] = useState<"diensten" | "branches" | null>(null);
+  const [dropdown, setDropdown] = useState<string | null>(null);
   const pathname = usePathname();
 
   useEffect(() => {
@@ -39,41 +31,34 @@ export default function Header({ variant = "light" }: { variant?: "light" | "dar
 
           {/* Desktop-navigatie */}
           <nav className="flex items-center gap-8 max-lg:hidden" aria-label="Hoofdnavigatie">
-            <ul className="flex items-center gap-7">
-              <NavDropdown
-                label="Diensten"
-                href="/diensten"
-                open={dropdown === "diensten"}
-                onOpen={() => setDropdown("diensten")}
-                onClose={() => setDropdown(null)}
-                linkColor={linkColor}
-                width="w-[600px]"
-                cols="grid-cols-2 gap-x-8 gap-y-1"
-                items={services.map((s) => ({ label: s.navName, href: `/diensten/${s.slug}` }))}
-              />
-              <NavDropdown
-                label="Branches"
-                href="/branches"
-                open={dropdown === "branches"}
-                onOpen={() => setDropdown("branches")}
-                onClose={() => setDropdown(null)}
-                linkColor={linkColor}
-                width="w-[340px]"
-                cols="gap-1"
-                items={branches.map((b) => ({ label: b.name, href: `/branches/${b.slug}` }))}
-              />
-              {mainLinks.map((l) => (
-                <li key={l.href}>
-                  <Link
-                    href={l.href}
-                    className={`text-[15px] font-medium transition-colors ${linkColor}`}
-                  >
-                    {l.label}
-                  </Link>
-                </li>
-              ))}
+            <ul className="flex items-center gap-7 max-xl:gap-5">
+              {menu.map((m) =>
+                "items" in m ? (
+                  <NavDropdown
+                    key={m.href}
+                    label={m.label}
+                    href={m.href}
+                    open={dropdown === m.label}
+                    onOpen={() => setDropdown(m.label)}
+                    onClose={() => setDropdown(null)}
+                    linkColor={linkColor}
+                    width="w-[340px]"
+                    cols="gap-1"
+                    items={[...m.items]}
+                  />
+                ) : (
+                  <li key={m.href}>
+                    <Link
+                      href={m.href}
+                      className={`text-[15px] font-medium transition-colors ${linkColor}`}
+                    >
+                      {m.label}
+                    </Link>
+                  </li>
+                ),
+              )}
             </ul>
-            <PrimaryButton href="/contact">Offerte aanvragen</PrimaryButton>
+            <PrimaryButton href="/offerte-aanvragen" className="max-xl:hidden">Offerte aanvragen</PrimaryButton>
           </nav>
 
           {/* Mobiele toggle */}
@@ -144,7 +129,7 @@ function NavDropdown({
             <Link
               key={i.href}
               href={i.href}
-              className="rounded-[6px] px-3 py-[7px] text-[14px] text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-800"
+              className="rounded-[6px] px-3 py-[5px] text-[14px] text-neutral-600 transition-colors hover:bg-neutral-200 hover:text-neutral-800"
             >
               {i.label}
             </Link>

@@ -17,8 +17,8 @@ export default function NotFound() {
         actions={
           <>
             <PrimaryButton href="/">Naar de homepage</PrimaryButton>
-            <SecondaryButton href="/diensten" variant="dark">
-              Bekijk onze diensten
+            <SecondaryButton href="/sitemap" variant="dark">
+              Bekijk de sitemap
             </SecondaryButton>
           </>
         }

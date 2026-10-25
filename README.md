@@ -1,7 +1,8 @@
-# Clean Watersystems — SEO-website
+# Clean Water Systems, website
 
-Nieuwe, SEO-gerichte website voor Clean Watersystems B.V. (adviesbureau voor
-waterinstallaties), gebouwd op het visuele systeem van het Investflow Webflow-template.
+Website voor Clean Water Systems B.V. (adviesbureau voor waterinstallaties): de teksten,
+foto's en paginastructuur van de oude cleanwatersystems.nl in het visuele systeem van het
+Investflow Webflow-template.
 
 ## Stack
 
@@ -23,25 +24,33 @@ npm run start
 
 ```
 src/
-  app/                     routes (App Router)
-    diensten/[slug]        12 dienstpagina's
-    branches/[slug]        8 branchepagina's
-    kenniscentrum/[slug]   5 kennisartikelen
-    api/contact            formulierafhandeling
-    sitemap.ts robots.ts   automatisch gegenereerd
-  components/
-    Media.tsx              beeldslot: toont de foto zodra `src` gevuld is
-    blocks.tsx             kaarten, badges, stats, milestones, featured/CTA-blokken
-    Tabs.tsx               accordion-tabs, kaart-tabs, genummerde accordion, slider
-    Hero / HeroSplit / HeroCardSplit   drie hero-varianten uit het template
-    Header, TopBar, Footer, ContactForm, Newsletter, Faq, CtaSection, ui.tsx
-  data/                    site.ts, services.ts, branches.ts, articles.ts  <- alle content
-  lib/seo.ts               metadata-helpers en schema.org
+  content/                 inhoud van de oude site (gegenereerd, niet met de hand bewerken)
+    pages.json             117 pagina's: diensten, producten, 80 landingspagina's, juridisch
+    shared.json            gedeelde blokken, reviews, homepagekaarten
+    redirects.json         oude adressen (.html, /sitemap/lp/...) naar nieuwe paden
+    fixes.ts               handmatige tekstcorrecties, elk met reden
+    index.ts               types en helpers (getPage, landingTopics, products)
+  app/
+    page.tsx               homepage, opgebouwd uit de oude homepagetekst
+    [...slug]/page.tsx     alle overige pagina's, opmaak per soort (dienst, product, formulier, ...)
+    sitemap/page.tsx       HTML-sitemap met alle landingspagina's
+    api/contact            formulier via Microsoft 365 (Graph)
+  components/content.tsx   tekstweergave, zijbalk, gedeelde blokken, reviews
+  data/site.ts             bedrijfsgegevens en hoofdmenu
+scripts/
+  extract-oude-site.py     zet het archief om naar src/content en public/images/oud
 ```
 
-Alle teksten staan in `src/data/`. Een nieuwe dienst, branche of artikel toevoegen
-betekent één object toevoegen aan de betreffende array; de pagina, de navigatie, de
-footer, de interne links en de sitemap volgen automatisch.
+### Inhoud opnieuw genereren
+
+Het archief (`Clean Water Systems bestanden`, Melange Design, 3 sep 2026) staat niet in de repo.
+
+```bash
+python3 -I scripts/extract-oude-site.py "<pad naar Clean Water Systems bestanden>" .
+```
+
+Tekstcorrecties horen in `src/content/fixes.ts`, niet in de JSON, zodat ze een nieuwe
+extractie overleven.
 
 ## Componenten uit het template
 
@@ -76,10 +85,12 @@ in het `@theme`-blok van `src/app/globals.css`.
 
 - Per pagina een eigen `title` (max 63 tekens incl. merknaam) en `description` (80-160 tekens)
 - Canonical URL op elke pagina
-- `sitemap.xml` en `robots.txt` worden gegenereerd uit de datalaag
-- Schema.org: `ProfessionalService`, `WebSite`, `Service`, `FAQPage`, `Article`,
-  `BreadcrumbList`, `ContactPage`, `ItemList`
-- Interne linkstructuur: pillar (`/legionellapreventie`) → diensten → branches → artikelen
+- `sitemap.xml` en `robots.txt` worden gegenereerd uit `src/content`
+- Previews en het testdomein krijgen `noindex` en een blokkerende `robots.txt`;
+  alleen productie (`VERCEL_ENV=production`) is indexeerbaar
+- Oude adressen sturen permanent door (`next.config.ts`, uit `redirects.json`)
+- Schema.org: `ProfessionalService`, `WebSite`, `Service`, `FAQPage`, `BreadcrumbList`
+- Landingspagina's linken naar hun onderwerp en hun buren; `/sitemap` linkt naar alles
 - Kruimelpaden met gestructureerde data op alle onderliggende pagina's
 
 ## Contactformulier
@@ -97,24 +108,6 @@ CONTACT_SENDER=info@cleanwatersystems.nl   # mailbox die verstuurt, optioneel
 Zonder deze variabelen weigert de route de aanvraag met een duidelijke melding
 (telefoonnummer en e-mailadres), zodat er nooit stilzwijgend een aanvraag verdwijnt.
 
-## Paginaopbouw per template-pagina
-
-Elke pagina is nagebouwd op de template-pagina die er qua functie bij hoort:
-
-| Onze pagina | Template-pagina |
-| --- | --- |
-| Home | Home V1 |
-| Diensten | Portfolio V1 |
-| Dienst (detail) | Portfolio single |
-| Branches | Investors |
-| Branche (detail) | Blog post + About-onderdelen |
-| Kenniscentrum | Blog V1 |
-| Artikel | Blog post |
-| Legionellapreventie | Blog post |
-| Over ons | About |
-| Contact | Contact |
-| Veelgestelde vragen | Portfolio-hero + FAQ-sectie |
-
 ## Video
 
 De bedrijfsimpressie draait als achtergrond in de hero (`HeroVideo`). De poster
@@ -129,52 +122,23 @@ voorvertoning via `VideoEmbed`. Beide gebruiken `youtube-nocookie.com`.
 Beter zou zijn om het MP4-bestand zelf te hosten: dat is sneller en er komt geen
 derde partij aan te pas. Vraag daarvoor het originele bestand op bij de klant.
 
-## Logo en favicon
+## Logo
 
-Het beeldmerk bestaat uit drie geneste bogen met de opening naar rechts, waardoor
-de vorm als een C leest. De middelste boog staat in het merkblauw (#2365ff), de
-buitenste en binnenste in donkerblauw (#001035). In het woordmerk is "clean"
-blauw en "watersystems" donkerblauw, zodat het blauw op twee plekken terugkomt.
+Het originele klantlogo, als witte (`logo-cws-light.png`) en navy versie
+(`logo-cws-dark.png`) in `public/images/brand`, via `src/components/Logo.tsx`.
 
-Op een donkere ondergrond wordt donkerblauw wit en schuift het merkblauw op naar
-cyaan (#6ccfff): #2365ff geeft tegen #001035 te weinig contrast.
+## Beoordelingen
 
-De paden zijn 2,25 naar rechts geschoven zodat het inktvlak precies in het
-100-vak centreert. Woordmerkbreedtes zijn uitgemeten in Inter Tight op 34 punt
-met spatiering -1.1: clean is 77,2 breed, watersystems 205,2.
-
-- `LogoMark` levert alleen het merk, met een `size` in pixels
-- `LogoWordmark` levert alleen het woordmerk, met een `height`
-- `Logo` levert het volledige lockup, met `variant="light"` of `"dark"`
-- `public/images/logo-mark.svg` is het losse merk voor extern gebruik
-- `src/app/icon.png` en `apple-icon.png` zijn de favicon en het app-icoon
-
-Alle veertien onderzochte richtingen staan als specimenblad op
-https://claude.ai/code/artifact/44b27853-29fa-4f97-913f-668abbdd5f4f
-
-## Google-beoordelingen
-
-De reviewknop uit de bestaande site staat in de hero (`GoogleReviews`). Score en
-aantal komen uit `site.reviews` en zijn nog leeg: zolang dat zo is toont de badge
-alleen de vijf sterren, precies zoals de huidige site doet. Vul `rating` en
-`count` in zodra de actuele cijfers bekend zijn, dan verschijnen ze automatisch.
+Score en aantal (4,9 uit 7) en de vier reviews komen van de oude reviewpagina.
 
 ## Beeldmateriaal
 
-De keurmerken (Kiwa, CE, NEN-EN 1112) komen van de bestaande site en zijn uit de
-gecombineerde afbeelding gesneden. De overige fotografie bestaat uit stockfoto's
-van Pexels (Pexels-licentie: vrij te gebruiken, ook commercieel, zonder
-naamsvermelding). De herkomst per bestand staat in
-`public/images/fotos/BRONNEN.json`, met het Pexels-nummer en de bron-URL.
+Alle foto's komen uit het archief van de oude site (`public/images/oud`). Van vijf
+productfoto's was het origineel niet bewaard; daar is de grootste verkleinde versie
+gebruikt. De keurmerken (Kiwa, CE, NEN-EN 1112) staan in `public/images/fotos`.
 
-Beelden worden gerenderd via `<Media>`, dat de verhouding vasthoudt en op
-`next/image` draait. Koppelingen staan als `image` en `imageAlt` in
-`src/data/services.ts`, `branches.ts` en `articles.ts`.
+## Nog te doen
 
-## Nog te doen voor livegang
-
-- Eigen fotografie aanleveren ter vervanging van de stockfoto's
-- Content juridisch laten toetsen door de eigenaar (normen, frequenties, verplichtingen)
-- Google Analytics / Tag Manager plus cookiebanner koppelen indien gewenst
-- 301-redirects instellen vanaf de oude `.html`-URL's naar de nieuwe structuur
+- Microsoft 365-gegevens in Vercel zetten zodat het formulier verstuurt
 - Google Search Console verifiëren en de sitemap indienen
+- Productfoto's in hoge resolutie opvragen (zie Beeldmateriaal)

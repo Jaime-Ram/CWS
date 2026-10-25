@@ -6,6 +6,8 @@ import JsonLd from "@/components/JsonLd";
 import { site } from "@/data/site";
 import { organizationSchema } from "@/lib/seo";
 
+const indexable = process.env.VERCEL_ENV === "production" || !process.env.VERCEL_ENV;
+
 const interTight = Inter_Tight({
   subsets: ["latin"],
   display: "swap",
@@ -15,8 +17,8 @@ const interTight = Inter_Tight({
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: "Legionellapreventie & BRL 6010 risicoanalyse | Clean Watersystems",
-    template: "%s | Clean Watersystems",
+    default: "Legionellapreventie & BRL 6010 risicoanalyse | Clean Water Systems",
+    template: "%s | Clean Water Systems",
   },
   description: site.description,
   applicationName: site.legalName,
@@ -24,9 +26,10 @@ export const metadata: Metadata = {
   creator: site.legalName,
   publisher: site.legalName,
   robots: {
-    index: true,
+    // Previews en het testdomein niet indexeren, alleen productie.
+    index: indexable,
     follow: true,
-    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+    googleBot: { index: indexable, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   },
   alternates: { canonical: site.url },
   openGraph: {

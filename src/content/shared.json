@@ -1,0 +1,139 @@
+{
+ "reviews": [
+  {
+   "name": "Hotel Atlas",
+   "date": "15-4-2026",
+   "rating": 5,
+   "text": "Wij zijn zeer tevreden met het werk van Clean Water System. Vanaf het eerste contact tot en met de uitvoering verliep alles uiterst professioneel en goed georganiseerd. De communicatie was duidelijk, er werd goed meegedacht en de kwaliteit van het werk is uitstekend. Alles is netjes en volgens afspraak uitgevoerd. Wij kunnen dit bedrijf van harte aanbevelen aan iedereen die op zoek is naar betrouwbaarheid en vakmanschap. Een echte aanrader!"
+  },
+  {
+   "name": "Bas Ravens",
+   "date": "2-1-2026",
+   "rating": 5,
+   "text": "Professionele hulp, meedenkend, flexibel. Clean Water Systems heeft mijn probleem goed opgepakt!"
+  },
+  {
+   "name": "Rogier",
+   "date": "21-9-2025",
+   "rating": 5,
+   "text": "Erg behulpzaam en grondig. Peter was prettig gezelschap tijdens de werkzaamheden en hij weet wat hij doet."
+  },
+  {
+   "name": "CrosbyIp",
+   "date": "8-9-2023",
+   "rating": 5,
+   "text": "We zijn erg tevreden over Clean Water Systems. Clean Water Systems is een vakkundig bedrijf die goed communiceert, flexibel is en meedenkt met jouw organisatie."
+  }
+ ],
+ "reviewTotal": {
+  "rating": "4.9",
+  "count": 7
+ },
+ "standingFor": {
+  "blocks": [
+   {
+    "type": "html",
+    "html": "<h2>Waar staan wij voor?</h2><p>Veilig en schoon drinkwater is vanzelf sprekend in Nederland. Er zijn maar weinig mensen die weten wat er allemaal bij komt kijken om elk moment van de dag betrouwbaar drinkwater uit de kraan te laten komen. Drinkwaterinstallaties dienen volgens de daarvoor geldende regels te worden aangelegd, onderhouden en beheerd.</p><p>Clean Water Systems houdt zich sinds 2008 bezig met legionella preventie en heeft ruime ervaring en deskundigheid van drinkwaterinstallaties. Dit bied u de garantie dat wij u snel en discreet professioneel advies kunnen bieden bij een legionella uitbraak, met een blijvend resultaat als doel.</p>"
+   }
+  ],
+  "image": "/images/oud/clean-water-systems-waar-staan-wij-voor-jpg.webp",
+  "points": [
+   {
+    "title": "Risico inventarisatie",
+    "text": "",
+    "image": null,
+    "href": "/"
+   },
+   {
+    "title": "Desinfectie waterleidingsystemen",
+    "text": "",
+    "image": null,
+    "href": "/"
+   },
+   {
+    "title": "Keerklep controle",
+    "text": "",
+    "image": null,
+    "href": "/"
+   }
+  ]
+ },
+ "reasonsWhy": [
+  {
+   "type": "html",
+   "html": "<h2>Redenen om voor ons te kiezen</h2><ul><li>Wij hanteren de normen van de BRL6010 en gebruiken Kiwa-Ata goedgekeurde reinigings en desinfectiemiddelen</li><li>Clean Water Systems reinigt en desinfecteert veilig via de wettelijk voorgeschreven fysieke onderbreking</li><li>Uw drinkwaterinstallatie kunnen wij in de avond, s ‘nachts of in het weekend reinigen en desinfecteren</li><li>Of het nu gaat om 1 of 1000 tappunten, wij desinfecteren snel en vakkundig</li></ul>"
+  }
+ ],
+ "contactUs": "Vraag een offerte aan Of Neem contact op",
+ "services": {
+  "title": "Onze services",
+  "cards": [
+   {
+    "title": "Garantie op desinfectie",
+    "text": "Garantie op desinfectie als uw leidingssysteem voldoet aan de BRL6010",
+    "image": "/images/oud/clean-water-systems-garantie-op-desinfectie-340.webp",
+    "href": "/"
+   },
+   {
+    "title": "100% Tevredenheidsgarantie",
+    "text": "Clean Water Systems is pas tevreden als u dat ook bent.",
+    "image": "/images/oud/clean-water-systems-tevredenheid-340.webp",
+    "href": "/"
+   },
+   {
+    "title": "Snelle reactie bij legionella uitbraak",
+    "text": "Indien nodig voeren wij binnen 24 uur een desinfectie uit.",
+    "image": "/images/oud/clean-water-systems-snelle-reactie-bij-legionella-uitbraak-340.webp",
+    "href": "/"
+   }
+  ]
+ },
+ "results": {
+  "title": "Resultaten",
+  "images": [
+   "/images/oud/clean-water-systems-watermonsters-1.jpg",
+   "/images/oud/clean-water-systems-watermonsters.jpg"
+  ]
+ },
+ "quote": "Wij leveren de kwaliteit die u verwacht en nemen alleen opdrachten aan waar we in zijn gespecialiseerd",
+ "homeServices": [
+  {
+   "title": "Risico-analyse en beheersplan (BRL6010)",
+   "text": "Analyse van de drinkwaterinstallatie volgens BRL6010 en aansluitend een behandel en beheersplan.",
+   "image": null,
+   "href": "/risico-inventarisatie-en-beheersplan"
+  },
+  {
+   "title": "Keerklep en appendage controle",
+   "text": "Controle op goede werking van de terugstroombeveiliging en appendages conform NEN1006/waterwerkblad 1.4G.",
+   "image": null,
+   "href": "/keerklepcontrole"
+  },
+  {
+   "title": "Sediment uit boilers verwijderen",
+   "text": "Veilig en schoon warm drinkwater is van essentieel belang, daarom dient u jaarlijks conform NEN1006/waterwerkblad 1.4G het sediment te verwijderen uit de boilers van uw drinkwaterinstallatie.",
+   "image": null,
+   "href": "/sediment-verwijderen-uit-boilers"
+  },
+  {
+   "title": "Reiniging en desinfectie drinkwaterinstallatie",
+   "text": "Reiniging en desinfectie van uw drinkwaterinstallatie met als doel afdoden van legionella en andere bacteriën.",
+   "image": null,
+   "href": "/reiniging-en-desinfectie-van-een-drinkwaterleidingsysteem"
+  }
+ ],
+ "homeProducts": [
+  {
+   "title": "Anti-Legionella",
+   "text": "Douchekoppen",
+   "image": "/images/oud/clean-water-systems-anti-legionella-340.webp",
+   "href": "/legionella-douchekoppen"
+  },
+  {
+   "title": "Watermonsters",
+   "text": "Laten onderzoeken",
+   "image": "/images/oud/clean-water-systems-watermonsters-340.webp",
+   "href": "/legionella-watermonsters"
+  }
+ ]
+}

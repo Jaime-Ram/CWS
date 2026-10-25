@@ -2,9 +2,15 @@ import Link from "next/link";
 import Logo from "./Logo";
 import FooterSurface from "./FooterSurface";
 import Certifications from "./Certifications";
-import { site } from "@/data/site";
-import { services } from "@/data/services";
-import { branches } from "@/data/branches";
+import { menu, site } from "@/data/site";
+import { home, landingTopics, shortName } from "@/content";
+
+// Contacttekst van de oude homepage, zonder de link-opmaak.
+const contactText = (home.blocks.map((b) => (b.type === "html" ? b.html : "")).join("").split("<h2>").pop() ?? "")
+  .replace(/^.*?<\/h2>/, "")
+  .replace(/<[^>]+>/g, "")
+  .replace(/\s+/g, " ")
+  .trim();
 import { PrimaryButton } from "./ui";
 
 const year = 2026;
@@ -25,12 +31,9 @@ export default function Footer() {
               <Logo variant="dark" markSize={44} wordHeight={38} />
             </div>
 
-            <h2 className="mt-8 text-white">
-              Advies over legionellapreventie of een overschrijding?
-            </h2>
+            <h2 className="mt-8 text-white">Contact opnemen?</h2>
             <p className="mx-auto mt-4 max-w-[500px] leading-[1.6em] text-neutral-300">
-              Vertel kort om wat voor gebouw het gaat. U hoort binnen één werkdag wat er
-              nodig is, wat het kost en wat u zelf al kunt doen.
+              {contactText}
             </p>
             <div className="mt-7 flex flex-wrap items-center justify-center gap-5">
               <PrimaryButton href="/contact">Neem contact op</PrimaryButton>
@@ -43,30 +46,31 @@ export default function Footer() {
           {/* Text adapts to its position on the original footer gradient. */}
           <div className="footer-details">
           <div className="grid grid-cols-4 gap-10 pt-40 max-lg:grid-cols-2 max-sm:grid-cols-1 max-lg:pt-10">
-            <FooterColumn title="Diensten">
-              {services.slice(0, 7).map((s) => (
-                <FooterLink key={s.slug} href={`/diensten/${s.slug}`}>
-                  {s.navName}
-                </FooterLink>
-              ))}
-              <FooterLink href="/diensten">Alle diensten</FooterLink>
-            </FooterColumn>
-
-            <FooterColumn title="Branches">
-              {branches.map((b) => (
-                <FooterLink key={b.slug} href={`/branches/${b.slug}`}>
-                  {b.shortName}
+            <FooterColumn title={menu[0].label}>
+              {menu[0].items.map((l) => (
+                <FooterLink key={l.href} href={l.href}>
+                  {l.label}
                 </FooterLink>
               ))}
             </FooterColumn>
 
-            <FooterColumn title="Kennis en info">
-              <FooterLink href="/legionellapreventie">Legionellapreventie</FooterLink>
-              <FooterLink href="/kenniscentrum">Kenniscentrum</FooterLink>
+            <FooterColumn title={menu[1].label}>
+              {menu[1].items.map((l) => (
+                <FooterLink key={l.href} href={l.href}>
+                  {l.label}
+                </FooterLink>
+              ))}
+            </FooterColumn>
+
+            <FooterColumn title="Informatie">
+              {landingTopics.slice(0, 5).map(({ topic }) => (
+                <FooterLink key={topic.slug} href={`/${topic.slug}`}>
+                  {shortName(topic)}
+                </FooterLink>
+              ))}
               <FooterLink href="/veelgestelde-vragen">Veelgestelde vragen</FooterLink>
-              <FooterLink href="/over-ons">Over ons</FooterLink>
-              <FooterLink href="/diensten/legionella-uitbraak">Spoed bij een uitbraak</FooterLink>
-              <FooterLink href="/privacyverklaring">Privacyverklaring</FooterLink>
+              <FooterLink href="/reviews">Reviews</FooterLink>
+              <FooterLink href="/sitemap">Sitemap</FooterLink>
             </FooterColumn>
 
             <FooterColumn title="Contact">
@@ -118,8 +122,8 @@ export default function Footer() {
           <div className="mt-16 flex flex-wrap items-center justify-between gap-8">
             <Certifications variant="light" scale={1.15} />
             <p className="max-w-[380px] text-[14px] leading-[1.6em] text-primary-dark/70">
-              Wij werken volgens BRL 6010 en BRL-K14032 en gebruiken uitsluitend Kiwa-ATA
-              goedgekeurde reinigings- en desinfectiemiddelen.
+              Wij hanteren de normen van de BRL6010 en gebruiken Kiwa-Ata goedgekeurde
+              reinigings en desinfectiemiddelen.
             </p>
           </div>
 
@@ -133,7 +137,10 @@ export default function Footer() {
               <Link href="/privacyverklaring" className="transition-opacity hover:opacity-70">
                 Privacyverklaring
               </Link>
-              <Link href="/sitemap.xml" className="transition-opacity hover:opacity-70">
+              <Link href="/cookieverklaring" className="transition-opacity hover:opacity-70">
+                Cookieverklaring
+              </Link>
+              <Link href="/sitemap" className="transition-opacity hover:opacity-70">
                 Sitemap
               </Link>
             </div>

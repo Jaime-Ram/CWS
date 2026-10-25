@@ -6,6 +6,9 @@ import { ArrowIcon } from "./ui";
 type Status = "idle" | "sending" | "ok" | "error";
 
 const subjects = [
+  "Offerte aanvragen",
+  "Afspraak maken",
+  "Contact",
   "Risicoanalyse en beheersplan (BRL 6010)",
   "Reiniging en desinfectie",
   "Keerklepcontrole",
@@ -15,7 +18,7 @@ const subjects = [
   "Anders",
 ];
 
-export default function ContactForm() {
+export default function ContactForm({ defaultSubject }: { defaultSubject?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
 
@@ -65,7 +68,7 @@ export default function ContactForm() {
         <select
           name="onderwerp"
           className="h-[52px] rounded-[10px] border border-neutral-200 bg-white px-4 text-[15px] text-neutral-800 outline-none transition-colors focus:border-primary"
-          defaultValue={subjects[0]}
+          defaultValue={defaultSubject ?? subjects[0]}
         >
           {subjects.map((s) => (
             <option key={s}>{s}</option>
